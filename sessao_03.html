@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP - Sessão 1.3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Sessão 1.3: Prompts Eficazes e Boas Práticas - Workshops práticos do IEFP"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* Estilos personalizados - Workshop IA IEFP - Sessão 1.3 */
+      :root {
+        --primary-color: #dc2626;
+        --secondary-color: #16a34a;
+        --accent-color: #ea580c;
+        --tertiary-color: #9333ea;
+        --text-dark: #111827;
+        --bg-light: #fefefe;
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--accent-color) 25%,
+          var(--tertiary-color) 60%,
+          var(--secondary-color) 100%
+        );
+      }
+      .conteudo-pagina {
+        background: var(--bg-light);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      .stats-section {
+        background: rgba(255, 255, 255, 0.95);
+        margin-top: 0;
+        margin-bottom: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(220, 38, 38, 0.1);
+      }
+      .prompt-before-after {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 20px 0;
+      }
+      .prompt-before {
+        background: #fef2f2;
+        border-left: 4px solid #dc2626;
+        padding: 15px;
+        border-radius: 8px;
+      }
+      .prompt-after {
+        background: #f0fdf4;
+        border-left: 4px solid #16a34a;
+        padding: 15px;
+        border-radius: 8px;
+      }
+      .technique-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      .template-box {
+        background: #f8fafc;
+        border: 2px dashed #cbd5e1;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+      }
+      .quality-checklist {
+        background: #fff7ed;
+        border-left: 4px solid #ea580c;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+      @media (max-width: 768px) {
+        .prompt-before-after {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Sessão 1.3: Prompts Eficazes e Boas Práticas - Guião de Sessão
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="container conteudo-pagina py-5"
+      style="margin-top: 100px !important; padding-top: 100px !important"
+    >
+      <!-- Secção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center justify-content-center">
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">3</span>
+                  <span class="stats-label">Sessão</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">1h</span>
+                  <span class="stats-label">Duração</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="stats-card">
+                  <span class="stats-number">6</span>
+                  <span class="stats-label">Técnicas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span class="nav-link">
+                  <i class="fas fa-magic me-1"></i>Prompts e Boas Práticas
+                </span>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar técnicas ou templates..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter"
+          >Sessão 1.3 - Prompts Eficazes e Boas Práticas</span
+        >
+      </div>
+
+      <!-- Accordion principal -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Sessão 1.3: Prompts Eficazes e Boas Práticas -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="prompts eficazes boas praticas templates tecnicas validacao etica"
+          data-categoria="avancado"
+        >
+          <h2 class="accordion-header" id="heading-w1s3">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-w1s3"
+              aria-expanded="true"
+              aria-controls="collapse-w1s3"
+            >
+              <div class="icon-workshop">
+                <i class="fas fa-magic"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">1.3 Prompts Eficazes e Boas Práticas</div>
+                <div class="small text-muted">
+                  Técnicas avançadas para maximizar a eficácia da IA na formação
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">1 hora</span>
+                <span class="badge badge-avancado">Avançado</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-w1s3"
+            class="accordion-collapse collapse show"
+            aria-labelledby="heading-w1s3"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-bullseye me-2 text-primary"></i>Objetivos da
+                  Sessão
+                </h5>
+                <p>
+                  Esta sessão aprofunda as competências de prompt engineering aplicado à formação. No final desta sessão será capaz de:
+                </p>
+                <ul>
+                  <li>Construir prompts estruturados e eficazes para diferentes contextos pedagógicos</li>
+                  <li>Aplicar técnicas avançadas de prompt engineering (chain of thought, few-shot, role prompting)</li>
+                  <li>Validar e adaptar outputs de IA segundo critérios pedagógicos</li>
+                  <li>Implementar boas práticas éticas no uso de IA na formação</li>
+                </ul>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-quote-left me-2"></i>Princípio Central
+                  </h6>
+                  <p class="mb-2">
+                    <strong>Qualidade do Input = Qualidade do Output:</strong> 
+                    Um prompt bem estruturado é a diferença entre uma resposta genérica e um recurso pedagógico verdadeiramente útil.
+                  </p>
+                  <p class="mb-0">
+                    <strong>Foco:</strong> Prompts como ponte entre intenção pedagógica e resultado prático.
+                  </p>
+                </div>
+              </div>
+
+              <!-- PASSO 1: Anatomia de um Prompt Eficaz -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">1</span>Anatomia de um Prompt Eficaz
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 10 minutos |
+                  <strong>Objetivo:</strong> Compreender a estrutura fundamental de prompts eficazes
+                </p>
+
+                <div class="concept-box">
+                  <h6>Os 4 Componentes Essenciais:</h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="component-card">
+                        <h6><i class="fas fa-user-cog me-2 text-primary"></i>1. CONTEXTO</h6>
+                        <p class="small">Define o papel e a situação</p>
+                        <em>"Atua como formador especialista em..."</em>
+                      </div>
+                      <div class="component-card">
+                        <h6><i class="fas fa-tasks me-2 text-success"></i>2. TAREFA</h6>
+                        <p class="small">Especifica o que pretende</p>
+                        <em>"Cria um plano de aula de 2 horas sobre..."</em>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="component-card">
+                        <h6><i class="fas fa-list me-2 text-info"></i>3. FORMATO</h6>
+                        <p class="small">Define como estruturar a resposta</p>
+                        <em>"Apresenta em formato de tabela com..."</em>
+                      </div>
+                      <div class="component-card">
+                        <h6><i class="fas fa-exclamation-triangle me-2 text-warning"></i>4. RESTRIÇÕES</h6>
+                        <p class="small">Estabelece limitações e critérios</p>
+                        <em>"Máximo 500 palavras, adequado para iniciantes..."</em>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h6>Exemplo Prático - Antes vs Depois:</h6>
+                <div class="prompt-before-after">
+                  <div class="prompt-before">
+                    <h6><i class="fas fa-times-circle me-2"></i>ANTES (Prompt Fraco)</h6>
+                    <p class="small mb-0">
+                      "Faz um plano de aula sobre Excel."
+                    </p>
+                  </div>
+                  <div class="prompt-after">
+                    <h6><i class="fas fa-check-circle me-2"></i>DEPOIS (Prompt Eficaz)</h6>
+                    <p class="small mb-0">
+                      "<strong>CONTEXTO:</strong> Atua como formador certificado em Office com 10 anos de experiência.<br>
+                      <strong>TAREFA:</strong> Cria um plano de aula de 3 horas sobre Excel básico para adultos desempregados sem experiência prévia.<br>
+                      <strong>FORMATO:</strong> Estrutura em 6 módulos de 30min cada, com objetivos, conteúdos, atividades práticas e recursos.<br>
+                      <strong>RESTRIÇÕES:</strong> Linguagem acessível, exercícios baseados em situações reais de trabalho, máximo 2 páginas."
+                    </p>
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6><i class="fas fa-pencil-alt me-2"></i>Exercício de Decomposição</h6>
+                  <p>Analise este prompt e identifique os 4 componentes:</p>
+                  <div class="template-box">
+                    "Como especialista em pedagogia digital, desenvolve um quiz interativo de 10 questões sobre segurança informática para jovens entre 16-25 anos. Usa linguagem jovem e incluí exemplos de redes sociais. Apresenta cada questão com 4 opções de resposta e justificação detalhada. Evita termos técnicos complexos."
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Identifiquei os 4 componentes no exemplo</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Compreendo a estrutura de um prompt eficaz</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 2: Templates de Prompts para Formação -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">2</span>Templates de Prompts para Formação
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Criar biblioteca pessoal de templates
+                </p>
+
+                <h6>Templates por Categoria Pedagógica:</h6>
+                
+                <div class="technique-card">
+                  <h6><i class="fas fa-chalkboard-teacher me-2"></i>Template 1: Criação de Conteúdos</h6>
+                  <div class="template-box">
+CONTEXTO: Atua como formador especialista em [ÁREA DE ESPECIALIZAÇÃO] com experiência em [PÚBLICO-ALVO].
+
+TAREFA: Desenvolve [TIPO DE CONTEÚDO] sobre [TÓPICO ESPECÍFICO] para [DESCRIÇÃO DO PÚBLICO] com [NÍVEL DE CONHECIMENTO PRÉVIO].
+
+FORMATO: Estrutura em [NÚMERO] secções com:
+- Introdução motivadora
+- [NÚMERO] conceitos principais explicados de forma simples
+- [NÚMERO] exemplos práticos
+- Resumo e próximos passos
+
+RESTRIÇÕES: 
+- Máximo [NÚMERO] palavras
+- Linguagem [ESTILO]
+- Incluir [ELEMENTOS ESPECÍFICOS]
+                  </div>
+                </div>
+
+                <div class="technique-card">
+                  <h6><i class="fas fa-question-circle me-2"></i>Template 2: Avaliação e Feedback</h6>
+                  <div class="template-box">
+CONTEXTO: Atua como avaliador pedagógico especializado em [ÁREA].
+
+TAREFA: Analisa este [TRABALHO/EXERCÍCIO/PROJETO] de um formando de nível [BÁSICO/INTERMÉDIO/AVANÇADO] e fornece feedback construtivo.
+
+FORMATO:
+- Pontos fortes (2-3 aspetos específicos)
+- Áreas de melhoria (2-3 sugestões concretas)
+- Próximos passos (ações específicas)
+- Classificação justificada
+
+RESTRIÇÕES:
+- Tom encorajador mas honesto
+- Sugestões práticas e exequíveis
+- Máximo 200 palavras
+                  </div>
+                </div>
+
+                <div class="technique-card">
+                  <h6><i class="fas fa-gamepad me-2"></i>Template 3: Atividades Práticas</h6>
+                  <div class="template-box">
+CONTEXTO: Atua como designer instrucional especializado em aprendizagem ativa.
+
+TAREFA: Cria [NÚMERO] atividades práticas sobre [TÓPICO] para grupos de [TAMANHO] pessoas durante [DURAÇÃO].
+
+FORMATO: Para cada atividade inclui:
+- Objetivo específico
+- Materiais necessários
+- Instruções passo-a-passo
+- Tempo estimado
+- Critérios de sucesso
+
+RESTRIÇÕES:
+- Atividades devem ser [CARACTERÍSTICAS ESPECÍFICAS]
+- Adequadas ao espaço [TIPO DE ESPAÇO]
+- Sem necessidade de tecnologia avançada
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6><i class="fas fa-tools me-2"></i>Personalização de Templates</h6>
+                  <ol>
+                    <li>Escolha UM template que mais se adequa à sua área</li>
+                    <li>Adapte-o a uma situação real da sua prática</li>
+                    <li>Teste o prompt numa ferramenta de IA</li>
+                    <li>Analise o resultado e refine se necessário</li>
+                  </ol>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Personalizei e testei um template</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Identifiquei melhorias no resultado</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 3: Técnicas Avançadas -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">3</span>Técnicas Avançadas de Prompt Engineering
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Dominar técnicas profissionais
+                </p>
+
+                <div class="technique-card">
+                  <h6><i class="fas fa-link me-2 text-primary"></i>Técnica 1: Chain of Thought (Cadeia de Raciocínio)</h6>
+                  <p class="small"><strong>Quando usar:</strong> Para problemas complexos que requerem raciocínio passo-a-passo</p>
+                  <div class="template-box">
+"Vamos resolver isto passo a passo:
+
+1º Passo: Analisa o problema/situação
+2º Passo: Identifica os fatores importantes
+3º Passo: Considera diferentes abordagens
+4º Passo: Escolhe a melhor solução
+5º Passo: Justifica a escolha
+
+Aplica este raciocínio para criar uma estratégia de motivação para formandos desmotivados na área de [ÁREA]."
+                  </div>
+                </div>
+
+                <div class="technique-card">
+                  <h6><i class="fas fa-copy me-2 text-success"></i>Técnica 2: Few-Shot Learning (Exemplos Orientadores)</h6>
+                  <p class="small"><strong>Quando usar:</strong> Para definir estilo ou formato específico</p>
+                  <div class="template-box">
+"Cria questões de multiple choice seguindo estes exemplos:
+
+EXEMPLO 1:
+Pergunta: Qual a principal vantagem do Excel?
+a) É gratuito
+b) Organiza dados eficientemente ✓
+c) Substitui o PowerPoint
+d) Só funciona online
+
+EXEMPLO 2:
+Pergunta: O que significa 'backup'?
+a) Cópia de segurança ✓
+b) Reiniciar o computador
+c) Apagar ficheiros
+d) Atualizar software
+
+Agora cria 3 questões similares sobre [SEU TÓPICO]."
+                  </div>
+                </div>
+
+                <div class="technique-card">
+                  <h6><i class="fas fa-user-tie me-2 text-info"></i>Técnica 3: Role Prompting (Definição de Papéis)</h6>
+                  <p class="small"><strong>Quando usar:</strong> Para respostas especializadas e contextualizadas</p>
+                  <div class="template-box">
+"PAPEL: És um formador sénior com 15 anos de experiência em formação profissional para adultos desempregados. Tens especialização em métodos ativos e és conhecido pela capacidade de motivar públicos difíceis.
+
+PERSONALIDADE: Empático, prático, motivador, direto mas acolhedor.
+
+EXPERIÊNCIA: Já formaste mais de 2000 pessoas em situação de desemprego, com taxa de sucesso de 85% na inserção no mercado de trabalho.
+
+Com esta identidade, responde: [SUA PERGUNTA]"
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6><i class="fas fa-flask me-2"></i>Laboratório de Técnicas</h6>
+                  <p>Teste cada técnica com a mesma pergunta:</p>
+                  <div class="bg-light p-3 rounded">
+                    <strong>Pergunta base:</strong> "Como posso ensinar [tópico da sua área] de forma mais eficaz?"
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Testei a técnica Chain of Thought</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Experimentei Few-Shot Learning</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Apliquei Role Prompting</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 4: Boas Práticas Pedagógicas -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">4</span>Boas Práticas Pedagógicas e Éticas
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 10 minutos |
+                  <strong>Objetivo:</strong> Implementar uso responsável de IA
+                </p>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="concept-box" style="border-left-color: var(--secondary-color)">
+                      <h6><i class="fas fa-check-circle me-2 text-success"></i>Boas Práticas</h6>
+                      <ul class="small">
+                        <li><strong>Validação:</strong> Sempre verifique a precisão dos conteúdos</li>
+                        <li><strong>Personalização:</strong> Adapte outputs à sua realidade</li>
+                        <li><strong>Transparência:</strong> Informe quando usa IA como apoio</li>
+                        <li><strong>Complementaridade:</strong> IA apoia, não substitui sua expertise</li>
+                        <li><strong>Iteração:</strong> Refine prompts com base em resultados</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="concept-box" style="border-left-color: var(--primary-color)">
+                      <h6><i class="fas fa-exclamation-triangle me-2 text-danger"></i>Cuidados Éticos</h6>
+                      <ul class="small">
+                        <li><strong>Privacidade:</strong> Não partilhe dados pessoais de formandos</li>
+                        <li><strong>Bias:</strong> Esteja atento a preconceitos nas respostas</li>
+                        <li><strong>Dependência:</strong> Mantenha autonomia pedagógica</li>
+                        <li><strong>Autoria:</strong> Credite adequadamente conteúdos gerados</li>
+                        <li><strong>Qualidade:</strong> Não aceite outputs sem revisão crítica</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="quality-checklist">
+                  <h6><i class="fas fa-clipboard-check me-2"></i>Checklist de Validação de Outputs</h6>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span><strong>Precisão:</strong> As informações estão corretas e atualizadas?</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span><strong>Relevância:</strong> O conteúdo é adequado ao público-alvo?</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span><strong>Clareza:</strong> A linguagem é acessível e compreensível?</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span><strong>Completude:</strong> Todos os aspetos importantes estão cobertos?</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span><strong>Aplicabilidade:</strong> É possível implementar na prática?</span>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-lightbulb me-2"></i>
+                  <strong>Regra dos 3 Rs:</strong> Revise, Refine, Reutilize. Todo output de IA deve passar por estes três momentos antes de ser usado em formação.
+                </div>
+              </div>
+
+              <!-- PASSO 5: Exercícios Práticos -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">5</span>Laboratório de Prompts
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Aplicar conhecimentos em cenários reais
+                </p>
+
+                <h6>Desafios Práticos:</h6>
+                
+                <div class="challenge-card">
+                  <h6><i class="fas fa-trophy me-2 text-warning"></i>Desafio 1: O Formando Desmotivado</h6>
+                  <p class="small"><strong>Cenário:</strong> Tem um formando adulto que mostra sinais de desmotivação e falta às aulas.</p>
+                  <p class="small"><strong>Objetivo:</strong> Criar um prompt para desenvolver estratégias de re-motivação específicas.</p>
+                  <div class="template-box">
+Construa um prompt usando:
+- Contexto: Formador experiente em psicologia educacional
+- Tarefa: Estratégias personalizadas de motivação
+- Formato: Plano de ação com 5 passos
+- Restrições: Abordagem empática, ações concretas
+                  </div>
+                </div>
+
+                <div class="challenge-card">
+                  <h6><i class="fas fa-users me-2 text-info"></i>Desafio 2: Atividade de Grupo</h6>
+                  <p class="small"><strong>Cenário:</strong> Precisa de uma atividade dinâmica para 12 pessoas sobre trabalho em equipa.</p>
+                  <p class="small"><strong>Objetivo:</strong> Prompt para atividade prática de 45 minutos.</p>
+                  <div class="template-box">
+Inclua no seu prompt:
+- Chain of thought para análise de dinâmicas de grupo
+- Few-shot com exemplo de atividade similar
+- Restrições específicas de tempo e espaço
+                  </div>
+                </div>
+
+                <div class="challenge-card">
+                  <h6><i class="fas fa-chart-bar me-2 text-success"></i>Desafio 3: Avaliação Formativa</h6>
+                  <p class="small"><strong>Cenário:</strong> Quer criar um sistema de avaliação contínua para o seu curso.</p>
+                  <p class="small"><strong>Objetivo:</strong> Prompt para gerar rubricas de avaliação detalhadas.</p>
+                  <div class="template-box">
+Use role prompting:
+- Papel: Especialista em avaliação pedagógica
+- Experiência específica na sua área de formação
+- Personalidade: Rigoroso mas justo
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6><i class="fas fa-code me-2"></i>Hora do Código</h6>
+                  <ol>
+                    <li>Escolha UM desafio que mais se relaciona com a sua prática</li>
+                    <li>Construa o prompt seguindo as orientações</li>
+                    <li>Teste numa ferramenta de IA</li>
+                    <li>Aplique o checklist de validação</li>
+                    <li>Refine o prompt com base nos resultados</li>
+                  </ol>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Completei um desafio prático</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Apliquei o checklist de qualidade</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Refinei o prompt com melhorias</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 6: Toolkit Pessoal e Próximos Passos -->
+              <div class="tutorial-step">
+                <h4><span class="step-number">6</span>Construção do Seu Toolkit de Prompts</h4>
+                <p>
+                  <strong>Duração:</strong> 5 minutos |
+                  <strong>Objetivo:</strong> Criar estratégia pessoal de implementação
+                </p>
+
+                <div class="toolkit-builder">
+                  <h6><i class="fas fa-toolbox me-2"></i>O Seu Kit de Ferramentas</h6>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="toolkit-section">
+                        <h6>Templates Base</h6>
+                        <div class="small">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="template1">
+                            <label class="form-check-label" for="template1">Criação de conteúdos</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="template2">
+                            <label class="form-check-label" for="template2">Avaliação e feedback</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="template3">
+                            <label class="form-check-label" for="template3">Atividades práticas</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="toolkit-section">
+                        <h6>Técnicas Preferidas</h6>
+                        <div class="small">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="tech1">
+                            <label class="form-check-label" for="tech1">Chain of Thought</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="tech2">
+                            <label class="form-check-label" for="tech2">Few-Shot Learning</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="tech3">
+                            <label class="form-check-label" for="tech3">Role Prompting</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="toolkit-section">
+                        <h6>Casos de Uso</h6>
+                        <div class="small">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="uso1">
+                            <label class="form-check-label" for="uso1">Preparação de aulas</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="uso2">
+                            <label class="form-check-label" for="uso2">Criação de exercícios</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="uso3">
+                            <label class="form-check-label" for="uso3">Feedback a formandos</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="implementation-plan">
+                  <h6><i class="fas fa-calendar-alt me-2"></i>Plano de Implementação</h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="plan-card">
+                        <h6>Próxima Semana</h6>
+                        <ul class="small">
+                          <li>Criar 3 prompts personalizados para a sua área</li>
+                          <li>Testar em situação real de formação</li>
+                          <li>Documentar resultados e melhorias</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="plan-card">
+                        <h6>Próximo Mês</h6>
+                        <ul class="small">
+                          <li>Desenvolver biblioteca pessoal de 10 prompts</li>
+                          <li>Formar colegas sobre técnicas aprendidas</li>
+                          <li>Avaliar impacto na qualidade da formação</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6><i class="fas fa-lightbulb me-2"></i>Reflexão Final</h6>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Compreendo a estrutura de prompts eficazes</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Conheço técnicas avançadas de prompt engineering</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Sei validar e melhorar outputs de IA</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Tenho um plano concreto de implementação</span>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button
+                    class="btn btn-lg"
+                    onclick="finalizarSessao()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                      );
+                      color: white;
+                      border: none;
+                      padding: 12px 30px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <i class="fas fa-check-circle me-2"></i>Finalizar Sessão 1.3
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recursos para Aprofundamento -->
+      <div class="content-card mt-4">
+        <h5>
+          <i class="fas fa-book-open me-2 text-primary"></i>Recursos para Aprofundamento
+        </h5>
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Prompt Libraries:</h6>
+            <ul class="small">
+              <li>
+                <a href="https://prompts.chat" target="_blank">Prompts.chat</a> - 
+                Biblioteca de prompts por categoria
+              </li>
+              <li>
+                <a href="https://www.promptingguide.ai" target="_blank">Prompting Guide</a> - 
+                Guia completo de técnicas
+              </li>
+              <li>
+                <a href="https://learnprompting.org" target="_blank">Learn Prompting</a> - 
+                Curso gratuito online
+              </li>
+              <li>
+                <a href="https://github.com/f/awesome-chatgpt-prompts" target="_blank">Awesome ChatGPT Prompts</a> - 
+                Coleção GitHub
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6>Comunidades e Práticas:</h6>
+            <ul class="small">
+              <li>Grupos de discussão sobre prompt engineering</li>
+              <li>Webinars sobre IA aplicada à educação</li>
+              <li>Workshops avançados de AI literacy</li>
+              <li>Comunidades de formadores inovadores</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="mt-3">
+          <h6>Template de Prompt Universal:</h6>
+          <div class="template-box">
+CONTEXTO: [Defina o seu papel e expertise]
+TAREFA: [Seja específico sobre o que pretende]
+FORMATO: [Estruture a resposta desejada]
+RESTRIÇÕES: [Estabeleça limitações e critérios]
+
+EXEMPLO: [Se apropriado, inclua um exemplo]
+VALIDAÇÃO: [Defina critérios de qualidade]
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              © 2025 – Sessão 1.3 - IA na Formação
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem">
+              • Prompts Eficazes • Boas Práticas • Inovação Pedagógica •
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript personalizado -->
+    <script src="assets/js/scripts.js"></script>
+  </body>
+</html>

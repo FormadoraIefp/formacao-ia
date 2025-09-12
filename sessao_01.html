@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Inteligência Artificial na Formação - Workshops práticos do IEFP"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* Estilos personalizados - Workshop IA IEFP */
+      :root {
+        --primary-color: #6b46c1;
+        --secondary-color: #ec4899;
+        --accent-color: #10b981;
+        --text-dark: #2c3e50;
+        --bg-light: #f8f9fa;
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #8b5cf6 50%,
+          var(--accent-color) 100%
+        );
+      }
+      .conteudo-pagina {
+        background: var(--bg-light);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      .stats-section {
+        background: rgba(255, 255, 255, 0.95);
+        margin-top: 0; /* Remove a margem negativa */
+        margin-bottom: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(107, 70, 193, 0.1);
+      }
+    </style>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Sessão 1.1. Apresentações e Introdução - Guião de Sessão
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="container conteudo-pagina py-5"
+      style="margin-top: 100px !important; padding-top: 100px !important"
+    >
+      <!-- Seção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center justify-content-center">
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">1</span>
+                  <span class="stats-label">Sessão</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">1h</span>
+                  <span class="stats-label">Duração</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="stats-card">
+                  <span class="stats-number">6</span>
+                  <span class="stats-label">Passos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span class="nav-link">
+                  <i class="fas fa-book-reader me-1"></i>Guião de Sessão
+                </span>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar conceitos ou passos..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter"
+          >Sessão 1.1 - Apresentações e Introdução à IA na Formação</span
+        >
+      </div>
+
+      <!-- Accordion principal -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Sessão 1.1: Apresentações e Introdução -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="apresentacoes introducao ia formacao panorama conceitos fundamentais"
+          data-categoria="tutorial"
+        >
+          <h2 class="accordion-header" id="heading-w1s1">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-w1s1"
+              aria-expanded="true"
+              aria-controls="collapse-w1s1"
+            >
+              <div class="icon-workshop">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">
+                  1.1 Apresentações e Introdução à IA na Formação
+                </div>
+                <div class="small text-muted">
+                  Guião completo: conceitos fundamentais e primeiros passos
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">1 hora</span>
+                <span class="badge badge-sincrona">Sessão</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-w1s1"
+            class="accordion-collapse collapse show"
+            aria-labelledby="heading-w1s1"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-bullseye me-2 text-primary"></i>Objetivos da
+                  Sessão
+                </h5>
+                <p>
+                  Esta sessão introdutória foca na compreensão dos conceitos
+                  fundamentais de IA aplicada à formação. No final desta sessão
+                  será capaz de:
+                </p>
+                <ul>
+                  <li>
+                    Definir Inteligência Artificial e distingui-la da automação
+                  </li>
+                  <li>
+                    Identificar os principais tipos de IA relevantes para a
+                    educação
+                  </li>
+                  <li>
+                    Reconhecer oportunidades e limitações da IA na formação
+                  </li>
+                  <li>
+                    Refletir sobre o impacto da IA na sua prática profissional
+                  </li>
+                </ul>
+
+                <!-- Conceitos fundamentais integrados do conteúdo original -->
+                <div class="concept-box">
+                  <h6><i class="fas fa-brain me-2"></i>Conceitos Base da IA</h6>
+                  <p class="mb-2">
+                    <strong>Definição:</strong> Capacidade de uma máquina
+                    aprender e resolver problemas imitando funções cognitivas
+                    humanas.
+                  </p>
+                  <p class="mb-0">
+                    <strong>Importância:</strong> Aumenta eficiência, permite
+                    inovações e melhorias nos processos de formação.
+                  </p>
+                </div>
+              </div>
+
+              <!-- PASSO 1: Autoconhecimento -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">1</span>Autoconhecimento: Avalie o
+                  seu ponto de partida
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 10 minutos |
+                  <strong>Objetivo:</strong> Identificar conhecimentos prévios
+                  sobre IA
+                </p>
+
+                <h6>Instruções:</h6>
+                <ol>
+                  <li>
+                    Pare por um momento e reflita sobre a sua experiência atual
+                    com IA
+                  </li>
+                  <li>Responda mentalmente (ou anote) às questões abaixo</li>
+                  <li>Não há respostas certas ou erradas - seja honesto/a</li>
+                </ol>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-question-circle me-2"></i>Questões de
+                    Reflexão
+                  </h6>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Já utilizou alguma ferramenta de IA? (ChatGPT, Siri,
+                      Google Translate, etc.)</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Consegue explicar o que é Inteligência Artificial a um
+                      colega?</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Já pensou em como a IA pode ser útil na sua prática como
+                      formador?</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Tem receios ou preocupações sobre o uso de IA na
+                      educação?</span
+                    >
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-lightbulb me-2"></i>
+                  <strong>Dica:</strong> Anote as suas respostas. No final da
+                  sessão voltará a estas questões para medir a sua evolução.
+                </div>
+              </div>
+
+              <!-- PASSO 2: Conceitos Fundamentais -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">2</span>Conceitos Fundamentais: O
+                  que é IA?
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Compreender definições e diferenças
+                  básicas
+                </p>
+
+                <h6>Leia atentamente:</h6>
+                <div class="concept-box">
+                  <h6>Definição de Inteligência Artificial</h6>
+                  <p>
+                    A <strong>IA</strong> é a capacidade de máquinas executarem
+                    tarefas que normalmente requerem inteligência humana:
+                  </p>
+                  <ul>
+                    <li>
+                      <strong>Aprendizagem:</strong> Melhorar desempenho com
+                      experiência
+                    </li>
+                    <li>
+                      <strong>Raciocínio:</strong> Tirar conclusões lógicas de
+                      dados
+                    </li>
+                    <li>
+                      <strong>Perceção:</strong> Interpretar informação do
+                      ambiente
+                    </li>
+                    <li>
+                      <strong>Adaptação:</strong> Ajustar comportamento a novas
+                      situações
+                    </li>
+                  </ul>
+                </div>
+
+                <h6>IA vs Automação - Diferenças Cruciais:</h6>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="concept-box" style="border-left-color: #f59e0b">
+                      <h6>Automação</h6>
+                      <ul class="small">
+                        <li>Executa tarefas programadas</li>
+                        <li>Segue regras fixas e predefinidas</li>
+                        <li>Não aprende nem se adapta</li>
+                        <li>
+                          <strong>Exemplo:</strong> Envio automático de
+                          lembretes por email
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div
+                      class="concept-box"
+                      style="border-left-color: var(--accent-color)"
+                    >
+                      <h6>Inteligência Artificial</h6>
+                      <ul class="small">
+                        <li>Aprende e melhora com dados</li>
+                        <li>Adapta-se a novas situações</li>
+                        <li>Toma decisões baseadas em padrões</li>
+                        <li>
+                          <strong>Exemplo:</strong> Sistema que adapta feedback
+                          ao progresso individual
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6><i class="fas fa-tasks me-2"></i>Exercício Prático</h6>
+                  <p>
+                    Pense em 3 tarefas da sua rotina como formador. Classifique
+                    cada uma:
+                  </p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Identifiquei uma tarefa que poderia ser
+                      automatizada</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Identifiquei uma tarefa que beneficiaria de IA</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Compreendo a diferença entre automação e IA</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 3: Tipos de IA -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">3</span>Tipos de IA na Educação
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Identificar aplicações práticas de
+                  diferentes tipos de IA
+                </p>
+
+                <div class="ia-types">
+                  <h6>Conheça os 4 tipos principais:</h6>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-magic me-2 text-primary"></i>1. IA
+                      Generativa
+                    </h6>
+                    <p class="small">
+                      <strong>Função:</strong> Cria novos conteúdos (textos,
+                      imagens, código)
+                    </p>
+                    <p class="small">
+                      <strong>Ferramentas:</strong> ChatGPT, Claude, Canva AI
+                    </p>
+                    <p class="small">
+                      <strong>Aplicação na formação:</strong> Criar exercícios,
+                      apresentações, casos práticos
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-chart-line me-2 text-success"></i>2. IA
+                      Preditiva
+                    </h6>
+                    <p class="small">
+                      <strong>Função:</strong> Prevê comportamentos e
+                      necessidades
+                    </p>
+                    <p class="small">
+                      <strong>Ferramentas:</strong> Sistemas de recomendação
+                    </p>
+                    <p class="small">
+                      <strong>Aplicação na formação:</strong> Personalizar
+                      percursos, identificar dificuldades
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-comments me-2 text-info"></i>3. IA
+                      Conversacional
+                    </h6>
+                    <p class="small">
+                      <strong>Função:</strong> Mantém diálogos naturais
+                    </p>
+                    <p class="small">
+                      <strong>Ferramentas:</strong> Chatbots educativos,
+                      assistentes virtuais
+                    </p>
+                    <p class="small">
+                      <strong>Aplicação na formação:</strong> Tutores digitais,
+                      suporte 24/7, Q&A
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-database me-2 text-warning"></i>4. IA
+                      Analítica
+                    </h6>
+                    <p class="small">
+                      <strong>Função:</strong> Analisa grandes volumes de dados
+                    </p>
+                    <p class="small">
+                      <strong>Ferramentas:</strong> Dashboards inteligentes,
+                      analytics
+                    </p>
+                    <p class="small">
+                      <strong>Aplicação na formação:</strong> Relatórios de
+                      progresso, análise de desempenho
+                    </p>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-mouse-pointer me-2"></i>
+                  <strong>Atividade Prática:</strong> Visite chat.openai.com ou
+                  claude.ai. Faça uma pergunta como "Como posso tornar mais
+                  interessante uma aula sobre X?" (substitua X pela sua área).
+                  Observe o tipo de resposta gerada.
+                </div>
+
+                <div class="checklist-item">
+                  <div
+                    class="checklist-checkbox"
+                    onclick="toggleCheck(this)"
+                  ></div>
+                  <span>Experimentei uma ferramenta de IA generativa</span>
+                </div>
+              </div>
+
+              <!-- PASSO 4: Benefícios e Limitações -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">4</span>Benefícios e Limitações: Uma
+                  visão equilibrada
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 10 minutos |
+                  <strong>Objetivo:</strong> Desenvolver pensamento crítico
+                  sobre IA
+                </p>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div
+                      class="concept-box"
+                      style="border-left-color: var(--accent-color)"
+                    >
+                      <h6>
+                        <i class="fas fa-thumbs-up me-2 text-success"></i
+                        >Benefícios da IA
+                      </h6>
+                      <ul class="small">
+                        <li>
+                          <strong>Eficiência:</strong> Automatiza tarefas
+                          repetitivas
+                        </li>
+                        <li>
+                          <strong>Personalização:</strong> Adapta conteúdo ao
+                          formando
+                        </li>
+                        <li>
+                          <strong>Criatividade:</strong> Sugere novas abordagens
+                        </li>
+                        <li>
+                          <strong>Acessibilidade:</strong> Suporte a diferentes
+                          necessidades
+                        </li>
+                        <li>
+                          <strong>Análise:</strong> Insights baseados em dados
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="concept-box" style="border-left-color: #f59e0b">
+                      <h6>
+                        <i
+                          class="fas fa-exclamation-triangle me-2 text-warning"
+                        ></i
+                        >Limitações da IA
+                      </h6>
+                      <ul class="small">
+                        <li>
+                          <strong>Precisão:</strong> Pode gerar informação
+                          incorreta
+                        </li>
+                        <li>
+                          <strong>Contexto:</strong> Não compreende nuances
+                          humanas
+                        </li>
+                        <li>
+                          <strong>Dependência:</strong> Risco de perder
+                          autonomia
+                        </li>
+                        <li>
+                          <strong>Enviesamento:</strong> Reproduz preconceitos
+                          dos dados
+                        </li>
+                        <li>
+                          <strong>Privacidade:</strong> Questões de proteção de
+                          dados
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-balance-scale me-2"></i>Reflexão Crítica
+                  </h6>
+                  <p>Para a sua área de formação específica, identifique:</p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>2 benefícios que considero mais valiosos</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>2 limitações que mais me preocupam</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>1 estratégia para maximizar benefícios</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>1 estratégia para minimizar riscos</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 5: Papel do Formador -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">5</span>O Papel do Formador na Era
+                  da IA
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 5 minutos |
+                  <strong>Objetivo:</strong> Compreender o papel humano
+                  insubstituível
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-chalkboard-teacher me-2"></i>Princípio
+                    Fundamental
+                  </h6>
+                  <p
+                    class="text-center"
+                    style="
+                      font-style: italic;
+                      font-size: 1.1em;
+                      color: var(--primary-color);
+                    "
+                  >
+                    "A IA é uma ferramenta, não um substituto. Potencia práticas
+                    pedagógicas mas não substitui interação humana,
+                    sensibilidade didática e avaliação crítica."
+                  </p>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <h6>Mediador Crítico</h6>
+                    <p class="small">
+                      Fomentar literacia digital e pensamento crítico nos
+                      formandos
+                    </p>
+                  </div>
+                  <div class="col-md-4">
+                    <h6>Curador de Conteúdos</h6>
+                    <p class="small">
+                      Validar, adaptar e personalizar outputs da IA
+                    </p>
+                  </div>
+                  <div class="col-md-4">
+                    <h6>Estrategista Pedagógico</h6>
+                    <p class="small">
+                      Usar IA como apoio estratégico, mantendo autonomia
+                      profissional
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 6: Reflexão Final e Próximos Passos -->
+              <div class="tutorial-step">
+                <h4><span class="step-number">6</span>Síntese e Compromisso</h4>
+                <p>
+                  <strong>Duração:</strong> 5 minutos |
+                  <strong>Objetivo:</strong> Consolidar aprendizagens e definir
+                  ações
+                </p>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-chart-line me-2"></i>Avalie a sua evolução
+                  </h6>
+                  <p>Compare com as suas respostas iniciais:</p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Tenho uma definição clara de IA</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Distingo IA de automação</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Conheço tipos de IA relevantes para educação</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Tenho uma visão equilibrada de
+                      benefícios/limitações</span
+                    >
+                  </div>
+                </div>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-rocket me-2"></i>Compromisso para a Sessão
+                    1.2
+                  </h6>
+                  <p>Escolha UMA ação que realizará antes da próxima sessão:</p>
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="compromisso"
+                      id="comp1"
+                    />
+                    <label class="form-check-label" for="comp1">
+                      Experimentar criar um recurso pedagógico com IA generativa
+                    </label>
+                  </div>
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="compromisso"
+                      id="comp2"
+                    />
+                    <label class="form-check-label" for="comp2">
+                      Pesquisar 3 ferramentas de IA para a minha área de
+                      formação
+                    </label>
+                  </div>
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="compromisso"
+                      id="comp3"
+                    />
+                    <label class="form-check-label" for="comp3">
+                      Discutir IA na educação com colegas formadores
+                    </label>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button
+                    class="btn btn-lg"
+                    onclick="finalizarSessao()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                      );
+                      color: white;
+                      border: none;
+                      padding: 12px 30px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <i class="fas fa-check-circle me-2"></i>Finalizar Sessão 1.1
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recursos Adicionais -->
+      <div class="content-card mt-4">
+        <h5>
+          <i class="fas fa-book-open me-2 text-info"></i>Recursos para Explorar
+        </h5>
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Ferramentas para Experimentar:</h6>
+            <ul class="small">
+              <li>
+                <a href="https://chat.openai.com" target="_blank">ChatGPT</a> -
+                IA generativa
+              </li>
+              <li>
+                <a href="https://claude.ai" target="_blank">Claude</a> -
+                Assistente conversacional
+              </li>
+              <li>
+                <a href="https://www.canva.com" target="_blank">Canva AI</a> -
+                Design assistido
+              </li>
+              <li>
+                <a href="https://gemini.google.com" target="_blank"
+                  >Google Gemini</a
+                >
+                - IA multimodal
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6>Para Aprofundar:</h6>
+            <ul class="small">
+              <li>Artigos sobre IA na educação</li>
+              <li>Webinars sobre transformação digital</li>
+              <li>Comunidades de formadores inovadores</li>
+              <li>Cursos online sobre literacia digital</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              © 2025 – Sessão 1.1 - IA na Formação
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem">
+              • Inteligência Artificial • Educação • Inovação Pedagógica •
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/scripts.js"></script>
+  </body>
+</html>

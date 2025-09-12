@@ -1,0 +1,158 @@
+.btn-print {
+  background: var(--secondary-color);
+  color: var(--text-dark);
+}
+/* Print styles */
+@media print {
+  .floating-buttons,
+  .progress-container,
+  .navbar-custom,
+  .progress-tracker,
+  .site-header {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  main {
+    margin-top: 0 !important;
+  }
+
+  /* Evitar quebras de página nas secções */
+  .accordion-item,
+  .section-card,
+  .content-card,
+  .stats-card,
+  .hero-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 8pt;
+  }
+
+  /* Mostrar sempre o conteúdo dos accordions */
+  .accordion-collapse {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .accordion-button::after {
+    display: none !important;
+  }
+
+  /* Reduzir padding/margin para economizar espaço */
+  .accordion-button {
+    padding: 8pt 12pt !important;
+    font-size: 10pt !important;
+    font-weight: 600 !important;
+  }
+
+  .accordion-body {
+    padding: 8pt 12pt !important;
+    font-size: 9pt !important;
+  }
+
+  .content-card {
+    padding: 8pt !important;
+    margin-bottom: 6pt !important;
+  }
+
+  .content-card h5 {
+    font-size: 10pt !important;
+    margin-bottom: 4pt !important;
+  }
+
+  /* Títulos menores */
+  h1 {
+    font-size: 14pt !important;
+  }
+  h2 {
+    font-size: 12pt !important;
+  }
+  h3 {
+    font-size: 11pt !important;
+  }
+  h4 {
+    font-size: 10pt !important;
+  }
+  h5 {
+    font-size: 9pt !important;
+  }
+  h6 {
+    font-size: 9pt !important;
+  }
+
+  /* Badges e elementos pequenos */
+  .badge {
+    font-size: 7pt !important;
+    margin-top: 10mm;
+    margin-bottom: 10mm;
+    margin-left: 10mm;
+    margin-right: 10mm;
+  }
+
+  /* Estatísticas compactas */
+  .stats-card {
+    padding: 6pt !important;
+  }
+
+  .stats-number {
+    font-size: 16pt !important;
+  }
+
+  .stats-label {
+    font-size: 7pt !important;
+  }
+
+  /* Configurar página */
+  @page {
+    size: A4;
+    margin: 15mm;
+    /* Margem mínima recomendada para impressão, evita corte de conteúdo */
+    /* Se precisar ajustar para impressora específica, pode aumentar para 12mm ou 15mm */
+    @bottom-center {
+      content: "Página " counter(page) " de " counter(pages);
+      font-size: 10pt;
+      color: #666;
+    }
+  }
+
+  /* Quebras de página estratégicas */
+  .section-card {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  /* Links visíveis */
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666;
+  }
+
+  /* Esconder elementos desnecessários */
+  .filter-pill,
+  .search-container,
+  .btn,
+  .floating-buttons,
+  .no-print {
+    display: none !important;
+  }
+  /* Corrigir header sobrepondo sessões na impressão */
+  .header-main {
+    position: static !important;
+    margin-bottom: 32pt !important;
+    z-index: auto !important;
+    box-shadow: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+  }
+}

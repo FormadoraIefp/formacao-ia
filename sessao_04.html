@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP - Sessão 1.4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Sessão 1.4: Aplicação Prática e Reflexão Crítica - Sessão Assíncrona do IEFP"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* Estilos personalizados - Workshop IA IEFP - Sessão 1.4 Assíncrona */
+      :root {
+        --primary-color: #0f172a;
+        --secondary-color: #0891b2;
+        --accent-color: #7c2d12;
+        --tertiary-color: #581c87;
+        --success-color: #15803d;
+        --text-dark: #0f172a;
+        --bg-light: #f8fafc;
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--tertiary-color) 20%,
+          var(--secondary-color) 60%,
+          var(--accent-color) 100%
+        );
+      }
+      .conteudo-pagina {
+        background: var(--bg-light);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      .stats-section {
+        background: rgba(255, 255, 255, 0.95);
+        margin-top: 0;
+        margin-bottom: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(15, 23, 42, 0.1);
+      }
+      .project-option {
+        background: white;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 15px 0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .project-option:hover {
+        border-color: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .project-option.selected {
+        border-color: var(--success-color);
+        background: #f0fdf4;
+      }
+      .project-steps {
+        background: #f1f5f9;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        display: none;
+      }
+      .project-steps.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .evaluation-area {
+        background: #fef3c7;
+        border: 2px solid #f59e0b;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .time-block {
+        background: var(--secondary-color);
+        color: white;
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 500;
+        display: inline-block;
+      }
+      .step-progress {
+        background: #e5e7eb;
+        height: 6px;
+        border-radius: 3px;
+        margin: 10px 0;
+      }
+      .step-progress .progress-fill {
+        background: var(--success-color);
+        height: 100%;
+        border-radius: 3px;
+        width: 0%;
+        transition: width 0.5s ease;
+      }
+      .deliverable-box {
+        background: #ecfdf5;
+        border-left: 4px solid var(--success-color);
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+      .reflection-prompt {
+        background: #f8fafc;
+        border: 1px dashed #cbd5e1;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px 0;
+        font-style: italic;
+        color: #64748b;
+      }
+    </style>
+
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Sessão 1.4: Aplicação Prática e Reflexão Crítica - Sessão
+                Assíncrona
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="container conteudo-pagina py-5"
+      style="margin-top: 100px !important; padding-top: 100px !important"
+    >
+      <!-- Secção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center justify-content-center">
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">4</span>
+                  <span class="stats-label">Sessão</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">1h</span>
+                  <span class="stats-label">Duração</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">3</span>
+                  <span class="stats-label">Opções</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">Self</span>
+                  <span class="stats-label">Ritmo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span class="nav-link">
+                  <i class="fas fa-user-clock me-1"></i>Sessão Assíncrona
+                </span>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar projetos ou atividades..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter"
+          >Sessão 1.4 - Aplicação Prática e Reflexão Crítica (1 hora)</span
+        >
+      </div>
+
+      <!-- Accordion principal -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Sessão 1.4: Aplicação Prática e Reflexão Crítica -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="aplicacao pratica reflexao critica assincrona projeto individual avaliacao"
+          data-categoria="assincrona"
+        >
+          <h2 class="accordion-header" id="heading-w1s4">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-w1s4"
+              aria-expanded="true"
+              aria-controls="collapse-w1s4"
+            >
+              <div class="icon-workshop">
+                <i class="fas fa-user-clock"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">
+                  1.4 Aplicação Prática e Reflexão Crítica
+                </div>
+                <div class="small text-muted">
+                  Projeto individual + avaliação peer-to-peer (1 hora)
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">1 hora</span>
+                <span class="badge badge-assincrona">Assíncrona</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-w1s4"
+            class="accordion-collapse collapse show"
+            aria-labelledby="heading-w1s4"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <!-- Introdução e Orientações -->
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-compass me-2 text-primary"></i>Estrutura da
+                  Sessão (60 minutos)
+                </h5>
+
+                <div class="row">
+                  <div class="col-md-8">
+                    <p>
+                      Esta sessão combina aplicação prática individual com
+                      avaliação entre pares, preparando-o para o próximo
+                      workshop sobre avaliação com IA.
+                    </p>
+                    <h6>Objetivos:</h6>
+                    <ul class="small">
+                      <li>
+                        Aplicar conhecimentos em projeto prático da sua escolha
+                      </li>
+                      <li>Preparar-se para workshop sobre avaliação com IA</li>
+                      <li>Consolidar aprendizagens do módulo</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="time-structure">
+                      <h6>
+                        <i class="fas fa-clock me-2"></i>Distribuição do Tempo:
+                      </h6>
+                      <ul class="small">
+                        <li><strong>40 min:</strong> Projeto individual</li>
+                        <li><strong>5 min:</strong> Reflexão final</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="concept-box">
+                  <h6><i class="fas fa-lightbulb me-2"></i>Metodologia</h6>
+                  <p class="mb-0">
+                    <strong>Escolha → Crie → Reflita:</strong>
+                    Selecione um projeto que se alinha com a sua prática,
+                    desenvolva-o usando IA, reflita sobre todo o processo.
+                  </p>
+                </div>
+              </div>
+
+              <!-- PASSO 1: Escolha do Projeto -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">1</span>Escolha do Seu Projeto
+                  <span class="time-block ms-3">5 min</span>
+                </h4>
+                <p>
+                  Selecione UMA das três opções de projeto abaixo. Todas têm
+                  complexidade similar e objetivos de aprendizagem equivalentes.
+                </p>
+
+                <div class="project-selection">
+                  <div
+                    class="project-option"
+                    onclick="selectProject('opcao-a')"
+                  >
+                    <div class="row align-items-center">
+                      <div class="col-md-2 text-center">
+                        <i
+                          class="fas fa-chalkboard-teacher fa-2x text-primary"
+                        ></i>
+                      </div>
+                      <div class="col-md-10">
+                        <h6>
+                          <strong>Opção A: Plano de Aula Inovador</strong>
+                        </h6>
+                        <p class="small mb-2">
+                          Crie um plano de aula completo para um tópico da sua
+                          área, integrando IA de forma criativa e pedagógica.
+                        </p>
+                        <div class="small text-muted">
+                          <i class="fas fa-target me-1"></i>Ideal para:
+                          Formadores que querem inovar na estrutura das aulas
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="project-option"
+                    onclick="selectProject('opcao-b')"
+                  >
+                    <div class="row align-items-center">
+                      <div class="col-md-2 text-center">
+                        <i
+                          class="fas fa-question-circle fa-2x text-success"
+                        ></i>
+                      </div>
+                      <div class="col-md-10">
+                        <h6>
+                          <strong
+                            >Opção B: Sistema de Avaliação Inteligente</strong
+                          >
+                        </h6>
+                        <p class="small mb-2">
+                          Desenvolva um conjunto de instrumentos de avaliação
+                          (quiz, rubrica, feedback) usando IA para diferentes
+                          momentos formativos.
+                        </p>
+                        <div class="small text-muted">
+                          <i class="fas fa-target me-1"></i>Ideal para:
+                          Formadores focados em melhorar processos avaliativos
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="project-option"
+                    onclick="selectProject('opcao-c')"
+                  >
+                    <div class="row align-items-center">
+                      <div class="col-md-2 text-center">
+                        <i class="fas fa-users fa-2x text-info"></i>
+                      </div>
+                      <div class="col-md-10">
+                        <h6>
+                          <strong>Opção C: Kit de Recursos Interativos</strong>
+                        </h6>
+                        <p class="small mb-2">
+                          Construa um conjunto de recursos pedagógicos
+                          diversificados (infográficos, casos práticos,
+                          simulações) para uma unidade formativa.
+                        </p>
+                        <div class="small text-muted">
+                          <i class="fas fa-target me-1"></i>Ideal para:
+                          Formadores que querem diversificar recursos didáticos
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alert alert-warning mt-3">
+                  <i class="fas fa-info-circle me-2"></i>
+                  <strong>Importante:</strong> Clique na opção escolhida para
+                  revelar as instruções específicas. O seu trabalho será
+                  posteriormente avaliado por um colega.
+                </div>
+              </div>
+
+              <!-- PASSO 2A: Projeto Opção A -->
+              <div class="project-steps" id="steps-opcao-a">
+                <h4>
+                  <span class="step-number">2A</span>Projeto: Plano de Aula
+                  Inovador
+                  <span class="time-block ms-3">35 min</span>
+                </h4>
+
+                <div class="deliverable-box">
+                  <h6>
+                    <i class="fas fa-clipboard-list me-2"></i>Entregável Final
+                  </h6>
+                  <p class="mb-0">
+                    Plano de aula de 2-3 horas com integração criativa de IA,
+                    incluindo materiais de apoio e estratégias de implementação.
+                  </p>
+                </div>
+
+                <h6>Fases de Desenvolvimento:</h6>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-lightbulb me-2"></i>Fase 1: Conceção (10
+                      min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>Defina o tópico específico e público-alvo</li>
+                    <li>
+                      Use ChatGPT/Claude para brainstorming de abordagens
+                      inovadoras
+                    </li>
+                    <li>
+                      Selecione 2-3 ferramentas de IA para integrar na aula
+                    </li>
+                    <li>Estruture objetivos de aprendizagem claros</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Como pode a IA tornar este tópico mais envolvente e
+                    acessível para os formandos?"
+                  </div>
+                </div>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-cogs me-2"></i>Fase 2: Desenvolvimento
+                      (20 min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>Crie plano detalhado com timing e metodologias</li>
+                    <li>Desenvolva 2-3 atividades práticas usando IA</li>
+                    <li>
+                      Produza materiais de apoio (slides, handouts) com Canva AI
+                    </li>
+                    <li>Inclua momentos de avaliação formativa</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Que papel específico tem a IA em cada fase da aula? Como
+                    garante que potencia a aprendizagem?"
+                  </div>
+                </div>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-check-circle me-2"></i>Fase 3: Validação
+                      (5 min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>Revise adequação pedagógica de todos os elementos</li>
+                    <li>Verifique exequibilidade prática do plano</li>
+                    <li>Ajuste timing e recursos necessários</li>
+                    <li>Documente processo e decisões tomadas</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Este plano é realmente melhor com IA do que seria sem ela?
+                    Porquê?"
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 2B: Projeto Opção B -->
+              <div class="project-steps" id="steps-opcao-b">
+                <h4>
+                  <span class="step-number">2B</span>Projeto: Sistema de
+                  Avaliação Inteligente
+                  <span class="time-block ms-3">35 min</span>
+                </h4>
+
+                <div class="deliverable-box">
+                  <h6>
+                    <i class="fas fa-clipboard-list me-2"></i>Entregável Final
+                  </h6>
+                  <p class="mb-0">
+                    Sistema completo de avaliação com 3 instrumentos diferentes
+                    (diagnóstica, formativa, sumativa) criados e otimizados com
+                    IA.
+                  </p>
+                </div>
+
+                <h6>Fases de Desenvolvimento:</h6>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-search me-2"></i>Fase 1: Análise (10 min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>Identifique um módulo formativo da sua área</li>
+                    <li>
+                      Analise necessidades avaliativas em diferentes momentos
+                    </li>
+                    <li>
+                      Use IA para pesquisar melhores práticas de avaliação
+                    </li>
+                    <li>Defina critérios de qualidade para cada instrumento</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Que desafios avaliativos específicos enfrenta neste módulo?
+                    Como pode a IA ajudar a resolvê-los?"
+                  </div>
+                </div>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-tools me-2"></i>Fase 2: Criação (20 min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>
+                      Crie quiz diagnóstico com IA (10-15 questões variadas)
+                    </li>
+                    <li>Desenvolva rubrica de avaliação formativa detalhada</li>
+                    <li>
+                      Construa sistema de feedback automático personalizado
+                    </li>
+                    <li>Teste cada instrumento com prompts refinados</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Como garante que cada instrumento mede realmente o que
+                    pretende avaliar?"
+                  </div>
+                </div>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-balance-scale me-2"></i>Fase 3:
+                      Calibração (5 min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>
+                      Valide adequação dos instrumentos ao nível dos formandos
+                    </li>
+                    <li>Ajuste linguagem e complexidade se necessário</li>
+                    <li>Teste coerência entre diferentes instrumentos</li>
+                    <li>Documente critérios de aplicação e interpretação</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Que vantagens concretas este sistema oferece comparado com
+                    métodos tradicionais?"
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 2C: Projeto Opção C -->
+              <div class="project-steps" id="steps-opcao-c">
+                <h4>
+                  <span class="step-number">2C</span>Projeto: Kit de Recursos
+                  Interativos
+                  <span class="time-block ms-3">35 min</span>
+                </h4>
+
+                <div class="deliverable-box">
+                  <h6>
+                    <i class="fas fa-clipboard-list me-2"></i>Entregável Final
+                  </h6>
+                  <p class="mb-0">
+                    Kit completo com 5-6 recursos pedagógicos diversificados
+                    para uma unidade formativa, incluindo guia de implementação.
+                  </p>
+                </div>
+
+                <h6>Fases de Desenvolvimento:</h6>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-map me-2"></i>Fase 1: Mapeamento (10 min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>Selecione uma unidade formativa específica</li>
+                    <li>
+                      Identifique diferentes estilos de aprendizagem a
+                      contemplar
+                    </li>
+                    <li>
+                      Mapeie momentos-chave que precisam de recursos especiais
+                    </li>
+                    <li>Defina 5-6 tipos de recursos a desenvolver</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Que lacunas de recursos existem atualmente na sua prática?
+                    Como pode a IA ajudar a colmatá-las?"
+                  </div>
+                </div>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-magic me-2"></i>Fase 2: Produção (20 min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>Crie infográfico educativo com Canva AI</li>
+                    <li>Desenvolva 2-3 casos práticos com ChatGPT/Claude</li>
+                    <li>
+                      Construa simulação ou role-play com cenários realistas
+                    </li>
+                    <li>Produza checklist ou template prático</li>
+                    <li>Gere quiz interativo ou jogo educativo</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Como garante que cada recurso complementa os outros e
+                    atende diferentes preferências de aprendizagem?"
+                  </div>
+                </div>
+
+                <div class="phase-section">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h6>
+                      <i class="fas fa-puzzle-piece me-2"></i>Fase 3: Integração
+                      (5 min)
+                    </h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span>Concluída</span>
+                    </div>
+                  </div>
+                  <ul class="small">
+                    <li>Crie sequência lógica de utilização dos recursos</li>
+                    <li>Desenvolva guia de implementação para cada recurso</li>
+                    <li>Teste usabilidade e adequação ao contexto</li>
+                    <li>Documente objetivos específicos de cada elemento</li>
+                  </ul>
+                  <div class="reflection-prompt">
+                    "Este kit torna a aprendizagem mais eficaz? Que evidências
+                    sustentam esta conclusão?"
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 3: Exemplos Demonstrativos e Prompts -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">3</span>Exemplos Demonstrativos e
+                  Prompts Genéricos
+                  <span class="time-block ms-3">15 min</span>
+                </h4>
+                <p>
+                  Explore exemplos práticos de cada tipo de projeto e aceda a
+                  prompts genéricos que pode adaptar à sua área específica.
+                </p>
+
+                <div class="accordion mt-4" id="exemplosDemonstrativos">
+                  <!-- Exemplo Opção A -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingExemploA">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseExemploA"
+                        aria-expanded="false"
+                        aria-controls="collapseExemploA"
+                      >
+                        <i class="fas fa-chalkboard-teacher me-2"></i>
+                        <strong
+                          >Exemplo: Plano de Aula "Excel Básico para Gestão
+                          Pessoal"</strong
+                        >
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseExemploA"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="headingExemploA"
+                      data-bs-parent="#exemplosDemonstrativos"
+                    >
+                      <div class="accordion-body">
+                        <div class="example-content">
+                          <h6>
+                            <i class="fas fa-info-circle me-2"></i>Contexto do
+                            Exemplo
+                          </h6>
+                          <p class="small">
+                            Aula de 3 horas para adultos desempregados (45-65
+                            anos) sobre Excel básico aplicado à gestão de
+                            orçamento pessoal.
+                          </p>
+
+                          <h6>
+                            <i class="fas fa-cogs me-2"></i>Como foi
+                            Desenvolvido com IA
+                          </h6>
+                          <ul class="small">
+                            <li>
+                              <strong>ChatGPT:</strong> Estruturação do plano e
+                              criação de exercícios progressivos
+                            </li>
+                            <li>
+                              <strong>Canva AI:</strong> Infográficos sobre
+                              funcionalidades básicas do Excel
+                            </li>
+                            <li>
+                              <strong>Claude:</strong> Refinamento pedagógico e
+                              adaptação à faixa etária
+                            </li>
+                          </ul>
+
+                          <div class="prompt-example">
+                            <h6>
+                              <i class="fas fa-quote-left me-2"></i>Prompt Usado
+                              (Adaptável)
+                            </h6>
+                            <div class="prompt-box">
+                              CONTEXTO: Atua como formador especialista em
+                              informática na ótica do utilizador, com 10 anos de
+                              experiência em formação para adultos
+                              desempregados. TAREFA: Desenvolve um plano de aula
+                              de 3 horas sobre "Excel Básico para Gestão de
+                              Orçamento Pessoal" para adultos entre 45-65 anos,
+                              a maioria sem experiência prévia em folhas de
+                              cálculo. FORMATO: Estrutura em 6 módulos de 30
+                              minutos cada, incluindo: - Objetivos específicos e
+                              mensuráveis - Metodologia hands-on com
+                              demonstração + prática - 3 exercícios práticos
+                              baseados em situações reais (orçamento familiar) -
+                              Materiais de apoio necessários - Momentos de
+                              avaliação formativa RESTRIÇÕES: - Linguagem
+                              simples e acessível - Evitar jargão técnico -
+                              Exercícios baseados em contexto familiar (contas
+                              domésticas) - Ritmo adaptado a principiantes
+                              digitais - Máximo 2 páginas de plano principal
+                            </div>
+                          </div>
+
+                          <div class="results-preview">
+                            <h6>
+                              <i class="fas fa-eye me-2"></i>Resultado Obtido
+                            </h6>
+                            <div class="result-box">
+                              <strong>Módulo 1 (30min):</strong> "O que é o
+                              Excel e para que serve no dia-a-dia"<br />
+                              <strong>Módulo 2 (30min):</strong> "Criando a
+                              minha primeira folha de orçamento"<br />
+                              <strong>Módulo 3 (30min):</strong> "Inserindo os
+                              meus gastos mensais"<br />
+                              <strong>Módulo 4 (30min):</strong> "Calculando
+                              totais automaticamente"<br />
+                              <strong>Módulo 5 (30min):</strong> "Vendo onde
+                              gasto mais: gráficos simples"<br />
+                              <strong>Módulo 6 (30min):</strong> "Planeando o
+                              próximo mês"
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Exemplo Opção B -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingExemploB">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseExemploB"
+                        aria-expanded="false"
+                        aria-controls="collapseExemploB"
+                      >
+                        <i class="fas fa-question-circle me-2"></i>
+                        <strong
+                          >Exemplo: Sistema de Avaliação "Competências de
+                          Comunicação"</strong
+                        >
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseExemploB"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="headingExemploB"
+                      data-bs-parent="#exemplosDemonstrativos"
+                    >
+                      <div class="accordion-body">
+                        <div class="example-content">
+                          <h6>
+                            <i class="fas fa-info-circle me-2"></i>Contexto do
+                            Exemplo
+                          </h6>
+                          <p class="small">
+                            Sistema completo para avaliar competências de
+                            comunicação em curso de "Técnicas de Atendimento ao
+                            Cliente".
+                          </p>
+
+                          <h6>
+                            <i class="fas fa-tools me-2"></i>Instrumentos
+                            Criados
+                          </h6>
+                          <ul class="small">
+                            <li>
+                              <strong>Quiz Diagnóstico:</strong> 12 questões
+                              sobre experiência prévia e autoavaliação
+                            </li>
+                            <li>
+                              <strong>Rubrica Formativa:</strong> Avaliação de
+                              role-plays com 4 critérios detalhados
+                            </li>
+                            <li>
+                              <strong>Sistema de Feedback:</strong> Respostas
+                              automáticas personalizadas por nível
+                            </li>
+                          </ul>
+
+                          <div class="prompt-example">
+                            <h6>
+                              <i class="fas fa-quote-left me-2"></i>Prompt
+                              Genérico (Adaptável)
+                            </h6>
+                            <div class="prompt-box">
+                              CONTEXTO: Atua como especialista em avaliação
+                              pedagógica com experiência em [SUA ÁREA DE
+                              FORMAÇÃO]. TAREFA: Desenvolve um sistema de
+                              avaliação completo para o módulo "[NOME DO
+                              MÓDULO]" destinado a [DESCRIÇÃO DO PÚBLICO-ALVO].
+                              FORMATO: Cria 3 instrumentos distintos: 1.
+                              DIAGNÓSTICA: Quiz de 10-15 questões (múltipla
+                              escolha + autoavaliação) 2. FORMATIVA: Rubrica
+                              detalhada para avaliar [COMPETÊNCIA PRINCIPAL] com
+                              4-5 critérios 3. FEEDBACK: Sistema de respostas
+                              automáticas para 3 níveis de desempenho
+                              RESTRIÇÕES: - Linguagem adequada ao nível de
+                              escolaridade dos formandos - Critérios objetivos e
+                              mensuráveis - Incluir exemplos concretos em cada
+                              nível de desempenho - Feedback construtivo e
+                              encorajador - Formato facilmente aplicável na
+                              prática
+                            </div>
+                          </div>
+
+                          <div class="results-preview">
+                            <h6>
+                              <i class="fas fa-eye me-2"></i>Instrumentos
+                              Desenvolvidos
+                            </h6>
+                            <div class="result-box">
+                              <strong>Quiz Diagnóstico:</strong> "Já teve
+                              experiência em atendimento? Como avalia a sua
+                              capacidade de..."<br />
+                              <strong>Rubrica Role-Play:</strong> Critérios:
+                              Escuta ativa (1-4), Linguagem corporal (1-4),
+                              Resolução de problemas (1-4), Empatia (1-4)<br />
+                              <strong>Feedback Automático:</strong> "Nível
+                              Iniciante: Demonstrou interesse em aprender. Para
+                              melhorar, pratique..."
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Exemplo Opção C -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingExemploC">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseExemploC"
+                        aria-expanded="false"
+                        aria-controls="collapseExemploC"
+                      >
+                        <i class="fas fa-users me-2"></i>
+                        <strong
+                          >Exemplo: Kit "Segurança no Trabalho em
+                          Cozinha"</strong
+                        >
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseExemploC"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="headingExemploC"
+                      data-bs-parent="#exemplosDemonstrativos"
+                    >
+                      <div class="accordion-body">
+                        <div class="example-content">
+                          <h6>
+                            <i class="fas fa-info-circle me-2"></i>Contexto do
+                            Exemplo
+                          </h6>
+                          <p class="small">
+                            Kit de recursos para módulo de "Segurança Alimentar
+                            e Higiene" em curso de Cozinha/Pastelaria.
+                          </p>
+
+                          <h6>
+                            <i class="fas fa-magic me-2"></i>Recursos
+                            Desenvolvidos
+                          </h6>
+                          <ul class="small">
+                            <li>
+                              <strong>Infográfico:</strong> "10 Regras de Ouro
+                              da Segurança Alimentar" (Canva AI)
+                            </li>
+                            <li>
+                              <strong>Casos Práticos:</strong> 3 situações reais
+                              de resolução de problemas (ChatGPT)
+                            </li>
+                            <li>
+                              <strong>Checklist:</strong> Lista de verificação
+                              diária para cozinha (Claude)
+                            </li>
+                            <li>
+                              <strong>Role-Play:</strong> Simulação de inspeção
+                              sanitária (ChatGPT)
+                            </li>
+                            <li>
+                              <strong>Quiz Interativo:</strong> 15 questões
+                              sobre HACCP básico (Claude)
+                            </li>
+                          </ul>
+
+                          <div class="prompt-example">
+                            <h6>
+                              <i class="fas fa-quote-left me-2"></i>Prompt
+                              Universal (Adaptável)
+                            </h6>
+                            <div class="prompt-box">
+                              CONTEXTO: Atua como designer instrucional
+                              especializado em [SUA ÁREA], com foco na criação
+                              de recursos pedagógicos diversificados. TAREFA:
+                              Desenvolve um kit completo de 5-6 recursos para a
+                              unidade "[NOME DA UNIDADE]" destinada a [PERFIL
+                              DOS FORMANDOS]. FORMATO: Cria recursos variados
+                              que atendam diferentes estilos de aprendizagem: -
+                              1 Recurso visual (infográfico/poster educativo) -
+                              2 Casos práticos baseados em situações reais - 1
+                              Checklist/template prático para uso profissional -
+                              1 Atividade colaborativa (role-play/simulação) - 1
+                              Instrumento de autoavaliação (quiz/teste)
+                              RESTRIÇÕES: - Cada recurso deve ter objetivo
+                              específico e complementar os outros - Linguagem
+                              profissional mas acessível - Aplicabilidade direta
+                              no contexto de trabalho - Incluir instruções de
+                              uso para o formador - Formato facilmente
+                              reproduzível/imprimível
+                            </div>
+                          </div>
+
+                          <div class="results-preview">
+                            <h6>
+                              <i class="fas fa-eye me-2"></i>Kit Completo Obtido
+                            </h6>
+                            <div class="result-box">
+                              <strong>Visual:</strong> Poster "Temperaturas
+                              Seguras" com termómetro colorido<br />
+                              <strong>Casos:</strong> "O que fazer quando...",
+                              "Situação de emergência", "Cliente com alergia"<br />
+                              <strong>Checklist:</strong> "Verificação diária de
+                              15 pontos críticos"<br />
+                              <strong>Role-Play:</strong> "Inspeção surprise:
+                              como reagir profissionalmente"<br />
+                              <strong>Quiz:</strong> "Teste os seus
+                              conhecimentos: 15 questões HACCP"
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Prompts Genéricos -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPrompts">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsePrompts"
+                        aria-expanded="false"
+                        aria-controls="collapsePrompts"
+                      >
+                        <i class="fas fa-code me-2"></i>
+                        <strong
+                          >Biblioteca de Prompts Genéricos (Copy-Paste)</strong
+                        >
+                      </button>
+                    </h2>
+                    <div
+                      id="collapsePrompts"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="headingPrompts"
+                      data-bs-parent="#exemplosDemonstrativos"
+                    >
+                      <div class="accordion-body">
+                        <div class="prompts-library">
+                          <h6>
+                            <i class="fas fa-copy me-2"></i>Templates Universais
+                          </h6>
+                          <p class="small text-muted">
+                            Copie e adapte estes prompts às suas necessidades
+                            específicas:
+                          </p>
+
+                          <div class="prompt-template mb-4">
+                            <h6>🎯 Para Qualquer Plano de Aula:</h6>
+                            <div class="prompt-box">
+                              CONTEXTO: Atua como formador certificado em [SUA
+                              ÁREA] com [X] anos de experiência em formação para
+                              [TIPO DE PÚBLICO]. TAREFA: Desenvolve um plano de
+                              aula de [DURAÇÃO] sobre "[TÓPICO]" para [DESCRIÇÃO
+                              ESPECÍFICA DO PÚBLICO-ALVO]. FORMATO: Estrutura em
+                              [X] módulos, incluindo para cada um: - Objetivos
+                              específicos (saber, saber-fazer, saber-ser) -
+                              Metodologia (% teoria vs prática) - Atividades
+                              concretas com timing - Recursos/materiais
+                              necessários - Avaliação formativa RESTRIÇÕES: -
+                              Linguagem [NÍVEL DE COMPLEXIDADE] - Foco em
+                              aplicabilidade prática - [CARACTERÍSTICAS
+                              ESPECÍFICAS DO CONTEXTO] - Máximo [X] páginas
+                            </div>
+                          </div>
+
+                          <div class="prompt-template mb-4">
+                            <h6>📊 Para Sistemas de Avaliação:</h6>
+                            <div class="prompt-box">
+                              CONTEXTO: Atua como especialista em avaliação
+                              pedagógica na área de [SUA ESPECIALIDADE]. TAREFA:
+                              Desenvolve um sistema de avaliação para
+                              "[MÓDULO/COMPETÊNCIA]" adequado a [PERFIL DOS
+                              FORMANDOS]. FORMATO: Cria instrumentos para 3
+                              momentos: - DIAGNÓSTICA: [TIPO DE INSTRUMENTO] com
+                              [X] itens - FORMATIVA: [TIPO DE AVALIAÇÃO] com
+                              critérios objetivos - SUMATIVA: [FORMATO FINAL]
+                              com escala de classificação RESTRIÇÕES: -
+                              Critérios mensuráveis e observáveis - Feedback
+                              construtivo e específico - Adequado ao contexto
+                              [PRESENCIAL/ONLINE/MISTO] - Tempo de aplicação:
+                              [X] minutos máximo
+                            </div>
+                          </div>
+
+                          <div class="prompt-template">
+                            <h6>🎨 Para Kits de Recursos:</h6>
+                            <div class="prompt-box">
+                              CONTEXTO: Atua como criador de recursos
+                              pedagógicos especializado em [ÁREA DE
+                              CONHECIMENTO]. TAREFA: Desenvolve kit de recursos
+                              diversificados para "[UNIDADE FORMATIVA]"
+                              destinada a [PÚBLICO-ALVO]. FORMATO: Cria [X]
+                              recursos complementares: - Visual: [TIPO] para
+                              [OBJETIVO] - Prático: [FORMATO] para aplicação
+                              real - Interativo: [ATIVIDADE] para envolvimento -
+                              Avaliativo: [INSTRUMENTO] para verificação -
+                              [OUTROS CONFORME NECESSIDADE] RESTRIÇÕES: - Cada
+                              recurso com propósito específico - Adequado a
+                              diferentes estilos de aprendizagem - Facilmente
+                              implementável com recursos disponíveis -
+                              [LIMITAÇÕES ESPECÍFICAS DO CONTEXTO]
+                            </div>
+                          </div>
+
+                          <div class="usage-tips mt-4">
+                            <h6>
+                              <i class="fas fa-lightbulb me-2"></i>Dicas de
+                              Utilização
+                            </h6>
+                            <ul class="small">
+                              <li>
+                                <strong>Personalize sempre:</strong> Substitua
+                                os campos entre [ ] pelas suas especificidades
+                              </li>
+                              <li>
+                                <strong>Itere:</strong> Use o primeiro resultado
+                                como base e refine com prompts adicionais
+                              </li>
+                              <li>
+                                <strong>Combine ferramentas:</strong> Use
+                                ChatGPT para conteúdo, Claude para refinamento,
+                                Canva para visual
+                              </li>
+                              <li>
+                                <strong>Valide sempre:</strong> Revise outputs
+                                com os critérios pedagógicos aprendidos
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alert alert-info mt-4">
+                  <i class="fas fa-info-circle me-2"></i>
+                  <strong>Nota:</strong> A avaliação entre pares dos projetos
+                  criados será realizada no próximo workshop sobre "Avaliação
+                  com IA", onde desenvolverá competências específicas para
+                  avaliar trabalhos que integram IA.
+                </div>
+              </div>
+
+              <!-- PASSO 4: Reflexão Final -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">4</span>Reflexão e Consolidação
+                  <span class="time-block ms-3">5 min</span>
+                </h4>
+                <p>
+                  Consolide as suas aprendizagens e prepare-se para o próximo
+                  workshop sobre avaliação com IA.
+                </p>
+
+                <div class="reflection-grid">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="reflection-card">
+                        <h6>
+                          <i class="fas fa-lightbulb me-2"></i>Sobre o Meu
+                          Projeto
+                        </h6>
+                        <div class="checklist-item">
+                          <div
+                            class="checklist-checkbox"
+                            onclick="toggleCheck(this)"
+                          ></div>
+                          <span>Que aprendi criando o meu projeto?</span>
+                        </div>
+                        <div class="checklist-item">
+                          <div
+                            class="checklist-checkbox"
+                            onclick="toggleCheck(this)"
+                          ></div>
+                          <span>Como a IA facilitou o processo?</span>
+                        </div>
+                        <div class="checklist-item">
+                          <div
+                            class="checklist-checkbox"
+                            onclick="toggleCheck(this)"
+                          ></div>
+                          <span>Que limitações identifiquei?</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="reflection-card">
+                        <h6>
+                          <i class="fas fa-search me-2"></i>Sobre Avaliar com IA
+                        </h6>
+                        <div class="checklist-item">
+                          <div
+                            class="checklist-checkbox"
+                            onclick="toggleCheck(this)"
+                          ></div>
+                          <span>Que critérios são mais desafiantes?</span>
+                        </div>
+                        <div class="checklist-item">
+                          <div
+                            class="checklist-checkbox"
+                            onclick="toggleCheck(this)"
+                          ></div>
+                          <span
+                            >Como validar qualidade de projetos com IA?</span
+                          >
+                        </div>
+                        <div class="checklist-item">
+                          <div
+                            class="checklist-checkbox"
+                            onclick="toggleCheck(this)"
+                          ></div>
+                          <span>Que competências preciso desenvolver?</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="final-commitment">
+                  <h6>
+                    <i class="fas fa-handshake me-2"></i>Compromisso de
+                    Continuidade
+                  </h6>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="commitment"
+                    />
+                    <label class="form-check-label" for="commitment">
+                      Comprometo-me a implementar este projeto na minha prática
+                      formativa nas próximas duas semanas
+                    </label>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button
+                    class="btn btn-lg"
+                    onclick="finalizarSessao()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                      );
+                      color: white;
+                      border: none;
+                      padding: 12px 30px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <i class="fas fa-check-circle me-2"></i>Finalizar Sessão 1.4
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progresso do Módulo -->
+      <div
+        class="content-card mt-4"
+        style="
+          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+          border: 2px solid var(--secondary-color);
+        "
+      >
+        <div class="text-center">
+          <h5>
+            <i class="fas fa-graduation-cap me-2 text-primary"></i>Módulo 1
+            Concluído!
+          </h5>
+          <p>
+            Completou com sucesso todas as sessões do
+            <strong>Módulo 1: Inteligência Artificial na Formação</strong>.
+          </p>
+
+          <div class="progress-overview">
+            <div class="row">
+              <div class="col-6 col-md-3">
+                <div class="progress-item">
+                  <div class="progress-number">✓</div>
+                  <div class="progress-label">Sessão 1.1<br />Conceitos</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="progress-item">
+                  <div class="progress-number">✓</div>
+                  <div class="progress-label">Sessão 1.2<br />Ferramentas</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="progress-item">
+                  <div class="progress-number">✓</div>
+                  <div class="progress-label">Sessão 1.3<br />Prompts</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="progress-item">
+                  <div class="progress-number">✓</div>
+                  <div class="progress-label">Sessão 1.4<br />Prática</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Preparação para próximo workshop -->
+      <div class="preparation-next m-5">
+        <h6>
+          <i class="fas fa-arrow-right me-2"></i>Preparação para Próximo
+          Workshop
+        </h6>
+        <div class="alert alert-info">
+          <strong>Workshop 2: "Avaliação com IA"</strong> - Com base na
+          experiência de hoje, o próximo workshop aprofundará:
+          <ul class="small mb-0 mt-2">
+            <li>Técnicas avançadas de avaliação assistida por IA</li>
+            <li>Criação de sistemas de feedback automático</li>
+            <li>Validação e calibração de instrumentos avaliativos</li>
+            <li>Ética e transparência na avaliação com IA</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              © 2025 – Sessão 1.4 - IA na Formação
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem">
+              • Aplicação Prática • Avaliação Peer-to-Peer • Módulo Completo •
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript personalizado -->
+    <script src="assets/js/scripts.js"></script>
+
+    <script>
+      // Função para seleção de projeto
+      function selectProject(projectId) {
+        // Remove seleção anterior
+        document.querySelectorAll(".project-option").forEach((option) => {
+          option.classList.remove("selected");
+        });
+        document.querySelectorAll(".project-steps").forEach((steps) => {
+          steps.classList.remove("active");
+        });
+
+        // Adiciona nova seleção
+        event.currentTarget.classList.add("selected");
+        document.getElementById("steps-" + projectId).classList.add("active");
+
+        // Scroll para as instruções
+        document.getElementById("steps-" + projectId).scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+
+      // Função para finalizar sessão
+      function finalizarSessao() {
+        // Verificar se projeto foi selecionado
+        const selectedProject = document.querySelector(
+          ".project-option.selected"
+        );
+        if (!selectedProject) {
+          alert(
+            "Por favor, selecione e complete um projeto antes de finalizar."
+          );
+          return;
+        }
+
+        // Verificar se fases foram marcadas como concluídas
+        const activeSteps = document.querySelector(".project-steps.active");
+        const completedPhases = activeSteps.querySelectorAll(
+          ".checklist-checkbox.checked"
+        ).length;
+        if (completedPhases < 3) {
+          alert(
+            "Por favor, complete todas as fases do projeto antes de finalizar."
+          );
+          return;
+        }
+
+        alert(
+          "Parabéns! Concluiu com sucesso a Sessão 1.4 e todo o Módulo 1. Está preparado para o próximo workshop sobre Avaliação com IA!"
+        );
+        console.log("Sessão 1.4 concluída - Módulo 1 completo");
+      }
+
+      // Atualização de progresso
+      function updateProgress() {
+        const totalCheckboxes = document.querySelectorAll(
+          ".checklist-checkbox"
+        ).length;
+        const checkedBoxes = document.querySelectorAll(
+          ".checklist-checkbox.checked"
+        ).length;
+        const progress =
+          totalCheckboxes > 0 ? (checkedBoxes / totalCheckboxes) * 100 : 0;
+
+        // Atualizar barras de progresso se existirem
+        document.querySelectorAll(".progress-fill").forEach((fill) => {
+          fill.style.width = progress + "%";
+        });
+      }
+
+      // Event listeners
+      document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("checklist-checkbox")) {
+          updateProgress();
+        }
+      });
+    </script>
+  </body>
+</html>

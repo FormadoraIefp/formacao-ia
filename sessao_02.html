@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP - Sessão 1.2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Sessão 1.2: Ferramentas de IA na Formação - Workshops práticos do IEFP"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* Estilos personalizados - Workshop IA IEFP - Sessão 1.2 */
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #059669;
+        --accent-color: #f59e0b;
+        --tertiary-color: #7c3aed;
+        --text-dark: #1f2937;
+        --bg-light: #f9fafb;
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--tertiary-color) 30%,
+          var(--secondary-color) 70%,
+          var(--accent-color) 100%
+        );
+      }
+      .conteudo-pagina {
+        background: var(--bg-light);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      .stats-section {
+        background: rgba(255, 255, 255, 0.95);
+        margin-top: 0;
+        margin-bottom: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+      }
+    </style>
+
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Sessão 1.2: Ferramentas de IA na Formação - Guião de Sessão
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="container conteudo-pagina py-5"
+      style="margin-top: 100px !important; padding-top: 100px !important"
+    >
+      <!-- Seção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center justify-content-center">
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">2</span>
+                  <span class="stats-label">Sessão</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">1h30</span>
+                  <span class="stats-label">Duração</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="stats-card">
+                  <span class="stats-number">5</span>
+                  <span class="stats-label">Ferramentas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span class="nav-link">
+                  <i class="fas fa-tools me-1"></i>Ferramentas Práticas
+                </span>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar ferramentas ou funcionalidades..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter"
+          >Sessão 1.2 - Ferramentas de IA na Formação</span
+        >
+      </div>
+
+      <!-- Accordion principal -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Sessão 1.2: Ferramentas de IA na Formação -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="ferramentas chatgpt claude canva gemini eduaide praticas"
+          data-categoria="pratico"
+        >
+          <h2 class="accordion-header" id="heading-w1s2">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-w1s2"
+              aria-expanded="true"
+              aria-controls="collapse-w1s2"
+            >
+              <div class="icon-workshop">
+                <i class="fas fa-tools"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">1.2 Ferramentas de IA na Formação</div>
+                <div class="small text-muted">
+                  Exploração prática das principais ferramentas de IA para
+                  formadores
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">1h30</span>
+                <span class="badge badge-pratica">Prática</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-w1s2"
+            class="accordion-collapse collapse show"
+            aria-labelledby="heading-w1s2"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-bullseye me-2 text-primary"></i>Objetivos da
+                  Sessão
+                </h5>
+                <p>
+                  Esta sessão prática foca na exploração hands-on de ferramentas
+                  de IA. No final desta sessão será capaz de:
+                </p>
+                <ul>
+                  <li>Operar 5 ferramentas essenciais de IA para formação</li>
+                  <li>
+                    Criar prompts eficazes para diferentes contextos pedagógicos
+                  </li>
+                  <li>Avaliar criticamente outputs de IA para uso educativo</li>
+                  <li>
+                    Integrar ferramentas de IA no seu fluxo de trabalho como
+                    formador
+                  </li>
+                </ul>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-lightbulb me-2"></i>Abordagem da Sessão
+                  </h6>
+                  <p class="mb-2">
+                    <strong>Metodologia:</strong> Learning by doing -
+                    experimentação direta e reflexão crítica
+                  </p>
+                  <p class="mb-0">
+                    <strong>Foco:</strong> Aplicação prática imediata na sua
+                    área de formação
+                  </p>
+                </div>
+              </div>
+
+              <!-- PASSO 1: ChatGPT/OpenAI -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">1</span>ChatGPT - IA Generativa para
+                  Textos
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 20 minutos |
+                  <strong>Objetivo:</strong> Dominar prompts para criação de
+                  conteúdo educativo
+                </p>
+
+                <div class="tool-info">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Características Principais:</h6>
+                      <ul>
+                        <li>IA conversacional para geração de texto</li>
+                        <li>
+                          Excelente para planos de aula, exercícios, explicações
+                        </li>
+                        <li>Suporta múltiplos idiomas e estilos</li>
+                        <li>Versão gratuita disponível</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="access-box">
+                        <h6>Acesso:</h6>
+                        <a
+                          href="https://chat.openai.com"
+                          target="_blank"
+                          class="btn btn-outline-primary btn-sm"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i
+                          >chat.openai.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h6>Exercício Prático - Templates de Prompts:</h6>
+                <div class="prompt-examples">
+                  <div class="prompt-card">
+                    <h6>Template 1: Criação de Plano de Aula</h6>
+                    <div class="prompt-text">
+                      "Cria um plano de aula de [DURAÇÃO] sobre [TÓPICO] para
+                      [PÚBLICO-ALVO]. Inclui objetivos, metodologia, recursos
+                      necessários e avaliação. O nível de complexidade deve ser
+                      [BÁSICO/INTERMÉDIO/AVANÇADO]."
+                    </div>
+                  </div>
+
+                  <div class="prompt-card">
+                    <h6>Template 2: Geração de Exercícios</h6>
+                    <div class="prompt-text">
+                      "Desenvolve 5 exercícios práticos sobre [TEMA] adequados
+                      para [CONTEXTO]. Cada exercício deve ter: enunciado claro,
+                      solução detalhada e critérios de avaliação. Adapta a
+                      linguagem para [PERFIL DOS FORMANDOS]."
+                    </div>
+                  </div>
+
+                  <div class="prompt-card">
+                    <h6>Template 3: Casos Práticos</h6>
+                    <div class="prompt-text">
+                      "Cria um caso prático realista sobre [SITUAÇÃO] na área de
+                      [DOMÍNIO]. O caso deve apresentar um problema específico,
+                      contexto detalhado e questões orientadoras para discussão
+                      em grupo."
+                    </div>
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6><i class="fas fa-tasks me-2"></i>Atividade Prática</h6>
+                  <ol>
+                    <li>Aceda ao ChatGPT</li>
+                    <li>Escolha um template e adapte à sua área de formação</li>
+                    <li>Teste o prompt e analise o resultado</li>
+                    <li>Refine o prompt se necessário</li>
+                  </ol>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Criei e testei um prompt eficaz no ChatGPT</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 2: Claude -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">2</span>Claude - Assistente IA
+                  Conversacional
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Explorar capacidades analíticas e
+                  de raciocínio
+                </p>
+
+                <div class="tool-info">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Características Principais:</h6>
+                      <ul>
+                        <li>Excelente para análise e síntese de conteúdos</li>
+                        <li>Forte capacidade de raciocínio crítico</li>
+                        <li>Bom para feedback construtivo e revisões</li>
+                        <li>Interface conversacional natural</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="access-box">
+                        <h6>Acesso:</h6>
+                        <a
+                          href="https://claude.ai"
+                          target="_blank"
+                          class="btn btn-outline-secondary btn-sm"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>claude.ai
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h6>Casos de Uso Específicos:</h6>
+                <div class="use-cases">
+                  <div class="use-case-card">
+                    <h6>Análise de Textos</h6>
+                    <p class="small">
+                      "Analisa este texto pedagógico e sugere melhorias na
+                      clareza e estrutura."
+                    </p>
+                  </div>
+                  <div class="use-case-card">
+                    <h6>Feedback Construtivo</h6>
+                    <p class="small">
+                      "Fornece feedback detalhado sobre este trabalho de
+                      formando, destacando pontos fortes e áreas de melhoria."
+                    </p>
+                  </div>
+                  <div class="use-case-card">
+                    <h6>Adaptação de Conteúdos</h6>
+                    <p class="small">
+                      "Adapta este conteúdo técnico para um público sem
+                      conhecimentos prévios na área."
+                    </p>
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6>
+                    <i class="fas fa-clipboard-check me-2"></i>Teste Comparativo
+                  </h6>
+                  <p>Use o mesmo prompt no ChatGPT e Claude. Compare:</p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Qualidade e profundidade das respostas</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Estilo de comunicação</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Adequação ao contexto educativo</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 3: Google Gemini -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">3</span>Google Gemini - IA
+                  Multimodal
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 20 minutos |
+                  <strong>Objetivo:</strong> Trabalhar com texto, imagens e
+                  dados
+                </p>
+
+                <div class="tool-info">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Características Principais:</h6>
+                      <ul>
+                        <li>Processa texto, imagens e documentos</li>
+                        <li>Integração com ferramentas Google</li>
+                        <li>Análise de dados e gráficos</li>
+                        <li>Pesquisa em tempo real</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="access-box">
+                        <h6>Acesso:</h6>
+                        <a
+                          href="https://gemini.google.com"
+                          target="_blank"
+                          class="btn btn-outline-success btn-sm"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i
+                          >gemini.google.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h6>Funcionalidades Únicas para Formação:</h6>
+                <div class="features-grid">
+                  <div class="feature-item">
+                    <i class="fas fa-image text-primary"></i>
+                    <h6>Análise de Imagens</h6>
+                    <p class="small">
+                      Descrever diagramas, extrair texto de imagens, criar
+                      exercícios visuais
+                    </p>
+                  </div>
+                  <div class="feature-item">
+                    <i class="fas fa-file-alt text-success"></i>
+                    <h6>Processamento de Documentos</h6>
+                    <p class="small">
+                      Resumir PDFs, analisar relatórios, extrair
+                      informação-chave
+                    </p>
+                  </div>
+                  <div class="feature-item">
+                    <i class="fas fa-search text-info"></i>
+                    <h6>Pesquisa Integrada</h6>
+                    <p class="small">
+                      Informação atualizada, verificação de factos, tendências
+                      atuais
+                    </p>
+                  </div>
+                  <div class="feature-item">
+                    <i class="fas fa-chart-bar text-warning"></i>
+                    <h6>Análise de Dados</h6>
+                    <p class="small">
+                      Interpretar gráficos, estatísticas, criar visualizações
+                      simples
+                    </p>
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6>
+                    <i class="fas fa-camera me-2"></i>Exercício Multimodal
+                  </h6>
+                  <ol>
+                    <li>
+                      Carregue uma imagem relacionada com a sua área de formação
+                    </li>
+                    <li>
+                      Peça ao Gemini para analisar e criar um exercício baseado
+                      na imagem
+                    </li>
+                    <li>
+                      Teste a funcionalidade de pesquisa para atualizar
+                      informações
+                    </li>
+                  </ol>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Explorei as capacidades multimodais do Gemini</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 4: Canva AI -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">4</span>Canva AI - Design Assistido
+                  por IA
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 20 minutos |
+                  <strong>Objetivo:</strong> Criar recursos visuais
+                  profissionais
+                </p>
+
+                <div class="tool-info">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Características Principais:</h6>
+                      <ul>
+                        <li>Templates específicos para educação</li>
+                        <li>Geração de imagens com IA (Magic Media)</li>
+                        <li>Design automático com Magic Design</li>
+                        <li>Biblioteca vasta de recursos educativos</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="access-box">
+                        <h6>Acesso:</h6>
+                        <a
+                          href="https://www.canva.com"
+                          target="_blank"
+                          class="btn btn-outline-info btn-sm"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>canva.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h6>Recursos IA no Canva:</h6>
+                <div class="canva-features">
+                  <div class="canva-feature">
+                    <h6><i class="fas fa-magic me-2"></i>Magic Design</h6>
+                    <p class="small">
+                      Cria designs automáticos baseados no seu conteúdo
+                    </p>
+                  </div>
+                  <div class="canva-feature">
+                    <h6><i class="fas fa-image me-2"></i>Magic Media</h6>
+                    <p class="small">
+                      Gera imagens e vídeos a partir de descrições
+                    </p>
+                  </div>
+                  <div class="canva-feature">
+                    <h6><i class="fas fa-font me-2"></i>Magic Write</h6>
+                    <p class="small">
+                      Assistente de escrita para textos e apresentações
+                    </p>
+                  </div>
+                  <div class="canva-feature">
+                    <h6>
+                      <i class="fas fa-eraser me-2"></i>Background Remover
+                    </h6>
+                    <p class="small">
+                      Remove fundos automaticamente de imagens
+                    </p>
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6><i class="fas fa-palette me-2"></i>Criação Prática</h6>
+                  <p>Escolha UMA destas opções para criar:</p>
+                  <div class="creation-options">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="canva-creation"
+                        id="option1"
+                      />
+                      <label class="form-check-label" for="option1">
+                        Infográfico educativo sobre um tópico da sua área
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="canva-creation"
+                        id="option2"
+                      />
+                      <label class="form-check-label" for="option2">
+                        Apresentação de 5 slides sobre conceitos-chave
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="canva-creation"
+                        id="option3"
+                      />
+                      <label class="form-check-label" for="option3">
+                        Certificado personalizado para os seus formandos
+                      </label>
+                    </div>
+                  </div>
+                  <div class="checklist-item mt-3">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Criei um recurso visual usando IA no Canva</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 5: EduAide.ai ou ferramenta específica para educação -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">5</span>EduAide.ai - IA
+                  Especializada em Educação
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Explorar ferramenta dedicada ao
+                  setor educativo
+                </p>
+
+                <div class="tool-info">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Características Principais:</h6>
+                      <ul>
+                        <li>Especializada em criação de conteúdo educativo</li>
+                        <li>
+                          Templates pré-definidos para diferentes tipos de aula
+                        </li>
+                        <li>Geração de quizzes e avaliações</li>
+                        <li>Alinhamento com objetivos pedagógicos</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="access-box">
+                        <h6>Acesso:</h6>
+                        <a
+                          href="https://www.eduaide.ai"
+                          target="_blank"
+                          class="btn btn-outline-purple btn-sm"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i
+                          >eduaide.ai
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h6>Funcionalidades Educativas:</h6>
+                <div class="edu-features">
+                  <div class="edu-feature">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h6>Planos de Aula</h6>
+                    <p class="small">
+                      Estruturados por objetivos de aprendizagem
+                    </p>
+                  </div>
+                  <div class="edu-feature">
+                    <i class="fas fa-question-circle"></i>
+                    <h6>Quizzes Adaptativos</h6>
+                    <p class="small">
+                      Questões ajustadas ao nível dos formandos
+                    </p>
+                  </div>
+                  <div class="edu-feature">
+                    <i class="fas fa-certificate"></i>
+                    <h6>Rubricas de Avaliação</h6>
+                    <p class="small">Critérios claros e mensuráveis</p>
+                  </div>
+                  <div class="edu-feature">
+                    <i class="fas fa-users"></i>
+                    <h6>Atividades de Grupo</h6>
+                    <p class="small">Dinâmicas colaborativas estruturadas</p>
+                  </div>
+                </div>
+
+                <div class="activity-box">
+                  <h6>
+                    <i class="fas fa-graduation-cap me-2"></i>Teste
+                    Especializado
+                  </h6>
+                  <p>Explore uma funcionalidade específica para educação:</p>
+                  <ol>
+                    <li>
+                      Registe-se na plataforma (muitas têm trial gratuito)
+                    </li>
+                    <li>Teste a criação de um quiz sobre o seu tema</li>
+                    <li>
+                      Compare com quizzes criados em ferramentas generalistas
+                    </li>
+                  </ol>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Experimentei uma ferramenta especializada em
+                      educação</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Síntese e Comparação -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">6</span>Síntese e Estratégia Pessoal
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 20 minutos |
+                  <strong>Objetivo:</strong> Definir toolkit pessoal de IA
+                </p>
+
+                <div class="comparison-matrix">
+                  <h6>
+                    <i class="fas fa-balance-scale me-2"></i>Matriz de
+                    Comparação
+                  </h6>
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Ferramenta</th>
+                          <th>Melhor para</th>
+                          <th>Limitações</th>
+                          <th>Custo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>ChatGPT</strong></td>
+                          <td>Textos, planos, explicações</td>
+                          <td>Só texto, pode ser genérico</td>
+                          <td>Freemium</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Claude</strong></td>
+                          <td>Análise, feedback, raciocínio</td>
+                          <td>Menos criativo</td>
+                          <td>Freemium</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Gemini</strong></td>
+                          <td>Multimodal, pesquisa</td>
+                          <td>Interface menos intuitiva</td>
+                          <td>Gratuito</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Canva AI</strong></td>
+                          <td>Design, recursos visuais</td>
+                          <td>Foco em design, não pedagogia</td>
+                          <td>Freemium</td>
+                        </tr>
+                        <tr>
+                          <td><strong>EduAide</strong></td>
+                          <td>Conteúdo educativo específico</td>
+                          <td>Menos flexível</td>
+                          <td>Pago</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-toolbox me-2"></i>O Seu Toolkit de IA
+                  </h6>
+                  <p>Com base na sua experiência hoje, selecione:</p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>2 ferramentas principais para uso regular</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>1 ferramenta para explorar mais profundamente</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>3 casos de uso específicos para a sua prática</span>
+                  </div>
+                </div>
+
+                <div class="next-steps">
+                  <h6>
+                    <i class="fas fa-arrow-right me-2"></i>Próximos Passos
+                  </h6>
+                  <div class="step-card">
+                    <h6>Esta Semana</h6>
+                    <ul class="small">
+                      <li>Use 1 ferramenta numa situação real de formação</li>
+                      <li>Documente o processo e resultados</li>
+                      <li>Identifique melhorias necessárias</li>
+                    </ul>
+                  </div>
+                  <div class="step-card">
+                    <h6>Próximo Mês</h6>
+                    <ul class="small">
+                      <li>Integre 2-3 ferramentas no fluxo de trabalho</li>
+                      <li>Crie templates de prompts personalizados</li>
+                      <li>Partilhe experiências com colegas</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button
+                    class="btn btn-lg"
+                    onclick="finalizarSessao()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                      );
+                      color: white;
+                      border: none;
+                      padding: 12px 30px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <i class="fas fa-check-circle me-2"></i>Finalizar Sessão 1.2
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recursos para Continuação -->
+      <div class="content-card mt-4">
+        <h5>
+          <i class="fas fa-rocket me-2 text-success"></i>Para Continuar a
+          Explorar
+        </h5>
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Ferramentas Adicionais:</h6>
+            <ul class="small">
+              <li>
+                <a href="https://www.perplexity.ai" target="_blank"
+                  >Perplexity</a
+                >
+                - Pesquisa com IA
+              </li>
+              <li>
+                <a href="https://quillbot.com" target="_blank">QuillBot</a> -
+                Paráfrase e escrita
+              </li>
+              <li>
+                <a href="https://gamma.app" target="_blank">Gamma</a> -
+                Apresentações com IA
+              </li>
+              <li>
+                <a href="https://www.speechify.com" target="_blank"
+                  >Speechify</a
+                >
+                - Texto para áudio
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6>Comunidades e Recursos:</h6>
+            <ul class="small">
+              <li>Grupos de LinkedIn sobre IA na educação</li>
+              <li>Canais YouTube de formadores inovadores</li>
+              <li>Podcasts sobre tecnologia educativa</li>
+              <li>Webinars sobre transformação digital</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              © 2025 – Sessão 1.2 - IA na Formação
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem">
+              • Ferramentas IA • Prática • Inovação Pedagógica •
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript personalizado -->
+    <script src="assets/js/scripts.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Inteligência Artificial na Formação - Workshops práticos do IEFP"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Estilos personalizados - Workshop IA IEFP */
+      :root {
+        --primary-color: #2e8b57;
+        --secondary-color: #ffb347;
+        --accent-color: #4a90e2;
+        --text-dark: #2c3e50;
+        --bg-light: #f8f9fa;
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #20b2aa 50%,
+          var(--accent-color) 100%
+        );
+        position: relative;
+        z-index: 1000;
+      }
+    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- Estilos de impressão -->
+    <link rel="stylesheet" href="assets/css/print.css" media="print" />
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Oportunidades, Limites e Aplicações Pedagógicas
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container conteudo-pagina py-5 p">
+      <!-- Seção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center">
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">2</span>
+                  <span class="stats-label">Workshops</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">8h</span>
+                  <span class="stats-label">Duração Total</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">8</span>
+                  <span class="stats-label">Sessões</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">2</span>
+                  <span class="stats-label">Atividades</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="filterDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-filter me-1"></i>Filtros
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                  <li>
+                    <a
+                      class="dropdown-item active"
+                      href="#"
+                      data-filter="todos"
+                    >
+                      <i class="fas fa-list me-2"></i>Todos
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" data-filter="quotidiano">
+                      <i class="fas fa-calendar-day me-2"></i>Quotidiano
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" data-filter="avaliacao">
+                      <i class="fas fa-chart-line me-2"></i>Avaliação
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar workshops, sessões ou atividades..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter">2 workshops, 8 sessões disponíveis</span>
+      </div>
+
+      <!-- Accordion principal com workshops -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Workshop 1: IA no Quotidiano do/a Formador/a -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="quotidiano formador ferramentas simplificar preparacao atividades comunicacao"
+          data-categoria="quotidiano"
+        >
+          <h2 class="accordion-header" id="heading-workshop1">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-workshop1"
+              aria-expanded="false"
+              aria-controls="collapse-workshop1"
+            >
+              <div class="icon-workshop icon-criacao">
+                <i class="fas fa-user-cog"></i>
+              </div>
+              <div>
+                <div class="fw-bold">
+                  Workshop 1: IA no Quotidiano do/a Formador/a
+                </div>
+                <div class="small text-muted">
+                  Ferramentas para simplificar preparação, atividades e
+                  comunicação
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">4 horas</span>
+                <span class="badge badge-sincrona">3h Síncrona</span>
+                <span class="badge badge-assincrona">1h Assíncrona</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-workshop1"
+            class="accordion-collapse collapse"
+            aria-labelledby="heading-workshop1"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <!-- Descrição do Workshop -->
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-bullseye me-2"></i>Objetivos do Workshop
+                </h5>
+                <p>
+                  Este workshop foca na aplicação prática de ferramentas de IA
+                  para otimizar o trabalho quotidiano do formador, desde a
+                  preparação de materiais até à comunicação com formandos.
+                </p>
+
+                <!-- Conceitos fundamentais -->
+                <div class="concept-box">
+                  <h6><i class="fas fa-brain me-2"></i>Conceitos Base da IA</h6>
+                  <p class="mb-2">
+                    <strong>Definição:</strong> Capacidade de uma máquina
+                    aprender e resolver problemas imitando funções cognitivas
+                    humanas.
+                  </p>
+                  <p class="mb-0">
+                    <strong>Importância:</strong> Aumenta eficiência, permite
+                    inovações e melhorias nos processos de formação.
+                  </p>
+                </div>
+
+                <!-- Tipos de IA -->
+                <div class="ia-types">
+                  <h6>
+                    <i class="fas fa-sitemap me-2"></i>Tipos de IA Relevantes na
+                    Educação
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul class="small">
+                        <li>
+                          <strong>IA Generativa:</strong> Cria novos conteúdos
+                          (ChatGPT, Canva)
+                        </li>
+                        <li>
+                          <strong>IA Preditiva:</strong> Prevê
+                          comportamentos/necessidades
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <ul class="small">
+                        <li>
+                          <strong>IA Conversacional:</strong> Chatbots e tutores
+                          digitais
+                        </li>
+                        <li>
+                          <strong>IA Analítica:</strong> Análise de grandes
+                          volumes de dados
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- IA vs Automação -->
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-exchange-alt me-2"></i>IA vs Automação
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="small">
+                        <strong>Automação:</strong> Repete tarefas programadas
+                        (ex.: envio automático de e-mails)
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="small">
+                        <strong>IA:</strong> Aprende, adapta-se e toma decisões
+                        inteligentes (ex.: feedback adaptado ao desempenho)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <h6>
+                      <i class="fas fa-check-circle text-success me-1"></i
+                      >Competências
+                    </h6>
+                    <ul class="list-unstyled small">
+                      <li>• Utilização de IA generativa</li>
+                      <li>• Criação de materiais didácticos</li>
+                      <li>• Ferramentas multimodais</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h6>
+                      <i class="fas fa-tools text-primary me-1"></i>Ferramentas
+                    </h6>
+                    <ul class="list-unstyled small">
+                      <li>• ChatGPT / Claude / Gemini</li>
+                      <li>• Canva com IA</li>
+                      <li>• Ferramentas de áudio/vídeo</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h6>
+                      <i class="fas fa-clipboard-list text-warning me-1"></i
+                      >Resultados
+                    </h6>
+                    <ul class="list-unstyled small">
+                      <li>• Planos de sessão</li>
+                      <li>• Recursos multimodais</li>
+                      <li>• Automação de tarefas</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion aninhado para sessões -->
+              <div
+                class="accordion nested-accordion"
+                id="accordion-workshop1-sessoes"
+              >
+                <!-- Sessão 1.1: Apresentações e Introdução -->
+                <div
+                  class="accordion-item"
+                  data-tags="apresentacoes introducao ia formacao panorama"
+                  data-categoria="sincrona"
+                >
+                  <h3 class="accordion-header" id="heading-w1s1">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-w1s1"
+                      aria-expanded="false"
+                      aria-controls="collapse-w1s1"
+                    >
+                      <div
+                        class="icon-workshop icon-fundamentos me-3"
+                        style="width: 35px; height: 35px; font-size: 1rem"
+                      >
+                        <i class="fas fa-handshake"></i>
+                      </div>
+                      <div>
+                        <div class="fw-semibold">
+                          1.1 Apresentações e Introdução à IA na Formação
+                        </div>
+                        <div class="small text-muted">
+                          Apresentações, expectativas e panorama da IA educativa
+                        </div>
+                      </div>
+                      <div class="ms-auto d-flex gap-2">
+                        <span class="badge badge-duration">1 hora</span>
+                        <span class="badge badge-sincrona">Síncrona</span>
+                      </div>
+                    </button>
+                  </h3>
+                  <div
+                    id="collapse-w1s1"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-w1s1"
+                    data-bs-parent="#accordion-workshop1-sessoes"
+                  >
+                    <div class="accordion-body">
+                      <div class="content-card">
+                        <h6>
+                          <i class="fas fa-lightbulb me-2 text-warning"></i
+                          >Conteúdo da Sessão
+                        </h6>
+                        <p>
+                          Sessão de abertura com apresentações dos participantes
+                          e introdução aos conceitos fundamentais de IA aplicada
+                          à formação.
+                        </p>
+
+                        <!-- Conceitos integrados do PDF -->
+                        <div class="concept-box">
+                          <h6>Conceitos Base Abordados:</h6>
+                          <ul class="small">
+                            <li>
+                              <strong>Definição de IA:</strong> Capacidade de
+                              uma máquina aprender e resolver problemas imitando
+                              funções cognitivas humanas
+                            </li>
+                            <li>
+                              <strong>Importância:</strong> Aumenta eficiência,
+                              permite inovações e melhorias nos processos de
+                              formação
+                            </li>
+                            <li>
+                              <strong>Diferença IA vs Automação:</strong> IA
+                              aprende e adapta-se vs automação que repete
+                              tarefas programadas
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="ia-types">
+                          <h6>Tipos Principais de IA:</h6>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <ul class="small">
+                                <li>
+                                  <strong>IA Generativa:</strong> Cria novos
+                                  conteúdos (textos, imagens, código)
+                                </li>
+                                <li>
+                                  <strong>IA Preditiva:</strong> Prevê
+                                  comportamentos e necessidades (personalização)
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="col-md-6">
+                              <ul class="small">
+                                <li>
+                                  <strong>IA Conversacional:</strong> Chatbots e
+                                  tutores digitais
+                                </li>
+                                <li>
+                                  <strong>IA Analítica:</strong> Análise de
+                                  grandes volumes de dados
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row mt-3">
+                          <div class="col-md-6">
+                            <h6>Tópicos Abordados:</h6>
+                            <ul class="small">
+                              <li>Apresentações: Formador e participantes</li>
+                              <li>
+                                Levantamento de conhecimentos prévios sobre IA
+                              </li>
+                              <li>
+                                Panorama atual da IA em contexto educativo
+                              </li>
+                              <li>Oportunidades e limitações principais</li>
+                              <li>Mitos e realidades sobre IA na educação</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <h6>Atividades:</h6>
+                            <ul class="small">
+                              <li>Dinâmica de apresentação</li>
+                              <li>Partilha de expectativas</li>
+                              <li>Diagnóstico de necessidades</li>
+                              <li>Demonstração inicial de ferramentas</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sessão 1.2: Criação e Adaptação de Materiais -->
+                <div
+                  class="accordion-item"
+                  data-tags="criacao adaptacao materiais pedagogicos ia generativa"
+                  data-categoria="sincrona"
+                >
+                  <h3 class="accordion-header" id="heading-w1s2">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-w1s2"
+                      aria-expanded="false"
+                      aria-controls="collapse-w1s2"
+                    >
+                      <div
+                        class="icon-workshop icon-materiais me-3"
+                        style="width: 35px; height: 35px; font-size: 1rem"
+                      >
+                        <i class="fas fa-book-open"></i>
+                      </div>
+                      <div>
+                        <div class="fw-semibold">
+                          1.2 Criação e Adaptação de Materiais Pedagógicos
+                        </div>
+                        <div class="small text-muted">
+                          IA generativa para conteúdos e exercícios
+                        </div>
+                      </div>
+                      <div class="ms-auto d-flex gap-2">
+                        <span class="badge badge-duration">1 hora</span>
+                        <span class="badge badge-sincrona">Síncrona</span>
+                      </div>
+                    </button>
+                  </h3>
+                  <div
+                    id="collapse-w1s2"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-w1s2"
+                    data-bs-parent="#accordion-workshop1-sessoes"
+                  >
+                    <div class="accordion-body">
+                      <div class="content-card">
+                        <h6>
+                          <i class="fas fa-cogs me-2 text-primary"></i
+                          >Desenvolvimento Prático
+                        </h6>
+                        <p>
+                          Exploração hands-on de ferramentas de IA generativa
+                          para criação de materiais pedagógicos diversos.
+                        </p>
+
+                        <!-- Exemplos práticos integrados do PDF -->
+                        <div class="activity-card">
+                          <h6>
+                            <i class="fas fa-tools me-2"></i>Exemplos Práticos
+                            na Formação
+                          </h6>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <ul class="small">
+                                <li>
+                                  Criação de materiais personalizados (testes,
+                                  grelhas, planos de aula)
+                                </li>
+                                <li>Assistência na correção e feedback</li>
+                              </ul>
+                            </div>
+                            <div class="col-md-6">
+                              <ul class="small">
+                                <li>
+                                  Tradução automática e apoio a conteúdos
+                                  complexos
+                                </li>
+                                <li>
+                                  Recursos visuais rápidos (infográficos,
+                                  apresentações)
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row mt-3">
+                          <div class="col-md-6">
+                            <h6>Conteúdo:</h6>
+                            <ul class="small">
+                              <li>
+                                IA generativa para conteúdos (ChatGPT, Claude,
+                                Gemini)
+                              </li>
+                              <li>
+                                Criação de textos, exercícios e casos práticos
+                              </li>
+                              <li>
+                                Adaptação de materiais para diferentes públicos
+                              </li>
+                              <li>Ferramentas para design e apresentações</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <h6>Técnicas Aplicadas:</h6>
+                            <ul class="small">
+                              <li>Prompting eficaz</li>
+                              <li>Iteração e refinamento</li>
+                              <li>Adaptação ao contexto</li>
+                              <li>Validação de qualidade</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sessão 1.3: Ferramentas Multimodais -->
+                <div
+                  class="accordion-item"
+                  data-tags="multimodal imagens videos audio comunicacao"
+                  data-categoria="sincrona"
+                >
+                  <h3 class="accordion-header" id="heading-w1s3">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-w1s3"
+                      aria-expanded="false"
+                      aria-controls="collapse-w1s3"
+                    >
+                      <div
+                        class="icon-workshop icon-multimodal me-3"
+                        style="width: 35px; height: 35px; font-size: 1rem"
+                      >
+                        <i class="fas fa-images"></i>
+                      </div>
+                      <div>
+                        <div class="fw-semibold">
+                          1.3 Ferramentas Multimodais e Comunicação
+                        </div>
+                        <div class="small text-muted">
+                          Geração de imagens, vídeos e comunicação eficaz
+                        </div>
+                      </div>
+                      <div class="ms-auto d-flex gap-2">
+                        <span class="badge badge-duration">1 hora</span>
+                        <span class="badge badge-sincrona">Síncrona</span>
+                      </div>
+                    </button>
+                  </h3>
+                  <div
+                    id="collapse-w1s3"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-w1s3"
+                    data-bs-parent="#accordion-workshop1-sessoes"
+                  >
+                    <div class="accordion-body">
+                      <div class="content-card">
+                        <h6>
+                          <i class="fas fa-palette me-2 text-danger"></i>Criação
+                          Multimodal
+                        </h6>
+                        <p>
+                          Exploração de ferramentas que combinam diferentes
+                          modalidades para criar recursos educativos ricos e
+                          envolventes.
+                        </p>
+
+                        <!-- Benefícios da IA integrados do PDF -->
+                        <div class="benefits-grid">
+                          <div class="benefit-item">
+                            <i
+                              class="fas fa-clock text-primary mb-2"
+                              style="font-size: 1.5rem"
+                            ></i>
+                            <h6>Eficiência</h6>
+                            <p class="small">
+                              Menos tempo em tarefas repetitivas
+                            </p>
+                          </div>
+                          <div class="benefit-item">
+                            <i
+                              class="fas fa-lightbulb text-warning mb-2"
+                              style="font-size: 1.5rem"
+                            ></i>
+                            <h6>Criatividade</h6>
+                            <p class="small">Novos materiais e abordagens</p>
+                          </div>
+                          <div class="benefit-item">
+                            <i
+                              class="fas fa-user-cog text-success mb-2"
+                              style="font-size: 1.5rem"
+                            ></i>
+                            <h6>Personalização</h6>
+                            <p class="small">Diferenciação pedagógica</p>
+                          </div>
+                          <div class="benefit-item">
+                            <i
+                              class="fas fa-brain text-info mb-2"
+                              style="font-size: 1.5rem"
+                            ></i>
+                            <h6>Apoio à Decisão</h6>
+                            <p class="small">
+                              Organização e síntese de informação
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="row mt-3">
+                          <div class="col-md-6">
+                            <h6>Conteúdo:</h6>
+                            <ul class="small">
+                              <li>Geração de imagens e vídeos educativos</li>
+                              <li>Ferramentas de áudio e podcasts</li>
+                              <li>Comunicação eficaz com formandos</li>
+                              <li>Automação de respostas e suporte</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <h6>Ferramentas Exploradas:</h6>
+                            <ul class="small">
+                              <li>Geradores de imagem IA</li>
+                              <li>Ferramentas de vídeo</li>
+                              <li>Sistemas de comunicação</li>
+                              <li>Templates multimodais</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sessão 1.4: Atividade Assíncrona -->
+                <div
+                  class="accordion-item"
+                  data-tags="atividade assincrona forum topico individual"
+                  data-categoria="assincrona"
+                >
+                  <h3 class="accordion-header" id="heading-w1s4">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-w1s4"
+                      aria-expanded="false"
+                      aria-controls="collapse-w1s4"
+                    >
+                      <div
+                        class="icon-workshop icon-pratica me-3"
+                        style="width: 35px; height: 35px; font-size: 1rem"
+                      >
+                        <i class="fas fa-laptop-code"></i>
+                      </div>
+                      <div>
+                        <div class="fw-semibold">
+                          1.4 Atividade Assíncrona - "Explora e Reflete"
+                        </div>
+                        <div class="small text-muted">
+                          Forum com tópico individual por participante
+                        </div>
+                      </div>
+                      <div class="ms-auto d-flex gap-2">
+                        <span class="badge badge-duration">1 hora</span>
+                        <span class="badge badge-assincrona">Assíncrona</span>
+                      </div>
+                    </button>
+                  </h3>
+                  <div
+                    id="collapse-w1s4"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-w1s4"
+                    data-bs-parent="#accordion-workshop1-sessoes"
+                  >
+                    <div class="accordion-body">
+                      <div class="content-card">
+                        <h6>
+                          <i class="fas fa-tasks me-2 text-success"></i
+                          >Atividade Assíncrona - "Explora e Reflete"
+                        </h6>
+                        <p>
+                          <strong>Modalidade:</strong> Forum online<br />
+                          <strong>Estrutura:</strong> Cada participante cria um
+                          tópico individual<br />
+                          <strong>Prazo:</strong> Entre workshops
+                        </p>
+
+                        <!-- Atividade adaptada do PDF -->
+                        <div class="activity-card">
+                          <h6>
+                            <i class="fas fa-search me-2"></i>Atividade
+                            Interativa Adaptada
+                          </h6>
+                          <ol class="small">
+                            <li>
+                              Aceder a uma ferramenta de IA (ex.: ChatGPT,
+                              Claude, Gemini)
+                            </li>
+                            <li>
+                              Gerar conteúdo pedagógico (plano de aula, teste,
+                              recurso educativo)
+                            </li>
+                            <li>
+                              Analisar criticamente o resultado (erros,
+                              adequação, usabilidade)
+                            </li>
+                            <li>Partilhar reflexão no forum individual</li>
+                          </ol>
+                        </div>
+
+                        <div class="mt-3">
+                          <h6>Objetivo:</h6>
+                          <p class="small">
+                            Experimentar ferramentas de IA de forma prática,
+                            criar um recurso pedagógico real e desenvolver
+                            capacidade de análise crítica sobre a qualidade e
+                            adequação dos outputs da IA.
+                          </p>
+
+                          <h6>Critérios de Análise Crítica:</h6>
+                          <ul class="small">
+                            <li>Precisão e correção técnica do conteúdo</li>
+                            <li>Adequação ao nível e contexto dos formandos</li>
+                            <li>Presença de enviesamentos ou lacunas</li>
+                            <li>Necessidade de adaptação ou curadoria</li>
+                            <li>Potencialidades e limitações identificadas</li>
+                          </ul>
+
+                          <h6>Estrutura do Forum:</h6>
+                          <ul class="small">
+                            <li>Cada participante tem o seu tópico</li>
+                            <li>Partilha de recursos criados com IA</li>
+                            <li>Reflexão individual sobre a experiência</li>
+                            <li>Análise crítica dos resultados obtidos</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workshop 2: IA na Avaliação Formativa -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="avaliacao formativa personalizacao feedback automatico etica"
+          data-categoria="avaliacao"
+        >
+          <h2 class="accordion-header" id="heading-workshop2">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-workshop2"
+              aria-expanded="false"
+              aria-controls="collapse-workshop2"
+            >
+              <div class="icon-workshop icon-gestao">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div>
+                <div class="fw-bold">Workshop 2: IA na Avaliação Formativa</div>
+                <div class="small text-muted">
+                  Personalização, Feedback Automático e Considerações Éticas
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">4 horas</span>
+                <span class="badge badge-sincrona">3h Síncrona</span>
+                <span class="badge badge-assincrona">1h Assíncrona</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-workshop2"
+            class="accordion-collapse collapse"
+            aria-labelledby="heading-workshop2"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <!-- Descrição do Workshop -->
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-shield-alt me-2"></i>Objetivos do Workshop
+                </h5>
+                <p>
+                  Este workshop explora como a IA pode transformar a avaliação
+                  formativa, proporcionando feedback personalizado e automático,
+                  sempre com considerações éticas e responsáveis.
+                </p>
+
+                <!-- Limitações e Riscos integrados do PDF -->
+                <div class="risk-warning">
+                  <h6>
+                    <i class="fas fa-exclamation-triangle me-2"></i>Limitações e
+                    Riscos da IA
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul class="small">
+                        <li>
+                          <strong>Qualidade da informação:</strong> Risco de
+                          erros e enviesamentos
+                        </li>
+                        <li>
+                          <strong>Dependência excessiva:</strong> Empobrece
+                          prática reflexiva
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <ul class="small">
+                        <li>
+                          <strong>Falta de contexto pedagógico:</strong> Requer
+                          curadoria humana
+                        </li>
+                        <li>
+                          <strong>Privacidade e dados sensíveis:</strong> Uso
+                          ético e responsável
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <h6>
+                      <i class="fas fa-check-circle text-success me-1"></i
+                      >Competências
+                    </h6>
+                    <ul class="list-unstyled small">
+                      <li>• Avaliação formativa com IA</li>
+                      <li>• Personalização da aprendizagem</li>
+                      <li>• Análise ética</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h6>
+                      <i class="fas fa-tools text-primary me-1"></i>Ferramentas
+                    </h6>
+                    <ul class="list-unstyled small">
+                      <li>• Plataformas de correção automática</li>
+                      <li>• Sistemas de feedback</li>
+                      <li>• Rubricas inteligentes</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h6>
+                      <i class="fas fa-clipboard-list text-warning me-1"></i
+                      >Resultados
+                    </h6>
+                    <ul class="list-unstyled small">
+                      <li>• Feedback personalizado</li>
+                      <li>• Análise de progresso</li>
+                      <li>• Uso ético da IA</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion aninhado para sessões -->
+              <div
+                class="accordion nested-accordion"
+                id="accordion-workshop2-sessoes"
+              >
+                <!-- Sessão 2.1: Balanço + Fundamentos -->
+                <div
+                  class="accordion-item"
+                  data-tags="balanco atividade assincrona fundamentos avaliacao"
+                  data-categoria="sincrona"
+                >
+                  <h3 class="accordion-header" id="heading-w2s1">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-w2s1"
+                      aria-expanded="false"
+                      aria-controls="collapse-w2s1"
+                    >
+                      <div
+                        class="icon-workshop icon-planejamento me-3"
+                        style="width: 35px; height: 35px; font-size: 1rem"
+                      >
+                        <i class="fas fa-balance-scale"></i>
+                      </div>
+                      <div>
+                        <div class="fw-semibold">
+                          2.1 Balanço da Atividade Assíncrona + Fundamentos
+                        </div>
+                        <div class="small text-muted">
+                          Discussão da atividade anterior e conceitos base
+                        </div>
+                      </div>
+                      <div class="ms-auto d-flex gap-2">
+                        <span class="badge badge-duration">1 hora</span>
+                        <span class="badge badge-sincrona">Síncrona</span>
+                      </div>
+                    </button>
+                  </h3>
+                  <div
+                    id="collapse-w2s1"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-w2s1"
+                    data-bs-parent="#accordion-workshop2-sessoes"
+                  >
+                    <div class="accordion-body">
+                      <div class="content-card">
+                        <h6>
+                          <i class="fas fa-comments me-2 text-info"></i
+                          >Discussão e Fundamentos
+                        </h6>
+                        <p>
+                          Análise dos resultados da atividade assíncrona do
+                          Workshop 1 e introdução aos conceitos fundamentais da
+                          avaliação com IA.
+                        </p>
+
+                        <!-- Limitações integradas do PDF -->
+                        <div class="risk-warning">
+                          <h6>
+                            <i class="fas fa-exclamation-circle me-2"></i
+                            >Limitações e Riscos Identificados
+                          </h6>
+                          <ul class="small">
+                            <li>
+                              <strong>Qualidade da informação:</strong>
+                              Discussão sobre erros e enviesamentos encontrados
+                            </li>
+                            <li>
+                              <strong>Dependência excessiva:</strong> Reflexão
+                              sobre o risco de empobrecer a prática reflexiva
+                            </li>
+                            <li>
+                              <strong>Falta de contexto pedagógico:</strong>
+                              Necessidade de curadoria humana
+                            </li>
+                            <li>
+                              <strong>Privacidade e dados sensíveis:</strong>
+                              Considerações sobre uso ético e responsável
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="row mt-3">
+                          <div class="col-md-6">
+                            <h6>Conteúdo:</h6>
+                            <ul class="small">
+                              <li>
+                                Discussão dos tópicos da atividade assíncrona
+                              </li>
+                              <li>Principais insights partilhados</li>
+                              <li>
+                                Conceitos base: avaliação formativa vs. sumativa
+                              </li>
+                              <li>
+                                Potencial da IA na personalização da avaliação
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <h6>Atividades:</h6>
+                            <ul class="small">
+                              <li>Apresentação de experiências</li>
+                              <li>Síntese de aprendizagens</li>
+                              <li>Introdução teórica</li>
+                              <li>Casos de estudo</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sessão 2.2: Ferramentas para Feedback Automático -->
+                <div
+                  class="accordion-item"
+                  data-tags="feedback automatico correcao rubricas monitorizacao"
+                  data-categoria="sincrona"
+                >
+                  <h3 class="accordion-header" id="heading-w2s2">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-w2s2"
+                      aria-expanded="false"
+                      aria-controls="collapse-w2s2"
+                    >
+                      <div
+                        class="icon-workshop icon-comunicacao me-3"
+                        style="width: 35px; height: 35px; font-size: 1rem"
+                      >
+                        <i class="fas fa-robot"></i>
+                      </div>
+                      <div>
+                        <div class="fw-semibold">
+                          2.2 Ferramentas para Feedback Automático
+                        </div>
+                        <div class="small text-muted">
+                          Plataformas de correção e feedback personalizado
+                        </div>
+                      </div>
+                      <div class="ms-auto d-flex gap-2">
+                        <span class="badge badge-duration">1 hora</span>
+                        <span class="badge badge-sincrona">Síncrona</span>
+                      </div>
+                    </button>
+                  </h3>
+                  <div
+                    id="collapse-w2s2"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-w2s2"
+                    data-bs-parent="#accordion-workshop2-sessoes"
+                  >
+                    <div class="accordion-body">
+                      <div class="content-card">
+                        <h6>
+                          <i class="fas fa-cogs me-2 text-success"></i
+                          >Automatização da Avaliação
+                        </h6>
+                        <p>
+                          Exploração prática de ferramentas que automatizam o
+                          feedback e melhoram a eficiência da avaliação
+                          formativa.
+                        </p>
+
+                        <!-- Exemplos práticos de avaliação do PDF -->
+                        <div class="activity-card">
+                          <h6>
+                            <i class="fas fa-chart-bar me-2"></i>Exemplos
+                            Práticos de Avaliação
+                          </h6>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <ul class="small">
+                                <li>
+                                  Correção automática de testes e exercícios
+                                </li>
+                                <li>Dashboards de progresso em tempo real</li>
+                              </ul>
+                            </div>
+                            <div class="col-md-6">
+                              <ul class="small">
+                                <li>Feedback adaptativo personalizado</li>
+                                <li>Análise de padrões de aprendizagem</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row mt-3">
+                          <div class="col-md-6">
+                            <h6>Conteúdo:</h6>
+                            <ul class="small">
+                              <li>Plataformas de correção automatizada</li>
+                              <li>Criação de rubricas inteligentes</li>
+                              <li>Feedback personalizado e adaptativo</li>
+                              <li>Monitorização do progresso em tempo real</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <h6>Ferramentas Práticas:</h6>
+                            <ul class="small">
+                              <li>Sistemas de avaliação automática</li>
+                              <li>Geradores de feedback</li>
+                              <li>Dashboards de progresso</li>
+                              <li>Análise de desempenho</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sessão 2.3: Personalização da Aprendizagem -->
+                <div
+                  class="accordion-item"
+                  data-tags="personalizacao aprendizagem dados caminhos adaptativos"
+                  data-categoria="sincrona"
+                >
+                  <h3 class="accordion-header" id="heading-w2s3">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-w2s3"
+                      aria-expanded="false"
+                      aria-controls="collapse-w2s3"
+                    >
+                      <div
+                        class="icon-workshop icon-etica me-3"
+                        style="width: 35px; height: 35px; font-size: 1rem"
+                      >
+                        <i class="fas fa-user-check"></i>
+                      </div>
+                      <div>
+                        <div class="fw-semibold">
+                          2.3 Personalização da Aprendizagem e Papel do Formador
+                        </div>
+                        <div class="small text-muted">
+                          Caminhos adaptativos e mediação pedagógica
+                        </div>
+                      </div>
+                      <div class="ms-auto d-flex gap-2">
+                        <span class="badge badge-duration">1 hora</span>
+                        <span class="badge badge-sincrona">Síncrona</span>
+                      </div>
+                    </button>
+                  </h3>
+                  <div
+                    id="collapse-w2s3"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-w2s3"
+                    data-bs-parent="#accordion-workshop2-sessoes"
+                  >
+                    <div class="accordion-body">
+                      <div class="content-card">
+                        <h6>
+                          <i class="fas fa-route me-2 text-warning"></i
+                          >Adaptação Individual
+                        </h6>
+                        <p>
+                          Como utilizar dados de aprendizagem para criar
+                          experiências educativas personalizadas mantendo o
+                          formador no centro do processo.
+                        </p>
+
+                        <!-- Papel do formador integrado do PDF -->
+                        <div class="concept-box">
+                          <h6>
+                            <i class="fas fa-chalkboard-teacher me-2"></i>O
+                            Papel do Formador na Era da IA
+                          </h6>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <p class="small">
+                                <strong>Mediador crítico:</strong> Fomentar
+                                literacia digital
+                              </p>
+                            </div>
+                            <div class="col-md-4">
+                              <p class="small">
+                                <strong>Curador de conteúdos:</strong> Validar e
+                                adaptar
+                              </p>
+                            </div>
+                            <div class="col-md-4">
+                              <p class="small">
+                                <strong>Estrategista pedagógico:</strong> Usar
+                                IA como apoio, não dependência
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Princípio-chave do PDF -->
+                        <div class="principle-quote">
+                          A IA é uma ferramenta, não um substituto. Potencia
+                          práticas pedagógicas mas não substitui interação
+                          humana, sensibilidade didática e avaliação crítica.
+                        </div>
+
+                        <div class="row mt-3">
+                          <div class="col-md-6">
+                            <h6>Conteúdo:</h6>
+                            <ul class="small">
+                              <li>Análise de dados de aprendizagem</li>
+                              <li>Caminhos adaptativos de formação</li>
+                              <li>Identificação de dificuldades específicas</li>
+                              <li>Recomendações personalizadas</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-6">
+                            <h6>Aplicações Práticas:</h6>
+                            <ul class="small">
+                              <li>Sistemas adaptativos</li>
+                              <li>Análise de padrões</li>
+                              <li>Intervenções personalizadas</li>
+                              <li>Suporte individualizado</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sessão 2.4: Atividade Assíncrona Final -->
+                <div
+                  class="accordion-item"
+                  data-tags="atividade assincrona etica responsabilidade forum"
+                  data-categoria="assincrona"
+                >
+                  <h3 class="accordion-header" id="heading-w2s4">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-w2s4"
+                      aria-expanded="false"
+                      aria-controls="collapse-w2s4"
+                    >
+                      <div
+                        class="icon-workshop icon-pratica me-3"
+                        style="width: 35px; height: 35px; font-size: 1rem"
+                      >
+                        <i class="fas fa-comments"></i>
+                      </div>
+                      <div>
+                        <div class="fw-semibold">
+                          2.4 Atividade Assíncrona Final - Reflexão Ética
+                        </div>
+                        <div class="small text-muted">
+                          Forum individual para comentários entre pares
+                        </div>
+                      </div>
+                      <div class="ms-auto d-flex gap-2">
+                        <span class="badge badge-duration">1 hora</span>
+                        <span class="badge badge-assincrona">Assíncrona</span>
+                      </div>
+                    </button>
+                  </h3>
+                  <div
+                    id="collapse-w2s4"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading-w2s4"
+                    data-bs-parent="#accordion-workshop2-sessoes"
+                  >
+                    <div class="accordion-body">
+                      <div class="content-card">
+                        <h6>
+                          <i class="fas fa-users me-2 text-danger"></i>Atividade
+                          Assíncrona Final
+                        </h6>
+                        <p>
+                          <strong>Modalidade:</strong> Forum individual por
+                          participante<br />
+                          <strong>Estrutura:</strong> Comentários dos colegas
+                          sobre tópicos de avaliação<br />
+                          <strong>Objetivo:</strong> Síntese e reflexão final
+                          sobre ética na IA
+                        </p>
+
+                        <!-- Questões éticas integradas do PDF -->
+                        <div class="ethics-highlight">
+                          <h6>
+                            <i class="fas fa-balance-scale me-2"></i>Questões
+                            Éticas e Deontológicas
+                          </h6>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <ul class="small">
+                                <li>
+                                  <strong>Autoria do conteúdo:</strong> Quem é o
+                                  autor real?
+                                </li>
+                                <li>
+                                  <strong>Plágio e uso indevido:</strong>
+                                  Limites e responsabilidades
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="col-md-6">
+                              <ul class="small">
+                                <li>
+                                  <strong>Transparência com formandos:</strong>
+                                  Informar sobre uso de IA
+                                </li>
+                                <li>
+                                  <strong>Responsabilidade do formador:</strong>
+                                  Curadoria crítica
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-3">
+                          <h6>Descrição:</h6>
+                          <p class="small">
+                            Cada participante tem o seu forum individual onde os
+                            colegas comentam sobre tópicos relacionados com
+                            avaliação ética da IA. Esta atividade complementa a
+                            primeira, promovendo a reflexão coletiva e a troca
+                            de perspetivas.
+                          </p>
+
+                          <h6>Estrutura:</h6>
+                          <ol class="small">
+                            <li>Forum individual por participante</li>
+                            <li>Tópicos de avaliação criados pelo formador</li>
+                            <li>Comentários dos pares sobre questões éticas</li>
+                            <li>Síntese final sobre responsabilidade na IA</li>
+                          </ol>
+
+                          <h6>Temas de Reflexão:</h6>
+                          <ul class="small">
+                            <li>Viés algorítmico e equidade</li>
+                            <li>Transparência e explicabilidade</li>
+                            <li>Proteção de dados e privacidade</li>
+                            <li>Papel do formador na era da IA</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Conclusão integrada do PDF -->
+              <div class="content-card mt-4">
+                <h5>
+                  <i class="fas fa-flag-checkered me-2"></i>Conclusão e Próximos
+                  Passos
+                </h5>
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-lightbulb me-2"></i>Principais Takeaways
+                  </h6>
+                  <ul class="small">
+                    <li>
+                      <strong>IA como aliada consciente:</strong> Usar com
+                      espírito crítico
+                    </li>
+                    <li>
+                      <strong>Formador no centro:</strong> Insubstituível na
+                      mediação pedagógica
+                    </li>
+                    <li>
+                      <strong>Formação contínua:</strong> Essencial para
+                      integrar tecnologias de forma informada e eficaz
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="principle-quote">
+                  A IA potencia as práticas pedagógicas, mas não substitui a
+                  interação humana, a sensibilidade didática e a capacidade de
+                  avaliação crítica do formador.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensagem quando não há resultados -->
+      <div id="noResults" class="alert alert-warning text-center hidden">
+        <i class="fas fa-search me-2"></i>
+        Nenhum resultado encontrado com os critérios de pesquisa.
+        <br />
+        <button
+          class="btn btn-outline-primary btn-sm mt-2"
+          onclick="clearFilters()"
+        >
+          <i class="fas fa-refresh me-1"></i>Limpar filtros
+        </button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Informações IEFP -->
+          <div class="col-md-8">
+            <!-- Logo e Título -->
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+              <p class="mb-1" style="font-size: 0.85rem">
+                Delegação Regional de Lisboa e Vale do Tejo
+              </p>
+              <p class="mb-2" style="font-size: 0.8rem">
+                IEFP - Instituto do Emprego e Formação Profissional, I.P.
+              </p>
+              <a
+                href="https://www.iefp.pt"
+                class="text-decoration-none"
+                style="color: var(--accent-color); font-size: 0.9rem"
+                target="_blank"
+              >
+                <i class="fas fa-external-link-alt me-1"></i>www.iefp.pt
+              </a>
+            </div>
+          </div>
+
+          <!-- Créditos -->
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              &copy; 2025 – Workshop IA para Formadores
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem; line-height: 1.4">
+              • Inteligência Artificial • Educação •<br />• Inovação Pedagógica
+              •
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+  </body>
+</html>
