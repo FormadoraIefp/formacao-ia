@@ -847,7 +847,7 @@ function updateProgress() {
   const percentage = Math.round((checkedItems / totalChecks) * 100);
 
   const counter = document.getElementById("resultsCounter");
-  counter.textContent = `Progresso: ${checkedItems}/${totalChecks} itens completados (${percentage}%)`;
+  counter.textContent = `Progresso: ${checkedItems}/${totalChecks} itens completos (${percentage}%)`;
 }
 
 // Finalizar sessão

@@ -1,0 +1,294 @@
+/* Estilos das sessões 2 - IA */
+:root {
+  --primary-color: #6b46c1;
+  --secondary-color: #ec4899;
+  --accent-color: #10b981;
+  --text-dark: #2c3e50;
+  --bg-light: #f8f9fa;
+}
+.header-main {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    #8b5cf6 50%,
+    var(--accent-color) 100%
+  );
+}
+.conteudo-pagina {
+  background: var(--bg-light);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+.stats-section {
+  background: rgba(255, 255, 255, 0.95);
+  margin-top: 0;
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(107, 70, 193, 0.1);
+}
+.content-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+.tutorial-step {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--primary-color);
+}
+.step-number {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 50px;
+  margin-right: 15px;
+  font-size: 1.1em;
+}
+.concept-box {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-left: 4px solid var(--accent-color);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+}
+.reflection-box {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-left: 4px solid #f59e0b;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+}
+.tip-box {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  border: 1px solid #10b981;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  color: #065f46;
+}
+.warning-box {
+  background: linear-gradient(135deg, #fef2f2, #fecaca);
+  border: 1px solid #ef4444;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  color: #991b1b;
+}
+.ia-types {
+  margin: 20px 0;
+}
+.ia-type-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+.ia-type-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+.checklist-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.checklist-item:hover {
+  background: rgba(107, 70, 193, 0.05);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.checklist-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.checklist-checkbox.checked {
+  background: var(--primary-color);
+}
+.checklist-checkbox.checked::after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  top: -2px;
+  left: 3px;
+}
+.stats-card {
+  text-align: center;
+  padding: 15px;
+}
+.stats-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+.stats-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 5px;
+}
+.navbar-custom {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 15px;
+}
+.search-container {
+  position: relative;
+  max-width: 300px;
+}
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+}
+.search-container input {
+  padding-left: 35px;
+  border-radius: 25px;
+  border: 1px solid #d1d5db;
+}
+.badge-duration {
+  background: linear-gradient(135deg, var(--accent-color), #065f46);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+.badge-sincrona {
+  background: linear-gradient(135deg, var(--secondary-color), #be185d);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+.icon-workshop {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1.5rem;
+}
+.floating-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+.btn-floating {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-floating:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 1001;
+}
+.progress-bar-scroll {
+  height: 4px;
+  background: linear-gradient(
+    135deg,
+    var(--accent-color),
+    var(--primary-color)
+  );
+  width: 0%;
+  transition: width 0.3s ease;
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.practical-exercise {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border: 1px solid #3b82f6;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+.tool-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.tool-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(107, 70, 193, 0.15);
+}

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Inteligência Artificial na Formação - Workshops práticos do IEFP"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/print.css" />
+    <link rel="stylesheet" href="assets/css/floating_buttons.css" />
+    <style>
+      /* ===== TEMA 4 — Vermelho Rubi ===== */
+      :root {
+        --primary-color: #b91c1c; /* rubi */
+        --secondary-color: #f97316; /* laranja vivo */
+        --accent-color: #f43f5e; /* rosa avermelhado */
+        --text-dark: #1f2937;
+        --bg-light: #fff7f7;
+        --success-color: #28a745;
+        --warning-color: #ffc107;
+        --danger-color: #dc3545;
+        --info-color: #17a2b8;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        color: var(--text-dark);
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #fca5a5 50%,
+          var(--accent-color) 100%
+        );
+        color: white;
+        padding: 2rem 0;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+    <div class="text-end mt-3">
+      <button class="btn btn-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimir esta sessão
+      </button>
+    </div>
+    <div class="text-end mt-3">
+      <button class="btn btn-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimir esta sessão
+      </button>
+    </div>
+    <div class="text-end mt-3">
+      <button class="btn btn-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimir esta sessão
+      </button>
+    </div>
+    <div class="text-end mt-3">
+      <button class="btn btn-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimir esta sessão
+      </button>
+    </div>
+    <div class="text-end mt-3">
+      <button class="btn btn-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimir esta sessão
+      </button>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Sessão 2.3. Avaliação de Competências Complexas e Soft Skills
+                com IA - Guião de Sessão
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="container conteudo-pagina py-5"
+      style="margin-top: 100px !important; padding-top: 100px !important"
+    >
+      <!-- Secção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center justify-content-center">
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">2.3</span>
+                  <span class="stats-label">Sessão</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">1h30</span>
+                  <span class="stats-label">Duração</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="stats-card">
+                  <span class="stats-number">5</span>
+                  <span class="stats-label">Passos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Botão imprimir na section -->
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span class="nav-link">
+                  <i class="fas fa-book-reader me-1"></i>Guião de Sessão
+                </span>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar conceitos ou passos..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter"
+          >Sessão 2.3 - Avaliação de Competências Complexas e Soft Skills com
+          IA</span
+        >
+      </div>
+
+      <!-- Accordion principal -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Sessão 2.3: Avaliação de Competências Complexas e Soft Skills -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="competencias soft skills comunicacao lideranca trabalho equipa criatividade pensamento critico"
+          data-categoria="tutorial"
+        >
+          <h2 class="accordion-header" id="heading-w2s3">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-w2s3"
+              aria-expanded="true"
+              aria-controls="collapse-w2s3"
+            >
+              <div class="icon-workshop">
+                <i class="fas fa-users-cog"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">
+                  2.3 Avaliação de Competências Complexas e Soft Skills
+                </div>
+                <div class="small text-muted">
+                  Como usar IA para avaliar competências intangíveis e
+                  comportamentais
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">1h30</span>
+                <span class="badge badge-sincrona">Sessão</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-w2s3"
+            class="accordion-collapse collapse show"
+            aria-labelledby="heading-w2s3"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-bullseye me-2 text-primary"></i>Objetivos da
+                  Sessão
+                </h5>
+                <p>
+                  Esta sessão explora como a IA pode apoiar a avaliação de
+                  competências comportamentais e complexas, tradicionalmente
+                  difíceis de medir. No final desta sessão será capaz de:
+                </p>
+                <ul>
+                  <li>Identificar soft skills avaliáveis com apoio de IA</li>
+                  <li>Usar técnicas de observação estruturada com IA</li>
+                  <li>Criar rubricas comportamentais inteligentes</li>
+                  <li>
+                    Desenvolver simulações para avaliar competências complexas
+                  </li>
+                  <li>
+                    Interpretar dados qualitativos com análise assistida por IA
+                  </li>
+                </ul>
+
+                <!-- Conceito base -->
+                <div class="concept-box">
+                  <h6><i class="fas fa-lightbulb me-2"></i>Conceito Central</h6>
+                  <p class="mb-2">
+                    <strong>Avaliação Comportamental com IA:</strong> Uso de
+                    inteligência artificial para analisar padrões de
+                    comportamento, comunicação e interação que indicam o
+                    desenvolvimento de soft skills e competências complexas.
+                  </p>
+                  <p class="mb-0">
+                    <strong>Princípio:</strong> A IA não substitui a observação
+                    humana, mas amplifica nossa capacidade de identificar
+                    padrões e fornecer feedback estruturado.
+                  </p>
+                </div>
+              </div>
+
+              <!-- PASSO 1: Mapeamento de Soft Skills Avaliáveis -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">1</span>Identificar Soft Skills
+                  Avaliáveis com IA
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 20 minutos |
+                  <strong>Objetivo:</strong> Mapear competências comportamentais
+                  mensuráveis
+                </p>
+
+                <h6>Competências com Indicadores Observáveis:</h6>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="concept-box" style="border-left-color: #3b82f6">
+                      <h6><i class="fas fa-comments me-2"></i>Comunicação</h6>
+                      <ul class="small">
+                        <li>
+                          <strong>Indicadores:</strong> Clareza, estrutura,
+                          adequação ao público
+                        </li>
+                        <li>
+                          <strong>IA pode avaliar:</strong> Análise de
+                          texto/discurso
+                        </li>
+                        <li>
+                          <strong>Ferramentas:</strong> Análise de sentimento,
+                          estrutura linguística
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="concept-box" style="border-left-color: #f59e0b">
+                      <h6>
+                        <i class="fas fa-users me-2"></i>Trabalho em Equipa
+                      </h6>
+                      <ul class="small">
+                        <li>
+                          <strong>Indicadores:</strong> Colaboração, partilha,
+                          resolução de conflitos
+                        </li>
+                        <li>
+                          <strong>IA pode avaliar:</strong> Padrões de interação
+                        </li>
+                        <li>
+                          <strong>Ferramentas:</strong> Análise de participação,
+                          feedback 360°
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div
+                      class="concept-box"
+                      style="border-left-color: var(--accent-color)"
+                    >
+                      <h6>
+                        <i class="fas fa-lightbulb me-2"></i>Pensamento Crítico
+                      </h6>
+                      <ul class="small">
+                        <li>
+                          <strong>Indicadores:</strong> Argumentação, análise,
+                          síntese
+                        </li>
+                        <li>
+                          <strong>IA pode avaliar:</strong> Estrutura de
+                          raciocínio
+                        </li>
+                        <li>
+                          <strong>Ferramentas:</strong> Análise de argumentos,
+                          lógica
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="concept-box" style="border-left-color: #ef4444">
+                      <h6>
+                        <i class="fas fa-cogs me-2"></i>Resolução de Problemas
+                      </h6>
+                      <ul class="small">
+                        <li>
+                          <strong>Indicadores:</strong> Processo, criatividade,
+                          eficácia
+                        </li>
+                        <li>
+                          <strong>IA pode avaliar:</strong> Padrões de solução
+                        </li>
+                        <li>
+                          <strong>Ferramentas:</strong> Análise de abordagens,
+                          resultados
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-tasks me-2"></i>Exercício de Mapeamento
+                  </h6>
+                  <p>Para a sua área de formação, identifique:</p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >2-3 soft skills prioritárias para os seus formandos</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Indicadores comportamentais observáveis para cada
+                      uma</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Situações onde estas competências se manifestam</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 2: Técnicas de Observação Estruturada -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">2</span>Observação Estruturada com
+                  Apoio de IA
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 25 minutos |
+                  <strong>Objetivo:</strong> Criar sistemas de observação
+                  assistidos por IA
+                </p>
+
+                <div class="ia-types">
+                  <h6>Explore estas 4 técnicas de observação:</h6>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-video me-2 text-primary"></i>1. Análise
+                      de Apresentações
+                    </h6>
+                    <p class="small">
+                      <strong>Como funciona:</strong> IA analisa gravações de
+                      apresentações dos formandos
+                    </p>
+                    <p class="small">
+                      <strong>Ferramenta:</strong> ChatGPT para criar grelha de
+                      observação
+                    </p>
+                    <p class="small">
+                      <strong>Exemplo prático:</strong> Avaliar postura, tom de
+                      voz, estrutura do discurso, gestão do tempo
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-comments me-2 text-success"></i>2.
+                      Análise de Discussões
+                    </h6>
+                    <p class="small">
+                      <strong>Como funciona:</strong> Transcrição e análise de
+                      debates/discussões de grupo
+                    </p>
+                    <p class="small">
+                      <strong>Ferramenta:</strong> Claude ou ChatGPT com prompts
+                      estruturados
+                    </p>
+                    <p class="small">
+                      <strong>Exemplo prático:</strong> Participação, qualidade
+                      de argumentos, escuta ativa
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-edit me-2 text-info"></i>3. Análise de
+                      Textos/Reflexões
+                    </h6>
+                    <p class="small">
+                      <strong>Como funciona:</strong> IA analisa reflexões
+                      escritas dos formandos
+                    </p>
+                    <p class="small">
+                      <strong>Ferramenta:</strong> Análise de dados com IA
+                      (Excel + IA, Google Sheets)
+                    </p>
+                    <p class="small">
+                      <strong>Exemplo prático:</strong> Profundidade de
+                      reflexão, metacognição, autoavaliação
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-project-diagram me-2 text-warning"></i>4.
+                      Observação de Projetos Colaborativos
+                    </h6>
+                    <p class="small">
+                      <strong>Como funciona:</strong> Monitorização de processos
+                      de trabalho em grupo
+                    </p>
+                    <p class="small">
+                      <strong>Ferramenta:</strong> Templates dinâmicos criados
+                      com IA
+                    </p>
+                    <p class="small">
+                      <strong>Exemplo prático:</strong> Contribuição individual,
+                      liderança, gestão de conflitos
+                    </p>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-mouse-pointer me-2"></i>
+                  <strong>Atividade Prática (15 min):</strong> Escolha UMA
+                  técnica acima. Acesse uma ferramenta de IA e teste criar um
+                  sistema de observação para a sua área de formação.
+                </div>
+
+                <div class="checklist-item">
+                  <div
+                    class="checklist-checkbox"
+                    onclick="toggleCheck(this)"
+                  ></div>
+                  <span>Criei um sistema de observação estruturada com IA</span>
+                </div>
+              </div>
+
+              <!-- PASSO 3: Rubricas Comportamentais Inteligentes -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">3</span>Princípios das Rubricas
+                  Comportamentais
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 25 minutos |
+                  <strong>Objetivo:</strong> Desenvolver critérios de avaliação
+                  adaptativos
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-shield-alt me-2"></i>As 4 Características
+                    Essenciais
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p>
+                        <strong>1. Adaptativas:</strong> Ajustam-se ao contexto
+                        e nível
+                      </p>
+                      <p>
+                        <strong>2. Processuais:</strong> Avaliam o processo, não
+                        só resultado
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <p>
+                        <strong>3. Multimodais:</strong> Consideram diferentes
+                        formas de expressão
+                      </p>
+                      <p>
+                        <strong>4. Evolutivas:</strong> Acompanham progresso ao
+                        longo do tempo
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-check-square me-2"></i>Template de Rubrica
+                    Prático
+                  </h6>
+                  <p>
+                    Use IA para criar uma rubrica com estas características:
+                  </p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>4 níveis de proficiência claramente definidos</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Descritores comportamentais específicos</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Indicadores que IA pode medir vs. observação humana</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Contextualização à minha área de formação</span>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-exclamation-triangle me-2"></i>
+                  <strong>Prompt sugerido:</strong> "Cria uma rubrica para
+                  avaliar [soft skill] em [contexto]. Inclui 4 níveis com
+                  descritores comportamentais e distingue indicadores IA vs.
+                  humanos."
+                </div>
+              </div>
+
+              <!-- PASSO 4: Simulações e Cenários -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">4</span>Simulações para Avaliar
+                  Competências
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 25 minutos |
+                  <strong>Objetivo:</strong> Criar situações autênticas de
+                  avaliação
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-hammer me-2"></i>4 Tipos de Simulação com
+                    IA
+                  </h6>
+                  <p>
+                    Escolha UMA das opções abaixo e desenvolva com apoio da IA:
+                  </p>
+
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="simulacao"
+                      id="sim1"
+                    />
+                    <label class="form-check-label" for="sim1">
+                      <strong>Role-Playing com IA</strong> para testar
+                      adaptabilidade e comunicação
+                    </label>
+                  </div>
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="simulacao"
+                      id="sim2"
+                    />
+                    <label class="form-check-label" for="sim2">
+                      <strong>Cenários de crise</strong> para avaliar gestão de
+                      stress e tomada de decisão
+                    </label>
+                  </div>
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="simulacao"
+                      id="sim3"
+                    />
+                    <label class="form-check-label" for="sim3">
+                      <strong>Projetos virtuais</strong> onde formandos aplicam
+                      competências técnicas e comportamentais
+                    </label>
+                  </div>
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="simulacao"
+                      id="sim4"
+                    />
+                    <label class="form-check-label" for="sim4">
+                      <strong>Debates estruturados</strong> com IA a propor
+                      temas e acompanhar argumentação
+                    </label>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-lightbulb me-2"></i>
+                  <strong>Exemplo:</strong> Para avaliar liderança, a IA simula
+                  um colaborador difícil, permitindo avaliar como o formando
+                  gere a situação.
+                </div>
+
+                <div class="reflection-box">
+                  <h6><i class="fas fa-trophy me-2"></i>Design da Simulação</h6>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Defini a competência específica a avaliar</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Criei um cenário realista e contextualizado</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Identifiquei o papel específico da IA</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Estabeleci critérios objetivos de avaliação</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 5: Primeira Aplicação Prática -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">5</span>Crie o Seu Sistema de
+                  Avaliação
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Aplicação imediata dos conceitos
+                  aprendidos
+                </p>
+
+                <div class="concept-box">
+                  <h6><i class="fas fa-cogs me-2"></i>Exercício Integrador</h6>
+                  <p>
+                    Combine os elementos aprendidos para criar um sistema
+                    completo:
+                  </p>
+                  <ol class="small">
+                    <li>
+                      <strong>Soft skill escolhida:</strong> [definir qual
+                      competência]
+                    </li>
+                    <li>
+                      <strong>Método de observação:</strong> [técnica
+                      selecionada]
+                    </li>
+                    <li>
+                      <strong>Rubrica comportamental:</strong> [critérios
+                      adaptativos]
+                    </li>
+                    <li>
+                      <strong>Contexto de aplicação:</strong> [simulação ou
+                      situação real]
+                    </li>
+                  </ol>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-brain me-2"></i>
+                  <strong>Prompt integrador:</strong> "Com base na soft skill
+                  [X], método [Y], cria um sistema completo de avaliação
+                  comportamental para [contexto]. Inclui observação, rubrica e
+                  feedback."
+                </div>
+
+                <div class="reflection-box">
+                  <h6><i class="fas fa-search me-2"></i>Validação Final</h6>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Criei um sistema integrado de avaliação com IA</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Garanti que mantém supervisão humana</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Testei a aplicabilidade ao meu contexto</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Estou preparado para implementar com formandos</span>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button
+                    class="btn btn-lg"
+                    onclick="finalizarSessao()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                      );
+                      color: white;
+                      border: none;
+                      padding: 12px 30px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <i class="fas fa-check-circle me-2"></i>Finalizar Sessão 2.3
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recursos Adicionais -->
+      <div class="content-card mt-4">
+        <h5>
+          <i class="fas fa-download me-2 text-info"></i>Recursos para Levar
+        </h5>
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Templates Prontos:</h6>
+            <ul class="small">
+              <li>Grelhas de observação para soft skills</li>
+              <li>Prompts testados para rubricas comportamentais</li>
+              <li>Modelos de simulações por área</li>
+              <li>Checklist de validação de sistemas</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6>Próximos Passos:</h6>
+            <ul class="small">
+              <li>Teste o sistema criado com 2-3 formandos</li>
+              <li>Documente padrões observados</li>
+              <li>Ajuste baseado no feedback recebido</li>
+              <li>Prepare-se para sessões avançadas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              © 2025 – Sessão 2.3 - Avaliação com IA
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem">
+              • Inteligência Artificial • Avaliação • Inovação Pedagógica •
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+    <script>
+      function toggleCheck(element) {
+        element.classList.toggle("checked");
+      }
+
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function finalizarSessao() {
+        alert(
+          "Sessão 2.3 concluída! Parabéns pelo domínio da avaliação de soft skills com IA."
+        );
+      }
+    </script>
+  </body>
+</html>

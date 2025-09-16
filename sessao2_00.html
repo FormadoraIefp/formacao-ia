@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop 2 - IA na Avaliação Formativa | IEFP</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/floating_buttons.css" />
+    <link rel="stylesheet" href="/assets/css/print.css" />
+
+    <style>
+      /* Variáveis CSS alinhadas com o design original */
+      :root {
+        --primary-color: #2e8b57;
+        --secondary-color: #ffb347;
+        --accent-color: #4a90e2;
+        --text-dark: #2c3e50;
+        --bg-light: #f8f9fa;
+        --success-color: #28a745;
+        --warning-color: #ffc107;
+        --danger-color: #dc3545;
+        --info-color: #17a2b8;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        color: var(--text-dark);
+      }
+
+      /* Header similar ao design original */
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #20b2aa 50%,
+          var(--accent-color) 100%
+        );
+        color: white;
+        padding: 2rem 0;
+        position: relative;
+      }
+
+      .header-main h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .header-main .subtitle {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      /* Cards de definições estilizados */
+      .definition-card {
+        background: white;
+        border: none;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        border-left: 4px solid transparent;
+      }
+
+      .definition-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-left-color: var(--accent-color);
+      }
+
+      .definition-card.ia-generativa:hover {
+        border-left-color: #e74c3c;
+      }
+      .definition-card.ia-conversacional:hover {
+        border-left-color: #3498db;
+      }
+      .definition-card.ia-preditiva:hover {
+        border-left-color: #9b59b6;
+      }
+      .definition-card.ia-analitica:hover {
+        border-left-color: #f39c12;
+      }
+      .definition-card.multimodal:hover {
+        border-left-color: #1abc9c;
+      }
+      .definition-card.prompt-engineering:hover {
+        border-left-color: #34495e;
+      }
+
+      .definition-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .icon-generativa {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+      }
+      .icon-conversacional {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+      }
+      .icon-preditiva {
+        background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        color: white;
+      }
+      .icon-analitica {
+        background: linear-gradient(135deg, #f39c12, #e67e22);
+        color: white;
+      }
+      .icon-multimodal {
+        background: linear-gradient(135deg, #1abc9c, #16a085);
+        color: white;
+      }
+      .icon-prompt {
+        background: linear-gradient(135deg, #34495e, #2c3e50);
+        color: white;
+      }
+
+      .definition-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+      }
+
+      .definition-preview {
+        color: #6c757d;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+      }
+
+      .click-hint {
+        color: var(--accent-color);
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Modal adaptado ao estilo original */
+      .modal-content {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .modal-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        color: white;
+        border-radius: 15px 15px 0 0;
+        padding: 1.5rem 2rem;
+      }
+
+      .modal-header h5 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .modal-body {
+        padding: 2rem;
+        max-height: 60vh;
+        overflow-y: auto;
+      }
+
+      .modal-body h6 {
+        color: var(--text-dark);
+        font-weight: 600;
+        margin: 1.5rem 0 0.75rem 0;
+      }
+
+      .modal-body ul {
+        margin-left: 1rem;
+      }
+
+      .modal-body li {
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
+
+      /* Seção introdutória */
+      .intro-section {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid var(--accent-color);
+      }
+
+      .intro-section h2 {
+        color: var(--text-dark);
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .intro-section p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #6c757d;
+        margin-bottom: 0;
+      }
+
+      /* Botão de continuação */
+      .continue-section {
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      .btn-continue {
+        background: linear-gradient(135deg, var(--success-color), #20c997);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+      }
+
+      .btn-continue:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        color: white;
+      }
+
+      /* Stats section similar ao original */
+      .stats-section {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .stats-card {
+        text-align: center;
+        padding: 1rem 0;
+      }
+
+      .stats-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent-color);
+      }
+
+      .stats-label {
+        display: block;
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-top: 0.25rem;
+      }
+
+      /* Estilos do Arsenal Digital (Accordion) */
+      .arsenal-section {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .arsenal-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #e9ecef;
+      }
+
+      .arsenal-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--accent-color), #357abd);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        font-size: 1.8rem;
+        color: white;
+      }
+
+      .arsenal-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin: 0;
+      }
+
+      .arsenal-subtitle {
+        color: #6c757d;
+        font-size: 1.1rem;
+        margin-top: 0.25rem;
+      }
+
+      /* Accordion customizado */
+      .accordion-item {
+        border: none;
+        margin-bottom: 1rem;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .accordion-button {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border: none;
+        padding: 1.25rem 1.5rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--text-dark);
+        border-radius: 12px;
+        box-shadow: none;
+      }
+
+      .accordion-button:not(.collapsed) {
+        background: linear-gradient(135deg, var(--accent-color), #357abd);
+        color: white;
+        box-shadow: none;
+      }
+
+      .accordion-button:focus {
+        border: none;
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25);
+      }
+
+      .accordion-button::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        filter: invert(1);
+      }
+
+      .accordion-button:not(.collapsed)::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+      }
+
+      .accordion-body {
+        padding: 1.5rem;
+        background: #fafbfc;
+      }
+
+      /* Cards de ferramentas dentro do accordion */
+      .tool-card {
+        background: white;
+        border-radius: 10px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .tool-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .tool-card.generativa {
+        border-left-color: #e74c3c;
+      }
+      .tool-card.conversacional {
+        border-left-color: #3498db;
+      }
+      .tool-card.preditiva {
+        border-left-color: #9b59b6;
+      }
+      .tool-card.analitica {
+        border-left-color: #f39c12;
+      }
+      .tool-card.multimodal {
+        border-left-color: #1abc9c;
+      }
+      .tool-card.prompt {
+        border-left-color: #34495e;
+      }
+
+      .tool-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+      }
+
+      .tool-description {
+        color: #6c757d;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+      }
+
+      .tool-access {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .btn-tool {
+        background: linear-gradient(135deg, var(--accent-color), #357abd);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .btn-tool:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        color: white;
+      }
+
+      .btn-modal {
+        background: transparent;
+        color: var(--accent-color);
+        border: 2px solid var(--accent-color);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .btn-modal:hover {
+        background: var(--accent-color);
+        color: white;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .header-main h1 {
+          font-size: 2rem;
+        }
+
+        .definition-card {
+          padding: 1.25rem;
+        }
+
+        .modal-body {
+          padding: 1.5rem;
+        }
+
+        .arsenal-title {
+          font-size: 1.5rem;
+        }
+
+        .tool-access {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
+
+      /* Animação de entrada */
+      .fade-in {
+        animation: fadeIn 0.6s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Indicador de categoria no accordion */
+      .category-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-right: 1rem;
+      }
+
+      .category-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .dot-generativa {
+        background: #e74c3c;
+      }
+      .dot-conversacional {
+        background: #3498db;
+      }
+      .dot-preditiva {
+        background: #9b59b6;
+      }
+      .dot-analitica {
+        background: #f39c12;
+      }
+      .dot-multimodal {
+        background: #1abc9c;
+      }
+      .dot-prompt {
+        background: #34495e;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-2 text-center">
+            <i
+              class="fas fa-graduation-cap"
+              style="font-size: 3rem; opacity: 0.9"
+            ></i>
+          </div>
+          <div class="col-md-10">
+            <h1>IA na Avaliação Formativa</h1>
+            <p class="subtitle">
+              Personalização, Feedback Automático e Considerações Éticas
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container py-5">
+      <!-- Seção de Estatísticas -->
+      <section class="stats-section">
+        <div class="row">
+          <div class="col-md-3 col-6">
+            <div class="stats-card">
+              <span class="stats-number">6</span>
+              <span class="stats-label">Conceitos Base</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stats-card">
+              <span class="stats-number">3h</span>
+              <span class="stats-label">Sessão Síncrona</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stats-card">
+              <span class="stats-number">1h</span>
+              <span class="stats-label">Trabalho Assíncrono</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stats-card">
+              <span class="stats-number">100%</span>
+              <span class="stats-label">Foco na Ética</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Introdutória -->
+      <div class="intro-section fade-in">
+        <h2>
+          <i
+            class="fas fa-lightbulb me-2"
+            style="color: var(--warning-color)"
+          ></i
+          >Recordar Conceitos Fundamentais
+        </h2>
+        <p>
+          Antes de explorarmos as aplicações específicas da IA na avaliação
+          formativa, vamos relembrar e consolidar os conceitos essenciais
+          abordados no Workshop 1. Cada definição inclui exemplos práticos e
+          aplicações diretas no contexto educativo.
+          <strong
+            >Clique em cada cartão para aceder à definição completa.</strong
+          >
+        </p>
+      </div>
+
+      <!-- Grid de Definições -->
+      <div class="row">
+        <div class="col-lg-6 col-md-6 mb-3">
+          <div
+            class="definition-card ia-generativa fade-in"
+            data-bs-toggle="modal"
+            data-bs-target="#modalGenerativa"
+          >
+            <div class="definition-icon icon-generativa">
+              <i class="fas fa-magic"></i>
+            </div>
+            <div class="definition-title">IA Generativa</div>
+            <div class="definition-preview">
+              Sistemas que criam novos conteúdos (texto, imagem, vídeo) baseados
+              em padrões aprendidos de grandes conjuntos de dados. Fundamental
+              para criação de materiais pedagógicos...
+            </div>
+            <div class="click-hint">
+              <i class="fas fa-mouse-pointer"></i>
+              Clique para definição completa
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-3">
+          <div
+            class="definition-card ia-conversacional fade-in"
+            data-bs-toggle="modal"
+            data-bs-target="#modalConversacional"
+          >
+            <div class="definition-icon icon-conversacional">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="definition-title">IA Conversacional</div>
+            <div class="definition-preview">
+              Tecnologia que permite interações naturais através de linguagem
+              falada ou escrita, interpretando intenções e fornecendo respostas
+              contextualmente apropriadas...
+            </div>
+            <div class="click-hint">
+              <i class="fas fa-mouse-pointer"></i>
+              Clique para definição completa
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-3">
+          <div
+            class="definition-card ia-preditiva fade-in"
+            data-bs-toggle="modal"
+            data-bs-target="#modalPreditiva"
+          >
+            <div class="definition-icon icon-preditiva">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="definition-title">IA Preditiva</div>
+            <div class="definition-preview">
+              Utiliza algoritmos para analisar dados históricos e identificar
+              padrões que permitam prever comportamentos e tendências futuras na
+              aprendizagem...
+            </div>
+            <div class="click-hint">
+              <i class="fas fa-mouse-pointer"></i>
+              Clique para definição completa
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-3">
+          <div
+            class="definition-card ia-analitica fade-in"
+            data-bs-toggle="modal"
+            data-bs-target="#modalAnalitica"
+          >
+            <div class="definition-icon icon-analitica">
+              <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="definition-title">IA Analítica</div>
+            <div class="definition-preview">
+              Sistemas que processam e interpretam grandes volumes de dados
+              educativos para extrair insights significativos sobre aprendizagem
+              e desempenho...
+            </div>
+            <div class="click-hint">
+              <i class="fas fa-mouse-pointer"></i>
+              Clique para definição completa
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-3">
+          <div
+            class="definition-card multimodal fade-in"
+            data-bs-toggle="modal"
+            data-bs-target="#modalMultimodal"
+          >
+            <div class="definition-icon icon-multimodal">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <div class="definition-title">IA Multimodal</div>
+            <div class="definition-preview">
+              Sistemas que processam e combinam diferentes tipos de media
+              simultaneamente (texto, imagem, áudio, vídeo) criando experiências
+              mais ricas...
+            </div>
+            <div class="click-hint">
+              <i class="fas fa-mouse-pointer"></i>
+              Clique para definição completa
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-3">
+          <div
+            class="definition-card prompt-engineering fade-in"
+            data-bs-toggle="modal"
+            data-bs-target="#modalPrompt"
+          >
+            <div class="definition-icon icon-prompt">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="definition-title">Prompt Engineering</div>
+            <div class="definition-preview">
+              Arte de formular instruções claras e eficazes para sistemas de IA,
+              otimizando resultados através de técnicas específicas de
+              comunicação...
+            </div>
+            <div class="click-hint">
+              <i class="fas fa-mouse-pointer"></i>
+              Clique para definição completa
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arsenal Digital (Accordion de Ferramentas) -->
+      <div class="arsenal-section mb-5">
+        <div class="arsenal-header">
+          <div class="arsenal-icon">
+            <i class="fas fa-toolbox"></i>
+          </div>
+          <div>
+            <h2 class="arsenal-title">Arsenal Digital do Formador</h2>
+            <p class="arsenal-subtitle">
+              Navegue pelas categorias para descobrir as melhores ferramentas de
+              IA para cada tipo de aplicação educativa
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion" id="arsenalAccordion">
+          <!-- IA Generativa -->
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="headingGenerativa">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseGenerativa"
+                aria-expanded="false"
+                aria-controls="collapseGenerativa"
+              >
+                <div class="category-indicator">
+                  <div class="category-dot dot-generativa"></div>
+                  <i class="fas fa-magic me-2"></i>
+                  IA Generativa
+                </div>
+                <span class="text-muted"
+                  >6 ferramentas • Criação de conteúdos</span
+                >
+              </button>
+            </h3>
+            <div
+              id="collapseGenerativa"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingGenerativa"
+              data-bs-parent="#arsenalAccordion"
+            >
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <button
+                    class="btn btn-modal mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalToolsGenerativa"
+                  >
+                    <i class="fas fa-info-circle me-2"></i>Ver detalhes sobre IA
+                    Generativa
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card generativa">
+                      <div class="tool-name">ChatGPT</div>
+                      <div class="tool-description">
+                        Modelo de linguagem conversacional da OpenAI para
+                        criação de textos, exercícios e explicações
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">OpenAI • Freemium</small>
+                        <a
+                          href="https://chat.openai.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card generativa">
+                      <div class="tool-name">Claude</div>
+                      <div class="tool-description">
+                        Assistente IA da Anthropic especializado em tarefas
+                        complexas e análise de documentos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Anthropic • Freemium</small>
+                        <a
+                          href="https://claude.ai"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card generativa">
+                      <div class="tool-name">Gemini</div>
+                      <div class="tool-description">
+                        IA multimodal do Google (ex-Bard) integrada com
+                        workspace
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Google • Gratuito</small>
+                        <a
+                          href="https://gemini.google.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card generativa">
+                      <div class="tool-name">DALL-E 3</div>
+                      <div class="tool-description">
+                        Geração de imagens a partir de descrições textuais para
+                        materiais visuais
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">OpenAI • Pago</small>
+                        <a
+                          href="https://labs.openai.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card generativa">
+                      <div class="tool-name">Canva AI</div>
+                      <div class="tool-description">
+                        Design assistido por IA integrado para criação de
+                        materiais visuais educativos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Canva • Freemium</small>
+                        <a
+                          href="https://www.canva.com/ai"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card generativa">
+                      <div class="tool-name">Synthesia</div>
+                      <div class="tool-description">
+                        Criação de vídeos educativos com avatares IA que falam
+                        em português
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Synthesia • Pago</small>
+                        <a
+                          href="https://www.synthesia.io"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IA Conversacional -->
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="headingConversacional">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseConversacional"
+                aria-expanded="false"
+                aria-controls="collapseConversacional"
+              >
+                <div class="category-indicator">
+                  <div class="category-dot dot-conversacional"></div>
+                  <i class="fas fa-comments me-2"></i>
+                  IA Conversacional
+                </div>
+                <span class="text-muted"
+                  >4 ferramentas • Assistentes e chatbots</span
+                >
+              </button>
+            </h3>
+            <div
+              id="collapseConversacional"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingConversacional"
+              data-bs-parent="#arsenalAccordion"
+            >
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <button
+                    class="btn btn-modal mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalToolsConversacional"
+                  >
+                    <i class="fas fa-info-circle me-2"></i>Ver detalhes sobre IA
+                    Conversacional
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card conversacional">
+                      <div class="tool-name">Microsoft Copilot</div>
+                      <div class="tool-description">
+                        Assistente IA integrado no Windows e Office 365,
+                        disponível na conta IEFP
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted"
+                          >Microsoft • Incluído IEFP</small
+                        >
+                        <a
+                          href="https://copilot.microsoft.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card conversacional">
+                      <div class="tool-name">Character.AI</div>
+                      <div class="tool-description">
+                        Criação de personagens IA especializados para simulações
+                        educativas
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted"
+                          >Character.AI • Freemium</small
+                        >
+                        <a
+                          href="https://character.ai"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card conversacional">
+                      <div class="tool-name">Replika</div>
+                      <div class="tool-description">
+                        Companheiro IA para conversação e prática de diálogo em
+                        contextos seguros
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Luka • Freemium</small>
+                        <a
+                          href="https://replika.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card conversacional">
+                      <div class="tool-name">Chatbase</div>
+                      <div class="tool-description">
+                        Criação de chatbots personalizados baseados nos seus
+                        próprios documentos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Chatbase • Freemium</small>
+                        <a
+                          href="https://www.chatbase.co"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IA Preditiva -->
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="headingPreditiva">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsePreditiva"
+                aria-expanded="false"
+                aria-controls="collapsePreditiva"
+              >
+                <div class="category-indicator">
+                  <div class="category-dot dot-preditiva"></div>
+                  <i class="fas fa-chart-line me-2"></i>
+                  IA Preditiva
+                </div>
+                <span class="text-muted"
+                  >3 ferramentas • Previsão e tendências</span
+                >
+              </button>
+            </h3>
+            <div
+              id="collapsePreditiva"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingPreditiva"
+              data-bs-parent="#arsenalAccordion"
+            >
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <button
+                    class="btn btn-modal mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalToolsPreditiva"
+                  >
+                    <i class="fas fa-info-circle me-2"></i>Ver detalhes sobre IA
+                    Preditiva
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card preditiva">
+                      <div class="tool-name">Google Analytics Intelligence</div>
+                      <div class="tool-description">
+                        Insights preditivos sobre comportamento de utilizadores
+                        em plataformas web educativas
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Google • Gratuito</small>
+                        <a
+                          href="https://analytics.google.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card preditiva">
+                      <div class="tool-name">IBM Watson Analytics</div>
+                      <div class="tool-description">
+                        Plataforma de analytics preditivos para análise avançada
+                        de dados educativos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">IBM • Empresarial</small>
+                        <a
+                          href="https://www.ibm.com/watson"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card preditiva">
+                      <div class="tool-name">Coursera Analytics</div>
+                      <div class="tool-description">
+                        Previsão de sucesso em cursos online e identificação de
+                        padrões de abandono
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted"
+                          >Coursera • Institucional</small
+                        >
+                        <a
+                          href="https://www.coursera.org"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IA Analítica -->
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="headingAnalitica">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseAnalitica"
+                aria-expanded="false"
+                aria-controls="collapseAnalitica"
+              >
+                <div class="category-indicator">
+                  <div class="category-dot dot-analitica"></div>
+                  <i class="fas fa-search-plus me-2"></i>
+                  IA Analítica
+                </div>
+                <span class="text-muted">4 ferramentas • Análise de dados</span>
+              </button>
+            </h3>
+            <div
+              id="collapseAnalitica"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingAnalitica"
+              data-bs-parent="#arsenalAccordion"
+            >
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <button
+                    class="btn btn-modal mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalToolsAnalitica"
+                  >
+                    <i class="fas fa-info-circle me-2"></i>Ver detalhes sobre IA
+                    Analítica
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card analitica">
+                      <div class="tool-name">Moodle Analytics</div>
+                      <div class="tool-description">
+                        Learning analytics integrados no LMS para análise de
+                        comportamento dos formandos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Moodle • Incluído</small>
+                        <a
+                          href="https://moodle.org/analytics"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card analitica">
+                      <div class="tool-name">Canvas Analytics</div>
+                      <div class="tool-description">
+                        Dashboards interativos de desempenho estudantil com
+                        insights automáticos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Instructure • LMS</small>
+                        <a
+                          href="https://www.instructure.com/canvas"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card analitica">
+                      <div class="tool-name">Tableau Education</div>
+                      <div class="tool-description">
+                        Visualização avançada de dados educativos com
+                        storytelling automático
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Tableau • Educacional</small>
+                        <a
+                          href="https://www.tableau.com/academic"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card analitica">
+                      <div class="tool-name">Brightspace Insights</div>
+                      <div class="tool-description">
+                        Analytics preditivos integrados em LMS com alertas de
+                        risco automáticos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">D2L • LMS Premium</small>
+                        <a
+                          href="https://www.d2l.com/products/insights"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IA Multimodal -->
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="headingMultimodal">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseMultimodal"
+                aria-expanded="false"
+                aria-controls="collapseMultimodal"
+              >
+                <div class="category-indicator">
+                  <div class="category-dot dot-multimodal"></div>
+                  <i class="fas fa-layer-group me-2"></i>
+                  IA Multimodal
+                </div>
+                <span class="text-muted"
+                  >3 ferramentas • Múltiplos formatos</span
+                >
+              </button>
+            </h3>
+            <div
+              id="collapseMultimodal"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingMultimodal"
+              data-bs-parent="#arsenalAccordion"
+            >
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <button
+                    class="btn btn-modal mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalToolsMultimodal"
+                  >
+                    <i class="fas fa-info-circle me-2"></i>Ver detalhes sobre IA
+                    Multimodal
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card multimodal">
+                      <div class="tool-name">GPT-4 Vision</div>
+                      <div class="tool-description">
+                        Análise e geração combinada de texto e imagem para
+                        materiais educativos ricos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">OpenAI • Premium</small>
+                        <a
+                          href="https://chat.openai.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card multimodal">
+                      <div class="tool-name">Claude 3 Vision</div>
+                      <div class="tool-description">
+                        Processamento avançado multimodal com análise profunda
+                        de documentos e imagens
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Anthropic • Premium</small>
+                        <a
+                          href="https://claude.ai"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card multimodal">
+                      <div class="tool-name">Runway ML</div>
+                      <div class="tool-description">
+                        Criação e edição de vídeo assistida por IA para
+                        conteúdos educativos dinâmicos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">Runway • Freemium</small>
+                        <a
+                          href="https://runwayml.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prompt Engineering -->
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="headingPrompt">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsePrompt"
+                aria-expanded="false"
+                aria-controls="collapsePrompt"
+              >
+                <div class="category-indicator">
+                  <div class="category-dot dot-prompt"></div>
+                  <i class="fas fa-code me-2"></i>
+                  Prompt Engineering
+                </div>
+                <span class="text-muted"
+                  >3 ferramentas • Otimização de prompts</span
+                >
+              </button>
+            </h3>
+            <div
+              id="collapsePrompt"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingPrompt"
+              data-bs-parent="#arsenalAccordion"
+            >
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <button
+                    class="btn btn-modal mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalToolsPrompt"
+                  >
+                    <i class="fas fa-info-circle me-2"></i>Ver detalhes sobre
+                    Prompt Engineering
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card prompt">
+                      <div class="tool-name">PromptBase</div>
+                      <div class="tool-description">
+                        Marketplace de prompts otimizados com templates
+                        específicos para educação
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted"
+                          >PromptBase • Marketplace</small
+                        >
+                        <a
+                          href="https://promptbase.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card prompt">
+                      <div class="tool-name">FlowGPT</div>
+                      <div class="tool-description">
+                        Comunidade de prompts e workflows colaborativos para
+                        casos educativos
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted">FlowGPT • Gratuito</small>
+                        <a
+                          href="https://flowgpt.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="tool-card prompt">
+                      <div class="tool-name">Anthropic Workbench</div>
+                      <div class="tool-description">
+                        Ambiente de desenvolvimento profissional para teste e
+                        refinamento de prompts
+                      </div>
+                      <div class="tool-access">
+                        <small class="text-muted"
+                          >Anthropic • Desenvolvedores</small
+                        >
+                        <a
+                          href="https://console.anthropic.com"
+                          target="_blank"
+                          class="btn-tool"
+                        >
+                          <i class="fas fa-external-link-alt me-1"></i>Aceder
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-3 bg-light rounded">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-info-circle text-info me-2"></i>
+            <small>
+              <strong>Nota importante:</strong> Algumas ferramentas podem
+              requerer registo gratuito ou subscrição paga. Verifique sempre os
+              termos de utilização para uso educativo e institucional.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção de Continuação -->
+      <div class="continue-section">
+        <div class="mt-3 text-muted">
+          <small>
+            <i class="fas fa-clock me-1"></i>
+            Próximo: Balanço e Fundamentos da Avaliação com IA (60 min)
+          </small>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modais das Definições (mantidos do original) -->
+    <!-- Modal IA Generativa -->
+    <div
+      class="modal fade"
+      id="modalGenerativa"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5><i class="fas fa-magic me-2"></i>IA Generativa</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong>Definição:</strong> A Inteligência Artificial Generativa
+              refere-se a sistemas que podem criar novos conteúdos (texto,
+              imagens, áudio, vídeo) baseados em padrões aprendidos a partir de
+              grandes conjuntos de dados.
+            </p>
+            <h6>Características Principais</h6>
+            <ul>
+              <li>
+                <strong>Criatividade artificial:</strong> Gera conteúdo original
+                mas baseado em padrões existentes
+              </li>
+              <li>
+                <strong>Versatilidade:</strong> Pode produzir diferentes tipos
+                de media
+              </li>
+              <li>
+                <strong>Personalização:</strong> Adapta-se a instruções
+                específicas do utilizador
+              </li>
+              <li>
+                <strong>Escalabilidade:</strong> Produz grande volume de
+                conteúdo rapidamente
+              </li>
+            </ul>
+            <h6>Aplicações na Formação</h6>
+            <ul>
+              <li>Criação de materiais pedagógicos personalizados</li>
+              <li>
+                Desenvolvimento de exercícios e atividades adaptadas ao contexto
+              </li>
+              <li>Geração de estudos de caso contextualizados</li>
+              <li>Produção de conteúdo multimédia educativo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Novos Modais para Ferramentas por Categoria -->
+    <!-- Modal Ferramentas Generativas -->
+    <div
+      class="modal fade"
+      id="modalToolsGenerativa"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background: linear-gradient(135deg, #e74c3c, #c0392b)"
+          >
+            <h5>
+              <i class="fas fa-magic me-2"></i>Ferramentas de IA Generativa para
+              Formadores
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-info">
+              <i class="fas fa-lightbulb me-2"></i>
+              <strong>Dica:</strong> Comece sempre pela versão gratuita das
+              ferramentas para testar adequação ao seu contexto educativo.
+            </div>
+
+            <h6>ChatGPT - O Assistente Versátil</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Ideal para:</strong> Criação de textos, exercícios,
+                  explicações simplificadas e planos de aula
+                </p>
+                <p><strong>Pontos fortes:</strong></p>
+                <ul>
+                  <li>Interface simples e intuitiva</li>
+                  <li>Responde em português com qualidade</li>
+                  <li>Versão gratuita robusta (GPT-3.5)</li>
+                  <li>Excelente para brainstorming educativo</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Exemplo de Uso</h6>
+                  <small
+                    ><em
+                      >"Cria 5 exercícios práticos sobre Excel básico para
+                      formandos iniciantes, incluindo soluções
+                      passo-a-passo"</em
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Claude - O Especialista em Análise</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Ideal para:</strong> Análise de documentos, feedback
+                  detalhado e tarefas complexas
+                </p>
+                <p><strong>Pontos fortes:</strong></p>
+                <ul>
+                  <li>Excelente para análise de textos longos</li>
+                  <li>Feedback mais estruturado e detalhado</li>
+                  <li>Melhor compreensão de contexto</li>
+                  <li>Adequado para correção de trabalhos</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Exemplo de Uso</h6>
+                  <small
+                    ><em
+                      >"Analisa este relatório de formando e fornece feedback
+                      construtivo sobre estrutura, conteúdo e áreas de
+                      melhoria"</em
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Escolher a Ferramenta Certa</h6>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Necessidade</th>
+                    <th>ChatGPT</th>
+                    <th>Claude</th>
+                    <th>Gemini</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Criação rápida de conteúdo</td>
+                    <td><i class="fas fa-check text-success"></i></td>
+                    <td><i class="fas fa-check text-success"></i></td>
+                    <td><i class="fas fa-check text-success"></i></td>
+                  </tr>
+                  <tr>
+                    <td>Análise de documentos longos</td>
+                    <td><i class="fas fa-times text-danger"></i></td>
+                    <td><i class="fas fa-check text-success"></i></td>
+                    <td><i class="fas fa-minus text-warning"></i></td>
+                  </tr>
+                  <tr>
+                    <td>Integração com Google Workspace</td>
+                    <td><i class="fas fa-times text-danger"></i></td>
+                    <td><i class="fas fa-times text-danger"></i></td>
+                    <td><i class="fas fa-check text-success"></i></td>
+                  </tr>
+                  <tr>
+                    <td>Versão gratuita robusta</td>
+                    <td><i class="fas fa-check text-success"></i></td>
+                    <td><i class="fas fa-minus text-warning"></i></td>
+                    <td><i class="fas fa-check text-success"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Ferramentas Conversacionais -->
+    <div
+      class="modal fade"
+      id="modalToolsConversacional"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background: linear-gradient(135deg, #3498db, #2980b9)"
+          >
+            <h5>
+              <i class="fas fa-comments me-2"></i>Ferramentas de IA
+              Conversacional para Formadores
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-success">
+              <i class="fas fa-star me-2"></i>
+              <strong>Destaque IEFP:</strong> Microsoft Copilot está incluído na
+              vossa conta institucional - aproveitem esta vantagem!
+            </div>
+
+            <h6>Microsoft Copilot - A Escolha Institucional</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Ideal para:</strong> Integração total com ferramentas
+                  IEFP (Teams, Outlook, Office)
+                </p>
+                <p><strong>Pontos fortes:</strong></p>
+                <ul>
+                  <li>Já disponível na conta IEFP</li>
+                  <li>Integração nativa com documentos existentes</li>
+                  <li>Segurança e privacidade institucional</li>
+                  <li>Suporte em português otimizado</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Como Aceder</h6>
+                  <small>
+                    1. Abrir Teams ou Outlook<br />
+                    2. Procurar ícone Copilot<br />
+                    3. Começar conversa em português
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <h6>Character.AI - Simulações Educativas</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Ideal para:</strong> Role-plays, simulações e
+                  personagens educativos especializados
+                </p>
+                <p><strong>Aplicações práticas:</strong></p>
+                <ul>
+                  <li>Simulador de entrevistas de emprego</li>
+                  <li>Personagem histórica para aulas de história</li>
+                  <li>Cliente virtual para treino de atendimento</li>
+                  <li>Mentor especializado por área profissional</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Exemplo de Personagem</h6>
+                  <small
+                    ><em
+                      >"Recrutador experiente em hotelaria que conduz
+                      entrevistas realistas para formandos de turismo"</em
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Chatbase - Chatbots Personalizados</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Ideal para:</strong> Criar assistentes baseados nos
+                  vossos próprios manuais e materiais
+                </p>
+                <p><strong>Processo:</strong></p>
+                <ol>
+                  <li>Upload dos vossos documentos formativos</li>
+                  <li>A IA aprende o conteúdo específico</li>
+                  <li>Formandos fazem perguntas 24/7</li>
+                  <li>Respostas baseadas nos vossos materiais</li>
+                </ol>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Caso de Uso</h6>
+                  <small
+                    ><em
+                      >"Chatbot que responde sobre regulamentação de segurança
+                      no trabalho baseado nos manuais IEFP"</em
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Quando Usar Cada Ferramenta</h6>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Cenário</th>
+                    <th>Ferramenta Recomendada</th>
+                    <th>Justificação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Apoio administrativo rápido</td>
+                    <td>Microsoft Copilot</td>
+                    <td>Integração com sistemas IEFP</td>
+                  </tr>
+                  <tr>
+                    <td>Simulações de trabalho</td>
+                    <td>Character.AI</td>
+                    <td>Personagens específicos e consistentes</td>
+                  </tr>
+                  <tr>
+                    <td>FAQ automatizado</td>
+                    <td>Chatbase</td>
+                    <td>Conhecimento dos vossos materiais</td>
+                  </tr>
+                  <tr>
+                    <td>Prática de conversação</td>
+                    <td>Replika</td>
+                    <td>Conversas naturais e pacientes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="alert alert-warning">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              <strong>Cuidado:</strong> IA conversacional não substitui
+              interação humana. Use como complemento, não substituto.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Ferramentas Preditivas -->
+    <div
+      class="modal fade"
+      id="modalToolsPreditiva"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background: linear-gradient(135deg, #9b59b6, #8e44ad)"
+          >
+            <h5>
+              <i class="fas fa-chart-line me-2"></i>Ferramentas de IA Preditiva
+              para Formadores
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle me-2"></i>
+              <strong>Importante:</strong> IA preditiva funciona melhor com
+              dados históricos. Quanto mais dados, melhor a previsão.
+            </div>
+
+            <h6>Google Analytics Intelligence - Para Plataformas Web</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Ideal para:</strong> Analisar comportamento em
+                  plataformas de e-learning
+                </p>
+                <p><strong>Insights disponíveis:</strong></p>
+                <ul>
+                  <li>Páginas onde formandos abandonam mais</li>
+                  <li>Tempos ideais para disponibilizar conteúdo</li>
+                  <li>Previsão de engagement futuro</li>
+                  <li>Identificação de conteúdos problemáticos</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Exemplo Prático</h6>
+                  <small
+                    ><em
+                      >"IA prevê que 70% dos formandos abandonará no módulo 3 -
+                      intervenção preventiva necessária"</em
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Aplicações no Contexto IEFP</h6>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">Prevenção de Abandono</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul class="small">
+                      <li>Identificar formandos em risco</li>
+                      <li>Padrões de comportamento críticos</li>
+                      <li>Intervenção antes da desistência</li>
+                      <li>Personalização do apoio</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header bg-success text-white">
+                    <h6 class="mb-0">Otimização de Recursos</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul class="small">
+                      <li>Previsão de procura por cursos</li>
+                      <li>Dimensionamento de turmas</li>
+                      <li>Alocação de formadores</li>
+                      <li>Planeamento de calendários</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h6>Dados Necessários para IA Preditiva Eficaz</h6>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Tipo de Dados</th>
+                    <th>Exemplos</th>
+                    <th>Utilidade Preditiva</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Comportamentais</td>
+                    <td>Acessos, tempo online, cliques</td>
+                    <td>Previsão de engagement</td>
+                  </tr>
+                  <tr>
+                    <td>Académicos</td>
+                    <td>Notas, progressão, entregas</td>
+                    <td>Risco de insucesso</td>
+                  </tr>
+                  <tr>
+                    <td>Demográficos</td>
+                    <td>Idade, experiência anterior</td>
+                    <td>Adequação do curso</td>
+                  </tr>
+                  <tr>
+                    <td>Temporais</td>
+                    <td>Horários de acesso, sazonalidade</td>
+                    <td>Otimização de calendários</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="alert alert-danger">
+              <i class="fas fa-exclamation-circle me-2"></i>
+              <strong>Ética:</strong> Previsões não são certezas. Nunca rotular
+              formandos baseado apenas em algoritmos.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Ferramentas Analíticas -->
+    <div
+      class="modal fade"
+      id="modalToolsAnalitica"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background: linear-gradient(135deg, #f39c12, #e67e22)"
+          >
+            <h5>
+              <i class="fas fa-search-plus me-2"></i>Ferramentas de IA Analítica
+              para Formadores
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-success">
+              <i class="fas fa-chart-bar me-2"></i>
+              <strong>Vantagem:</strong> Muitas ferramentas analíticas já estão
+              integradas nas plataformas que usam.
+            </div>
+
+            <h6>Moodle Analytics - Se Usam Moodle</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p><strong>Funcionalidades incluídas:</strong></p>
+                <ul>
+                  <li>Relatórios automáticos de participação</li>
+                  <li>Identificação de alunos em risco</li>
+                  <li>Análise de eficácia de recursos</li>
+                  <li>Comparação entre turmas</li>
+                </ul>
+                <p>
+                  <strong>Como ativar:</strong> Administração > Analytics >
+                  Enable models
+                </p>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Dashboard Típico</h6>
+                  <small>
+                    • % Participação por módulo<br />
+                    • Tempo médio por atividade<br />
+                    • Alertas de risco automáticos<br />
+                    • Comparação histórica
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <h6>Tableau Education - Visualização Avançada</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Ideal para:</strong> Criar dashboards visuais
+                  impressionantes
+                </p>
+                <p><strong>Tipos de visualização:</strong></p>
+                <ul>
+                  <li>Mapas de calor de atividade</li>
+                  <li>Gráficos de progressão temporal</li>
+                  <li>Comparações interativas</li>
+                  <li>Storytelling com dados</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Licença Educativa</h6>
+                  <small>
+                    Tableau oferece licenças gratuitas para instituições
+                    educativas. Contactar através do site académico.
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <h6>Métricas Essenciais para Formadores</h6>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card border-primary">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h6>Engagement</h6>
+                  </div>
+                  <div class="card-body small">
+                    <ul class="list-unstyled">
+                      <li>• Tempo médio online</li>
+                      <li>• Frequência de acesso</li>
+                      <li>• Participação em fóruns</li>
+                      <li>• Downloads de materiais</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card border-success">
+                  <div class="card-header bg-success text-white text-center">
+                    <h6>Performance</h6>
+                  </div>
+                  <div class="card-body small">
+                    <ul class="list-unstyled">
+                      <li>• Progressão curricular</li>
+                      <li>• Taxa de conclusão</li>
+                      <li>• Qualidade das entregas</li>
+                      <li>• Melhoria ao longo do tempo</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card border-warning">
+                  <div class="card-header bg-warning text-white text-center">
+                    <h6>Alertas</h6>
+                  </div>
+                  <div class="card-body small">
+                    <ul class="list-unstyled">
+                      <li>• Risco de abandono</li>
+                      <li>• Inatividade prolongada</li>
+                      <li>• Dificuldades específicas</li>
+                      <li>• Necessidade de apoio</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <h6>Implementação Prática no IEFP</h6>
+              <div class="accordion" id="implementacaoAccordion">
+                <div class="accordion-item">
+                  <h6 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#nivel1"
+                    >
+                      Nível 1: Básico (Começar aqui)
+                    </button>
+                  </h6>
+                  <div id="nivel1" class="accordion-collapse collapse">
+                    <div class="accordion-body small">
+                      <strong>Ferramentas:</strong> Relatórios nativos do LMS
+                      atual<br />
+                      <strong>Foco:</strong> Participação e conclusão<br />
+                      <strong>Tempo:</strong> 30 minutos/semana<br />
+                      <strong>Benefício:</strong> Identificação rápida de
+                      problemas
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h6 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#nivel2"
+                    >
+                      Nível 2: Intermédio (Após 3 meses)
+                    </button>
+                  </h6>
+                  <div id="nivel2" class="accordion-collapse collapse">
+                    <div class="accordion-body small">
+                      <strong>Ferramentas:</strong> Google Analytics + LMS<br />
+                      <strong>Foco:</strong> Padrões comportamentais<br />
+                      <strong>Tempo:</strong> 1 hora/semana<br />
+                      <strong>Benefício:</strong> Otimização de conteúdos
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h6 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#nivel3"
+                    >
+                      Nível 3: Avançado (Após 6 meses)
+                    </button>
+                  </h6>
+                  <div id="nivel3" class="accordion-collapse collapse">
+                    <div class="accordion-body small">
+                      <strong>Ferramentas:</strong> Tableau ou Power BI<br />
+                      <strong>Foco:</strong> Dashboards personalizados<br />
+                      <strong>Tempo:</strong> 2 horas/semana<br />
+                      <strong>Benefício:</strong> Insights preditivos
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Ferramentas Multimodais -->
+    <div
+      class="modal fade"
+      id="modalToolsMultimodal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background: linear-gradient(135deg, #1abc9c, #16a085)"
+          >
+            <h5>
+              <i class="fas fa-layer-group me-2"></i>Ferramentas de IA
+              Multimodal para Formadores
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-info">
+              <i class="fas fa-star me-2"></i>
+              <strong>Futuro da IA:</strong> Ferramentas multimodais representam
+              a próxima geração de assistentes educativos.
+            </div>
+
+            <h6>GPT-4 Vision - Análise de Imagens e Textos</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p><strong>Capacidades únicas:</strong></p>
+                <ul>
+                  <li>Analisar capturas de ecrã de trabalhos</li>
+                  <li>Corrigir exercícios com diagramas</li>
+                  <li>Interpretar gráficos e tabelas</li>
+                  <li>Criar descrições para imagens</li>
+                </ul>
+                <p><strong>Casos de uso práticos:</strong></p>
+                <ul>
+                  <li>Correção de trabalhos técnicos com esquemas</li>
+                  <li>Análise de desenhos técnicos</li>
+                  <li>Interpretação de relatórios com gráficos</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Exemplo de Prompt</h6>
+                  <small
+                    ><em
+                      >"Analisa este diagrama de circuito elétrico do formando e
+                      identifica 3 erros técnicos, explicando como corrigir cada
+                      um"</em
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Claude 3 Vision - Processamento de Documentos</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Especialidade:</strong> Análise profunda de documentos
+                  complexos
+                </p>
+                <p><strong>Vantagens:</strong></p>
+                <ul>
+                  <li>Processa documentos longos com imagens</li>
+                  <li>Mantém contexto entre texto e visual</li>
+                  <li>Excelente para manuais técnicos</li>
+                  <li>Feedback estruturado e detalhado</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Ideal Para</h6>
+                  <small>
+                    • Análise de relatórios de estágio<br />
+                    • Correção de portfolios visuais<br />
+                    • Interpretação de infográficos<br />
+                    • Avaliação de apresentações
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <h6>Runway ML - Criação de Vídeos Educativos</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p><strong>Funcionalidades para educação:</strong></p>
+                <ul>
+                  <li>Transformar texto em vídeo explicativo</li>
+                  <li>Editar vídeos com comandos de texto</li>
+                  <li>Criar animações de conceitos</li>
+                  <li>Remover fundos automaticamente</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Exemplo</h6>
+                  <small
+                    ><em
+                      >"Cria um vídeo de 30 segundos mostrando o processo de
+                      soldadura, destacando os equipamentos de segurança"</em
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Aplicações por Área Formativa</h6>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header bg-info text-white">
+                    <h6>Áreas Técnicas</h6>
+                  </div>
+                  <div class="card-body small">
+                    <p>
+                      <strong>Ferramentas ideais:</strong> GPT-4 Vision, Claude
+                      Vision
+                    </p>
+                    <ul class="mb-0">
+                      <li>Análise de esquemas técnicos</li>
+                      <li>Correção de circuitos</li>
+                      <li>Interpretação de plantas</li>
+                      <li>Avaliação de montagens</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header bg-success text-white">
+                    <h6>Áreas Criativas</h6>
+                  </div>
+                  <div class="card-body small">
+                    <p>
+                      <strong>Ferramentas ideais:</strong> Runway ML, DALL-E
+                    </p>
+                    <ul class="mb-0">
+                      <li>Criação de conteúdo visual</li>
+                      <li>Edição automatizada</li>
+                      <li>Prototipagem rápida</li>
+                      <li>Feedback sobre design</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-warning mt-4">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              <strong>Custos:</strong> Ferramentas multimodais são geralmente
+              mais caras. Começar com versões de teste.
+            </div>
+
+            <div class="mt-4">
+              <h6>Roadmap de Implementação</h6>
+              <div class="timeline">
+                <div class="row">
+                  <div class="col-md-4 text-center">
+                    <div class="bg-primary text-white rounded p-2 mb-2">
+                      Mês 1-2
+                    </div>
+                    <small
+                      >Experimentar GPT-4 Vision com correções simples</small
+                    >
+                  </div>
+                  <div class="col-md-4 text-center">
+                    <div class="bg-warning text-white rounded p-2 mb-2">
+                      Mês 3-4
+                    </div>
+                    <small>Integrar Claude para documentos complexos</small>
+                  </div>
+                  <div class="col-md-4 text-center">
+                    <div class="bg-success text-white rounded p-2 mb-2">
+                      Mês 5+
+                    </div>
+                    <small>Explorar criação de vídeo com Runway</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Ferramentas de Prompt Engineering -->
+    <div
+      class="modal fade"
+      id="modalToolsPrompt"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="background: linear-gradient(135deg, #34495e, #2c3e50)"
+          >
+            <h5>
+              <i class="fas fa-code me-2"></i>Ferramentas de Prompt Engineering
+              para Formadores
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-success">
+              <i class="fas fa-key me-2"></i>
+              <strong>Fundamental:</strong> Dominar prompt engineering
+              multiplica a eficácia de todas as outras ferramentas de IA.
+            </div>
+
+            <h6>PromptBase - Marketplace de Prompts Testados</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p><strong>Como funciona:</strong></p>
+                <ul>
+                  <li>Biblioteca de prompts já otimizados</li>
+                  <li>Categoria específica para educação</li>
+                  <li>Prompts testados e validados</li>
+                  <li>Ratings e reviews de utilizadores</li>
+                </ul>
+                <p>
+                  <strong>Vantagem:</strong> Poupar tempo na criação de prompts
+                  eficazes
+                </p>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Categorias Úteis</h6>
+                  <small>
+                    • Educational Content Creation<br />
+                    • Quiz Generation<br />
+                    • Lesson Planning<br />
+                    • Student Feedback<br />
+                    • Curriculum Design
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <h6>FlowGPT - Comunidade de Workflows</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p>
+                  <strong>Foco:</strong> Sequências de prompts para tarefas
+                  complexas
+                </p>
+                <p><strong>Características:</strong></p>
+                <ul>
+                  <li>Workflows completos gratuitos</li>
+                  <li>Comunidade ativa de educadores</li>
+                  <li>Prompts em português disponíveis</li>
+                  <li>Possibilidade de adaptar workflows existentes</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Workflow Exemplo</h6>
+                  <small
+                    ><em
+                      >"Criação de Curso Completo": 1. Análise de objetivos → 2.
+                      Estrutura curricular → 3. Conteúdos → 4. Avaliações → 5.
+                      Recursos</em
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Anthropic Workbench - Ambiente Profissional</h6>
+            <div class="row mb-4">
+              <div class="col-md-8">
+                <p><strong>Para utilizadores avançados:</strong></p>
+                <ul>
+                  <li>Teste A/B de prompts diferentes</li>
+                  <li>Histórico de iterações</li>
+                  <li>Métricas de performance</li>
+                  <li>Colaboração em equipa</li>
+                </ul>
+                <p>
+                  <strong>Ideal para:</strong> Equipas que querem sistematizar o
+                  uso de IA
+                </p>
+              </div>
+              <div class="col-md-4">
+                <div class="bg-light p-3 rounded">
+                  <h6>Funcionalidade Chave</h6>
+                  <small
+                    >Comparação lado-a-lado de resultados de prompts diferentes
+                    para o mesmo objetivo educativo</small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h6>Templates de Prompts Educativos</h6>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card border-primary">
+                  <div class="card-header bg-primary text-white">
+                    <h6>Criação de Exercícios</h6>
+                  </div>
+                  <div class="card-body small">
+                    <p><strong>Template base:</strong></p>
+                    <code class="small d-block p-2 bg-light">
+                      "Atua como formador experiente em [ÁREA]. Cria [NÚMERO]
+                      exercícios de nível [BÁSICO/INTERMÉDIO/AVANÇADO] sobre
+                      [TÓPICO ESPECÍFICO] para formandos [CONTEXTO]. Incluir: -
+                      Enunciado claro - Solução passo-a-passo - 3 critérios de
+                      avaliação - Tempo estimado"
+                    </code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card border-success">
+                  <div class="card-header bg-success text-white">
+                    <h6>Feedback Personalizado</h6>
+                  </div>
+                  <div class="card-body small">
+                    <p><strong>Template base:</strong></p>
+                    <code class="small d-block p-2 bg-light">
+                      "Analisa esta resposta de formando: [RESPOSTA] Contexto:
+                      [EXERCÍCIO/OBJETIVOS] Fornece feedback construtivo com: -
+                      2 pontos positivos específicos - 2 áreas de melhoria
+                      concretas - 3 sugestões práticas de melhoria - Tom
+                      encorajador e profissional"
+                    </code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <h6>Boas Práticas de Prompt Engineering</h6>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="bg-success text-white p-3 rounded mb-3">
+                    <h6>✓ FAZER</h6>
+                    <ul class="small mb-0">
+                      <li>Ser específico e claro</li>
+                      <li>Dar contexto educativo</li>
+                      <li>Incluir exemplos</li>
+                      <li>Especificar formato de saída</li>
+                      <li>Testar e iterar</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="bg-danger text-white p-3 rounded mb-3">
+                    <h6>✗ EVITAR</h6>
+                    <ul class="small mb-0">
+                      <li>Prompts vagos ou genéricos</li>
+                      <li>Instruções contraditórias</li>
+                      <li>Excesso de informação</li>
+                      <li>Assumir conhecimento implícito</li>
+                      <li>Não validar resultados</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="bg-warning text-white p-3 rounded mb-3">
+                    <h6>⚠ CUIDADOS</h6>
+                    <ul class="small mb-0">
+                      <li>Verificar precisão técnica</li>
+                      <li>Adaptar ao contexto português</li>
+                      <li>Considerar nível dos formandos</li>
+                      <li>Manter coerência pedagógica</li>
+                      <li>Respeitar direitos autorais</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-info">
+              <i class="fas fa-lightbulb me-2"></i>
+              <strong>Dica final:</strong> Mantenham um documento com os vossos
+              melhores prompts testados. É o vosso arsenal pessoal de IA!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Continuar com os modais das definições originais -->
+    <!-- Modal IA Conversacional -->
+    <div
+      class="modal fade"
+      id="modalConversacional"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5><i class="fas fa-comments me-2"></i>IA Conversacional</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong>Definição:</strong> Tecnologia que permite aos
+              computadores manter conversas naturais com humanos através de
+              linguagem falada ou escrita, interpretando intenções e fornecendo
+              respostas contextualmente apropriadas.
+            </p>
+            <h6>Componentes Tecnológicos</h6>
+            <ul>
+              <li>
+                <strong>Processamento de Linguagem Natural (PLN):</strong>
+                Compreende e interpreta linguagem humana
+              </li>
+              <li>
+                <strong>Gestão de diálogo:</strong> Mantém contexto da conversa
+                ao longo do tempo
+              </li>
+              <li>
+                <strong>Geração de respostas:</strong> Produz respostas naturais
+                e contextualmente relevantes
+              </li>
+              <li>
+                <strong>Aprendizagem contínua:</strong> Melhora através de
+                interações regulares
+              </li>
+            </ul>
+            <h6>Aplicações Educativas</h6>
+            <ul>
+              <li>Assistentes virtuais para esclarecimento de dúvidas 24/7</li>
+              <li>Tutores digitais personalizados por área de conhecimento</li>
+              <li>Sistemas de apoio ao estudo e revisão</li>
+              <li>Chatbots para orientação pedagógica e administrativa</li>
+              <li>Simuladores de conversação para prática de línguas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal IA Preditiva -->
+    <div
+      class="modal fade"
+      id="modalPreditiva"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5><i class="fas fa-chart-line me-2"></i>IA Preditiva</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong>Definição:</strong> Utiliza algoritmos e modelos
+              estatísticos para analisar dados históricos e identificar padrões
+              que permitam prever comportamentos, tendências ou resultados
+              futuros na aprendizagem.
+            </p>
+            <h6>Metodologias Principais</h6>
+            <ul>
+              <li>
+                <strong>Machine Learning:</strong> Algoritmos que aprendem
+                automaticamente com dados
+              </li>
+              <li>
+                <strong>Análise estatística:</strong> Modelos matemáticos para
+                previsão
+              </li>
+              <li>
+                <strong>Mineração de dados:</strong> Extração de padrões ocultos
+                em grandes datasets
+              </li>
+              <li>
+                <strong>Modelação preditiva:</strong> Criação de cenários
+                futuros baseados em evidência
+              </li>
+            </ul>
+            <h6>Aplicações na Educação</h6>
+            <ul>
+              <li>
+                <strong>Prevenção do abandono:</strong> Identificação precoce de
+                formandos em risco
+              </li>
+              <li>
+                <strong>Previsão de desempenho:</strong> Antecipação de
+                resultados académicos
+              </li>
+              <li>
+                <strong>Recomendações de percurso:</strong> Sugestão de caminhos
+                formativos otimizados
+              </li>
+              <li>
+                <strong>Gestão de recursos:</strong> Otimização de horários e
+                materiais
+              </li>
+              <li>
+                <strong>Personalização:</strong> Adaptação de conteúdos às
+                necessidades individuais
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal IA Analítica -->
+    <div
+      class="modal fade"
+      id="modalAnalitica"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5><i class="fas fa-search-plus me-2"></i>IA Analítica</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong>Definição:</strong> Sistemas que processam e interpretam
+              grandes volumes de dados educativos para extrair insights
+              significativos sobre aprendizagem, desempenho e eficácia
+              pedagógica através de técnicas avançadas de análise.
+            </p>
+            <h6>Tipos de Análise (Analytics Pyramid)</h6>
+            <ul>
+              <li>
+                <strong>Análise Descritiva:</strong> "O que aconteceu?" -
+                Relatórios sobre dados históricos
+              </li>
+              <li>
+                <strong>Análise Diagnóstica:</strong> "Por que aconteceu?" -
+                Identificação de causas e correlações
+              </li>
+              <li>
+                <strong>Análise Preditiva:</strong> "O que vai acontecer?" -
+                Previsões baseadas em padrões
+              </li>
+              <li>
+                <strong>Análise Prescritiva:</strong> "O que fazer?" -
+                Recomendações de ações específicas
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal IA Multimodal -->
+    <div
+      class="modal fade"
+      id="modalMultimodal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5><i class="fas fa-layer-group me-2"></i>IA Multimodal</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong>Definição:</strong> Sistemas de IA que podem processar,
+              compreender e gerar conteúdo em múltiplas modalidades
+              simultaneamente (texto, imagem, áudio, vídeo), criando
+              experiências de aprendizagem mais ricas e naturais.
+            </p>
+            <h6>Modalidades Integradas</h6>
+            <ul>
+              <li>
+                <strong>Texto:</strong> Processamento e geração de linguagem
+                natural escrita
+              </li>
+              <li>
+                <strong>Imagem:</strong> Análise visual, reconhecimento de
+                padrões e criação de conteúdo gráfico
+              </li>
+              <li>
+                <strong>Áudio:</strong> Reconhecimento de fala, síntese de voz e
+                processamento sonoro
+              </li>
+              <li>
+                <strong>Vídeo:</strong> Análise de conteúdo audiovisual e
+                geração de clips educativos
+              </li>
+              <li>
+                <strong>Gestos e movimento:</strong> Reconhecimento de linguagem
+                corporal em contextos práticos
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Prompt Engineering -->
+    <div class="modal fade" id="modalPrompt" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5><i class="fas fa-code me-2"></i>Prompt Engineering</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong>Definição:</strong> A arte e ciência de formular
+              instruções claras, específicas e eficazes (prompts) para sistemas
+              de IA, de forma a obter os melhores resultados possíveis para uma
+              tarefa específica no contexto educativo.
+            </p>
+            <h6>Componentes de um Prompt Eficaz</h6>
+            <ul>
+              <li>
+                <strong>Clareza:</strong> Instruções inequívocas e bem definidas
+              </li>
+              <li>
+                <strong>Contexto:</strong> Informação de background relevante
+                sobre a situação
+              </li>
+              <li>
+                <strong>Especificidade:</strong> Detalhes precisos sobre o
+                resultado desejado
+              </li>
+              <li>
+                <strong>Estrutura:</strong> Organização lógica da informação e
+                pedidos
+              </li>
+              <li>
+                <strong>Exemplos:</strong> Demonstrações do tipo de output
+                esperado
+              </li>
+              <li>
+                <strong>Restrições:</strong> Limitações e critérios que devem
+                ser respeitados
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Função para continuar para o próximo módulo
+      function continueToWorkshop() {
+        // Animação de saída suave
+        document.body.style.transition = "opacity 0.5s ease";
+        document.body.style.opacity = "0.7";
+
+        // Navegação real para sessão 2.1 após animação
+        setTimeout(() => {
+          window.location.href = "sessao2_01.html";
+        }, 500);
+      }
+
+      // Animações de entrada sequencial
+      document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll(".definition-card");
+        cards.forEach((card, index) => {
+          card.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Tracking de interações para análise pedagógica
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          modal.addEventListener("shown.bs.modal", function () {
+            const modalId = this.id;
+            console.log(
+              `Definição consultada: ${modalId} - ${new Date().toISOString()}`
+            );
+          });
+        });
+      });
+
+      // Melhorar acessibilidade
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          const openModal = document.querySelector(".modal.show");
+          if (openModal) {
+            bootstrap.Modal.getInstance(openModal).hide();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

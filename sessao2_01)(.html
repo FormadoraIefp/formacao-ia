@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Inteligência Artificial na Formação - Workshops práticos do IEFP"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+      <link rel="stylesheet" href="assets/css/sessao2.css" />
+    
+      <!-- Removido CSS inline. Usar apenas sessao2.css -->
+
+    <link rel="stylesheet" href="assets/css/sessao2.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/print.css" />
+    <link rel="stylesheet" href="assets/css/floating_buttons.css" />
+
+    <style>
+      /* Variáveis CSS alinhadas com o design original */
+      :root {
+        --primary-color: #1e3a8a; /* Azul escuro */
+        --secondary-color: #2563eb; /* Azul médio */
+        --accent-color: #f59e0b; /* Amarelo/laranja */
+        --background-color: #f9fafb; /* Cinza muito claro */
+        --text-color: #111827; /* Cinza escuro */
+        --header-bg-color: #ffffff; /* Branco para o header */
+        --header-text-color: #1e3a8a; /* Azul escuro para texto do header */
+        --badge-bg-color: #e0e7ff; /* Fundo claro para badges */
+        --badge-text-color: #1e3a8a; /* Azul escuro para texto das badges */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Sessão 2.1. Fundamentos da Avaliação com IA - Guião de Sessão
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="container conteudo-pagina py-5"
+    >
+      <!-- Seção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center justify-content-center">
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">2.1</span>
+                  <span class="stats-label">Sessão</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">1h</span>
+                  <span class="stats-label">Duração</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="stats-card">
+                  <span class="stats-number">4</span>
+                  <span class="stats-label">Passos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span class="nav-link">
+                  <i class="fas fa-book-reader me-1"></i>Guião de Sessão
+                </span>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar conceitos ou passos..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter"
+          >Sessão 2.1 - Fundamentos da Avaliação com IA</span
+        >
+      </div>
+
+      <!-- Accordion principal -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Sessão 2.1: Fundamentos da Avaliação com IA -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="avaliacao ia formativa feedback personalizado etica"
+          data-categoria="tutorial"
+        >
+          <h2 class="accordion-header" id="heading-w2s1">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-w2s1"
+              aria-expanded="true"
+              aria-controls="collapse-w2s1"
+            >
+              <div class="icon-workshop">
+                <i class="fas fa-clipboard-check"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">
+                  2.1 Fundamentos da Avaliação com IA
+                </div>
+                <div class="small text-muted">
+                  Conceitos essenciais e primeiras aplicações práticas
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">1 hora</span>
+                <span class="badge badge-sincrona">Sessão</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-w2s1"
+            class="accordion-collapse collapse show"
+            aria-labelledby="heading-w2s1"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-bullseye me-2 text-primary"></i>Objetivos da
+                  Sessão
+                </h5>
+                <p>
+                  Esta sessão foca na aplicação prática da IA para melhorar processos de avaliação na formação. No final desta sessão será capaz de:
+                </p>
+                <ul>
+                  <li>Compreender como a IA pode transformar a avaliação formativa</li>
+                  <li>Identificar ferramentas práticas para feedback personalizado</li>
+                  <li>Aplicar princípios éticos na avaliação assistida por IA</li>
+                  <li>Criar o primeiro instrumento de avaliação com apoio de IA</li>
+                </ul>
+
+                <!-- Conceito base -->
+                <div class="concept-box">
+                  <h6><i class="fas fa-lightbulb me-2"></i>Conceito Central</h6>
+                  <p class="mb-2">
+                    <strong>Avaliação Formativa com IA:</strong> Uso inteligente de tecnologia para fornecer feedback contínuo, personalizado e construtivo que orienta o processo de aprendizagem.
+                  </p>
+                  <p class="mb-0">
+                    <strong>Foco:</strong> Melhorar aprendizagem, não apenas medir resultados.
+                  </p>
+                </div>
+              </div>
+
+              <!-- PASSO 1: Avaliação Tradicional vs. IA -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">1</span>Avaliação Tradicional vs. Avaliação com IA
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Compreender as diferenças e vantagens
+                </p>
+
+                <h6>Compare os dois modelos:</h6>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="concept-box" style="border-left-color: #f59e0b">
+                      <h6>Avaliação Tradicional</h6>
+                      <ul class="small">
+                        <li>Feedback esporádico e genérico</li>
+                        <li>Processo manual e demorado</li>
+                        <li>Difícil personalizar para cada formando</li>
+                        <li>Limitada análise de padrões</li>
+                        <li><strong>Exemplo:</strong> Teste final com nota global</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div
+                      class="concept-box"
+                      style="border-left-color: var(--accent-color)"
+                    >
+                      <h6>Avaliação com IA</h6>
+                      <ul class="small">
+                        <li>Feedback imediato e específico</li>
+                        <li>Análise automática de respostas</li>
+                        <li>Adaptação ao ritmo individual</li>
+                        <li>Identificação de padrões de dificuldade</li>
+                        <li><strong>Exemplo:</strong> Feedback instant. com sugestões</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6><i class="fas fa-tasks me-2"></i>Exercício de Reflexão</h6>
+                  <p>Pense numa situação recente de avaliação na sua prática:</p>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Identifiquei uma limitação do processo atual</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Vislumbrei uma melhoria possível com IA</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 2: Aplicações Práticas da IA na Avaliação -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">2</span>4 Aplicações Práticas da IA na Avaliação
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 20 minutos |
+                  <strong>Objetivo:</strong> Conhecer ferramentas específicas
+                </p>
+
+                <div class="ia-types">
+                  <h6>Explore estas aplicações concretas:</h6>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-comments me-2 text-primary"></i>1. Feedback Personalizado
+                    </h6>
+                    <p class="small">
+                      <strong>Como funciona:</strong> IA analisa respostas e gera comentários específicos
+                    </p>
+                    <p class="small">
+                      <strong>Ferramenta:</strong> ChatGPT para criar feedback contextualizado
+                    </p>
+                    <p class="small">
+                      <strong>Exemplo prático:</strong> "Com base na resposta do formando sobre X, gere 3 sugestões de melhoria específicas"
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-question-circle me-2 text-success"></i>2. Geração de Questões
+                    </h6>
+                    <p class="small">
+                      <strong>Como funciona:</strong> Cria questões adaptadas ao nível e objetivos
+                    </p>
+                    <p class="small">
+                      <strong>Ferramenta:</strong> Claude ou ChatGPT com prompts estruturados
+                    </p>
+                    <p class="small">
+                      <strong>Exemplo prático:</strong> Questões de diferentes níveis (básico, intermédio, avançado)
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-chart-line me-2 text-info"></i>3. Análise de Padrões
+                    </h6>
+                    <p class="small">
+                      <strong>Como funciona:</strong> Identifica dificuldades comuns na turma
+                    </p>
+                    <p class="small">
+                      <strong>Ferramenta:</strong> Análise de dados com IA (Excel + IA, Google Sheets)
+                    </p>
+                    <p class="small">
+                      <strong>Exemplo prático:</strong> "75% da turma teve dificuldade no tópico Y - sugerir reforço"
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-target me-2 text-warning"></i>4. Rubricas Adaptativas
+                    </h6>
+                    <p class="small">
+                      <strong>Como funciona:</strong> Critérios de avaliação que se ajustam ao contexto
+                    </p>
+                    <p class="small">
+                      <strong>Ferramenta:</strong> Templates dinâmicos criados com IA
+                    </p>
+                    <p class="small">
+                      <strong>Exemplo prático:</strong> Rubrica que considera o progresso individual
+                    </p>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-mouse-pointer me-2"></i>
+                  <strong>Atividade Prática (10 min):</strong> Escolha UMA das aplicações acima. Acesse uma ferramenta de IA e teste criar um exemplo simples para a sua área de formação.
+                </div>
+
+                <div class="checklist-item">
+                  <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                  <span>Testei criar feedback personalizado com IA</span>
+                </div>
+              </div>
+
+              <!-- PASSO 3: Princípios Éticos Essenciais -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">3</span>Princípios Éticos na Avaliação com IA
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Aplicar ética de forma prática
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-shield-alt me-2"></i>Os 4 Pilares Éticos
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><strong>1. Transparência:</strong> Formandos sabem quando IA é usada</p>
+                      <p><strong>2. Equidade:</strong> IA não discrimina grupos ou indivíduos</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><strong>3. Privacidade:</strong> Dados pessoais protegidos</p>
+                      <p><strong>4. Supervisão:</strong> Humano valida sempre as decisões da IA</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6><i class="fas fa-check-square me-2"></i>Checklist Ético Prático</h6>
+                  <p>Antes de usar IA na avaliação, verifique:</p>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Informei os formandos sobre o uso de IA?</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Verifiquei se não há enviesamentos óbvios?</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Protegi dados pessoais dos formandos?</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Mantive a decisão final na avaliação?</span>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-exclamation-triangle me-2"></i>
+                  <strong>Regra de Ouro:</strong> A IA sugere, o formador decide. Nunca delegue completamente a avaliação à IA.
+                </div>
+              </div>
+
+              <!-- PASSO 4: Primeira Aplicação Prática -->
+              <div class="tutorial-step">
+                <h4><span class="step-number">4</span>Crie o Seu Primeiro Instrumento</h4>
+                <p>
+                  <strong>Duração:</strong> 10 minutos |
+                  <strong>Objetivo:</strong> Aplicação imediata dos conceitos
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-hammer me-2"></i>Exercício Hands-On
+                  </h6>
+                  <p>Escolha UMA das opções abaixo e crie com apoio da IA:</p>
+                  
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="instrumento" id="inst1" />
+                    <label class="form-check-label" for="inst1">
+                      <strong>Feedback personalizado</strong> para uma atividade típica da sua área
+                    </label>
+                  </div>
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="instrumento" id="inst2" />
+                    <label class="form-check-label" for="inst2">
+                      <strong>3 questões de avaliação</strong> de níveis diferentes sobre um tópico
+                    </label>
+                  </div>
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="instrumento" id="inst3" />
+                    <label class="form-check-label" for="inst3">
+                      <strong>Rubrica simples</strong> para avaliar uma competência específica
+                    </label>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-lightbulb me-2"></i>
+                  <strong>Prompt sugerido:</strong> "Sou formador de [sua área]. Ajuda-me a criar [instrumento escolhido] para avaliar [competência específica]. Deve ser prático e adequado a formandos com nível [básico/intermédio/avançado]."
+                </div>
+
+                <div class="reflection-box">
+                  <h6><i class="fas fa-trophy me-2"></i>Validação Final</h6>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Criei um instrumento com apoio da IA</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Verifiquei se está adequado ao meu contexto</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Apliquei os princípios éticos aprendidos</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Estou confiante para testar com formandos</span>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button
+                    class="btn btn-lg"
+                    onclick="finalizarSessao()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                      );
+                      color: white;
+                      border: none;
+                      padding: 12px 30px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <i class="fas fa-check-circle me-2"></i>Finalizar Sessão 2.1
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recursos Adicionais -->
+      <div class="content-card mt-4">
+        <h5>
+          <i class="fas fa-download me-2 text-info"></i>Recursos para Levar
+        </h5>
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Templates Prontos:</h6>
+            <ul class="small">
+              <li>Checklist ético para avaliação com IA</li>
+              <li>Prompts testados para feedback personalizado</li>
+              <li>Modelo de rubrica adaptativa</li>
+              <li>Guia de boas práticas</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6>Próximos Passos:</h6>
+            <ul class="small">
+              <li>Teste o instrumento criado com 1-2 formandos</li>
+              <li>Documente o que funcionou bem</li>
+              <li>Ajuste baseado no feedback recebido</li>
+              <li>Prepare-se para a Sessão 2.2</li>
+            </ul>
+          </div>
+        </div>
+
+    </main>
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              © 2025 – Sessão 2.1 - Avaliação com IA
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem">
+              • Inteligência Artificial • Avaliação • Inovação Pedagógica •
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+    <script>
+      function toggleCheck(element) {
+        element.classList.toggle('checked');
+      }
+      
+      function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+      
+      function finalizarSessao() {
+        alert('Sessão 2.1 concluída! Parabéns pelo primeiro passo na avaliação com IA.');
+      }
+    </script>
+  </body>
+</html>

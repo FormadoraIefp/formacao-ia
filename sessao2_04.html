@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Inteligência Artificial na Formação - Workshops práticos do IEFP"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/print.css" />
+    <link rel="stylesheet" href="assets/css/floating_buttons.css" />
+    <style>
+      /* ===== TEMA 4 — Vermelho Rubi ===== */
+      :root {
+        --primary-color: #0f766e; /* teal escuro */
+        --secondary-color: #f59e0b; /* âmbar */
+        --accent-color: #06b6d4; /* ciano */
+        --text-dark: #0f172a; /* slate 900 */
+        --bg-light: #f0fdfa;
+        --success-color: #28a745;
+        --warning-color: #ffc107;
+        --danger-color: #dc3545;
+        --info-color: #17a2b8;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        color: var(--text-dark);
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #2dd4bf 50%,
+          var(--accent-color) 100%
+        );
+        color: white;
+        padding: 2rem 0;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Sessão 2.4. Protocolo de Implementação Ética - Guião de Sessão
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container conteudo-pagina py-5">
+      <!-- Seção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center justify-content-center">
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">2.4</span>
+                  <span class="stats-label">Sessão</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">60min</span>
+                  <span class="stats-label">Duração</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="stats-card">
+                  <span class="stats-number">5</span>
+                  <span class="stats-label">Passos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span class="nav-link">
+                  <i class="fas fa-book-reader me-1"></i>Guião de Sessão
+                </span>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <!-- Botão imprimir na section -->
+              <!--<div class="text-end mb-4">
+                <button class="btn btn-print" onclick="window.print()">
+                  <i class="fas fa-print"></i> Imprimir esta sessão
+                </button>
+              </div>-->
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar conceitos ou passos..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter"
+          >Sessão 2.4 - Protocolo de Implementação Ética</span
+        >
+      </div>
+
+      <!-- Accordion principal -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Sessão 2.4: Protocolo de Implementação Ética -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="etica protocolo implementacao plano acao personalizado"
+          data-categoria="assincrona"
+        >
+          <h2 class="accordion-header" id="heading-w2s4">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-w2s4"
+              aria-expanded="true"
+              aria-controls="collapse-w2s4"
+            >
+              <div class="icon-workshop">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">
+                  2.4 Protocolo de Implementação Ética
+                </div>
+                <div class="small text-muted">
+                  Plano de ação personalizado para implementação ética da IA
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">60 min</span>
+                <span class="badge badge-assincrona">Assíncrona</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-w2s4"
+            class="accordion-collapse collapse show"
+            aria-labelledby="heading-w2s4"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-bullseye me-2 text-primary"></i>Objetivos da
+                  Sessão
+                </h5>
+                <p>
+                  Esta sessão assíncrona foca na criação de um protocolo
+                  personalizado para implementação ética da IA na sua prática
+                  formativa. No final desta sessão será capaz de:
+                </p>
+                <ul>
+                  <li>
+                    Desenvolver um protocolo ético personalizado para o seu
+                    contexto
+                  </li>
+                  <li>Criar um plano de implementação faseado e realista</li>
+                  <li>Estabelecer métricas de monitorização ética</li>
+                  <li>Definir procedimentos de auditoria e ajuste contínuo</li>
+                  <li>Preparar documentação de transparência para formandos</li>
+                </ul>
+
+                <!-- Conceito base -->
+                <div class="concept-box">
+                  <h6><i class="fas fa-lightbulb me-2"></i>Conceito Central</h6>
+                  <p class="mb-2">
+                    <strong>Protocolo de Implementação Ética:</strong> Sistema
+                    estruturado e personalizado que garante a aplicação
+                    responsável e transparente da IA na avaliação, com
+                    procedimentos claros de monitorização e ajuste.
+                  </p>
+                  <p class="mb-0">
+                    <strong>Foco:</strong> Criar um framework prático que
+                    assegure uso ético sustentável da IA.
+                  </p>
+                </div>
+              </div>
+
+              <!-- PASSO 1: Diagnóstico Ético do Contexto -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">1</span>Diagnóstico Ético do Seu
+                  Contexto
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Mapear riscos e oportunidades
+                  éticas específicas
+                </p>
+
+                <h6>Complete a análise do seu contexto formativo:</h6>
+
+                <div class="concept-box" style="border-left-color: #f59e0b">
+                  <h6>Características do Contexto</h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><strong>Tipo de formação:</strong></p>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="formal"
+                        />
+                        <label class="form-check-label small" for="formal"
+                          >Formação formal/certificada</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="profissional"
+                        />
+                        <label class="form-check-label small" for="profissional"
+                          >Formação profissional</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="continua"
+                        />
+                        <label class="form-check-label small" for="continua"
+                          >Formação contínua</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <p><strong>Públicos vulneráveis:</strong></p>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="menores"
+                        />
+                        <label class="form-check-label small" for="menores"
+                          >Menores de idade</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="desemprego"
+                        />
+                        <label class="form-check-label small" for="desemprego"
+                          >Pessoas em situação de desemprego</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="necessidades"
+                        />
+                        <label class="form-check-label small" for="necessidades"
+                          >Pessoas com necessidades especiais</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-tasks me-2"></i>Identificação de Riscos
+                    Éticos
+                  </h6>
+                  <p>Para o seu contexto específico, identifique:</p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Principais preocupações dos formandos sobre IA</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Riscos de discriminação ou enviesamento</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Questões de privacidade dos dados</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Impacto na autonomia dos formandos</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 2: Framework Ético Personalizado -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">2</span>Construção do Framework
+                  Ético Personalizado
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Adaptar princípios éticos ao
+                  contexto específico
+                </p>
+
+                <div class="ia-types">
+                  <h6>Defina os seus pilares éticos prioritários:</h6>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-eye me-2 text-primary"></i>Transparência
+                    </h6>
+                    <p class="small">
+                      <strong>Como aplicar no meu contexto:</strong>
+                    </p>
+                    <textarea
+                      class="form-control small"
+                      rows="2"
+                      placeholder="Ex: Informar formandos sobre uso de IA no início de cada módulo..."
+                    ></textarea>
+                    <p class="small mt-2">
+                      <strong>Documentos a criar:</strong> Política de
+                      transparência, scripts de comunicação
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-balance-scale me-2 text-success"></i
+                      >Equidade
+                    </h6>
+                    <p class="small">
+                      <strong
+                        >Medidas específicas para prevenir
+                        discriminação:</strong
+                      >
+                    </p>
+                    <textarea
+                      class="form-control small"
+                      rows="2"
+                      placeholder="Ex: Testar prompts com diferentes perfis, validar resultados com grupos diversos..."
+                    ></textarea>
+                    <p class="small mt-2">
+                      <strong>Controlos regulares:</strong> Auditoria mensal de
+                      resultados por grupos
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-user-shield me-2 text-info"></i
+                      >Privacidade
+                    </h6>
+                    <p class="small">
+                      <strong>Proteção de dados no meu contexto:</strong>
+                    </p>
+                    <textarea
+                      class="form-control small"
+                      rows="2"
+                      placeholder="Ex: Usar dados anonimizados, não partilhar informações pessoais com IA..."
+                    ></textarea>
+                    <p class="small mt-2">
+                      <strong>Procedimentos:</strong> Checklist de proteção de
+                      dados, consentimento informado
+                    </p>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>
+                      <i class="fas fa-user-cog me-2 text-warning"></i
+                      >Supervisão Humana
+                    </h6>
+                    <p class="small">
+                      <strong>Como mantenho controlo das decisões:</strong>
+                    </p>
+                    <textarea
+                      class="form-control small"
+                      rows="2"
+                      placeholder="Ex: Sempre validar sugestões da IA antes de aplicar, manter decisão final sobre avaliações..."
+                    ></textarea>
+                    <p class="small mt-2">
+                      <strong>Limites claros:</strong> IA sugere, eu decido e
+                      comunico
+                    </p>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-star me-2"></i>
+                  <strong>Priorização:</strong> Ordene estes 4 pilares por
+                  importância no seu contexto (1=mais importante, 4=menos
+                  importante). Comece a implementação pelo mais crítico.
+                </div>
+              </div>
+
+              <!-- PASSO 3: Plano de Implementação Faseada -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">3</span>Plano de Implementação em 3
+                  Fases
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Criar cronograma realista de
+                  implementação
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-road me-2"></i>Estrutura de Implementação
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div
+                        class="concept-box"
+                        style="border-left-color: #10b981"
+                      >
+                        <h6>Fase 1 - Piloto (1-2 semanas)</h6>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="pilot1"
+                          />
+                          <label class="form-check-label small" for="pilot1"
+                            >Selecionar 1 ferramenta IA</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="pilot2"
+                          />
+                          <label class="form-check-label small" for="pilot2"
+                            >Testar com 1 turma pequena</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="pilot3"
+                          />
+                          <label class="form-check-label small" for="pilot3"
+                            >Aplicar protocolo básico</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="pilot4"
+                          />
+                          <label class="form-check-label small" for="pilot4"
+                            >Recolher feedback</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div
+                        class="concept-box"
+                        style="border-left-color: #f59e0b"
+                      >
+                        <h6>Fase 2 - Expansão (1 mês)</h6>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="expand1"
+                          />
+                          <label class="form-check-label small" for="expand1"
+                            >Ajustar com base no piloto</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="expand2"
+                          />
+                          <label class="form-check-label small" for="expand2"
+                            >Aplicar a mais turmas</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="expand3"
+                          />
+                          <label class="form-check-label small" for="expand3"
+                            >Formar outros formadores</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="expand4"
+                          />
+                          <label class="form-check-label small" for="expand4"
+                            >Primeira auditoria ética</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div
+                        class="concept-box"
+                        style="border-left-color: var(--primary-color)"
+                      >
+                        <h6>Fase 3 - Consolidação (3 meses)</h6>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="consol1"
+                          />
+                          <label class="form-check-label small" for="consol1"
+                            >Implementação completa</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="consol2"
+                          />
+                          <label class="form-check-label small" for="consol2"
+                            >Sistema de monitorização</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="consol3"
+                          />
+                          <label class="form-check-label small" for="consol3"
+                            >Documentação final</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="consol4"
+                          />
+                          <label class="form-check-label small" for="consol4"
+                            >Avaliação de impacto</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-calendar me-2"></i>Cronograma Personalizado
+                  </h6>
+                  <p>Defina datas realistas para o seu contexto:</p>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label class="small">Início Fase 1:</label>
+                      <input type="date" class="form-control form-control-sm" />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="small">Início Fase 2:</label>
+                      <input type="date" class="form-control form-control-sm" />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="small">Início Fase 3:</label>
+                      <input type="date" class="form-control form-control-sm" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 4: Sistema de Monitorização Ética -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">4</span>Sistema de Monitorização e
+                  Métricas
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 10 minutos |
+                  <strong>Objetivo:</strong> Estabelecer indicadores de sucesso
+                  ético
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-chart-line me-2"></i>Métricas de
+                    Monitorização Ética
+                  </h6>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6>Indicadores Quantitativos:</h6>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="quant1"
+                        />
+                        <label class="form-check-label small" for="quant1"
+                          >% de formandos informados sobre uso de IA</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="quant2"
+                        />
+                        <label class="form-check-label small" for="quant2"
+                          >Tempo médio de resposta da IA validada</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="quant3"
+                        />
+                        <label class="form-check-label small" for="quant3"
+                          >Nº de decisões de IA alteradas pelo formador</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="quant4"
+                        />
+                        <label class="form-check-label small" for="quant4"
+                          >Taxa de satisfação com transparência</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <h6>Indicadores Qualitativos:</h6>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="qual1"
+                        />
+                        <label class="form-check-label small" for="qual1"
+                          >Feedback dos formandos sobre equidade</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="qual2"
+                        />
+                        <label class="form-check-label small" for="qual2"
+                          >Casos de enviesamento identificados</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="qual3"
+                        />
+                        <label class="form-check-label small" for="qual3"
+                          >Adequação das sugestões da IA</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="qual4"
+                        />
+                        <label class="form-check-label small" for="qual4"
+                          >Confiança dos formandos no processo</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-clock me-2"></i>
+                  <strong>Frequência de Monitorização:</strong>
+                  <br />• Semanal: Métricas básicas de uso e satisfação <br />•
+                  Mensal: Análise de equidade e enviesamentos <br />•
+                  Trimestral: Avaliação completa do protocolo ético
+                </div>
+              </div>
+
+              <!-- PASSO 5: Documentação e Comunicação -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">5</span>Documentação de
+                  Transparência
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 5 minutos |
+                  <strong>Objetivo:</strong> Preparar comunicação clara para
+                  formandos
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-file-alt me-2"></i>Templates de Comunicação
+                  </h6>
+
+                  <div class="ia-type-card">
+                    <h6>Script de Apresentação aos Formandos:</h6>
+                    <textarea
+                      class="form-control small"
+                      rows="3"
+                      placeholder="Ex: 'Nesta formação, utilizamos Inteligência Artificial para personalizar o feedback e melhorar a sua experiência de aprendizagem. A IA sugere, mas eu, como formador, mantenho sempre a decisão final sobre as avaliações...'"
+                    ></textarea>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>Política de Privacidade Simplificada:</h6>
+                    <textarea
+                      class="form-control small"
+                      rows="3"
+                      placeholder="Ex: 'Os seus dados são processados de forma anónima pela IA. Não guardamos informações pessoais nem as partilhamos com terceiros. Pode solicitar esclarecimentos a qualquer momento...'"
+                    ></textarea>
+                  </div>
+
+                  <div class="ia-type-card">
+                    <h6>Procedimento de Recurso/Contestação:</h6>
+                    <textarea
+                      class="form-control small"
+                      rows="2"
+                      placeholder="Ex: 'Se discordar de uma avaliação ou feedback, pode solicitar revisão humana através de [procedimento específico]...'"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-trophy me-2"></i>Validação Final do
+                    Protocolo
+                  </h6>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Framework ético adaptado ao meu contexto</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Plano de implementação em 3 fases definido</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Sistema de monitorização estabelecido</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Documentação de transparência preparada</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Pronto para iniciar implementação ética</span>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button
+                    class="btn btn-lg"
+                    onclick="finalizarSessao()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                      );
+                      color: white;
+                      border: none;
+                      padding: 12px 30px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <i class="fas fa-shield-check me-2"></i>Finalizar Protocolo
+                    Ético
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recursos Adicionais -->
+      <div class="content-card mt-4">
+        <h5>
+          <i class="fas fa-download me-2 text-info"></i>Recursos para Levar
+        </h5>
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Templates Criados:</h6>
+            <ul class="small">
+              <li>Framework ético personalizado</li>
+              <li>Cronograma de implementação faseada</li>
+              <li>Sistema de métricas de monitorização</li>
+              <li>Scripts de comunicação com formandos</li>
+              <li>Procedimentos de auditoria ética</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6>Próximos Passos:</h6>
+            <ul class="small">
+              <li>Iniciar Fase 1 do plano de implementação</li>
+              <li>Apresentar protocolo à equipe/instituição</li>
+              <li>Preparar primeira sessão piloto</li>
+              <li>Estabelecer rotinas de monitorização</li>
+              <li>Agendar primeira auditoria ética</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compromisso Ético -->
+      <div
+        class="content-card mt-4"
+        style="border-left: 4px solid var(--accent-color)"
+      >
+        <h5>
+          <i class="fas fa-handshake me-2 text-success"></i>Compromisso Ético
+        </h5>
+        <p class="mb-3">
+          Ao completar este protocolo, assumo o compromisso de:
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="checklist-item">
+              <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+              <span>Implementar a IA de forma transparente e responsável</span>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+              <span>Monitorizar regularmente o impacto ético</span>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+              <span>Manter sempre a supervisão humana</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="checklist-item">
+              <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+              <span>Proteger a privacidade dos formandos</span>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+              <span>Ajustar o protocolo com base na experiência</span>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-checkbox" onclick="toggleCheck(this)"></div>
+              <span>Partilhar boas práticas com colegas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              © 2025 – Sessão 2.4 - Protocolo de Implementação Ética
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem">
+              • Inteligência Artificial • Ética • Implementação • Protocolo •
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+    <script>
+      function toggleCheck(element) {
+        element.classList.toggle("checked");
+      }
+
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function finalizarSessao() {
+        alert(
+          "Sessão 2.4 concluída! Protocolo de Implementação Ética criado com sucesso. Está pronto para implementar IA de forma responsável na sua prática formativa."
+        );
+      }
+    </script>
+  </body>
+</html>

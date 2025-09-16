@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Recursos para Levar - Sessão 2.1 | IEFP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Templates prontos, prompts testados e guias práticos para avaliação com IA"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/floating_buttons.css" />
+    <link rel="stylesheet" href="/assets/css/print.css" />
+
+    <style>
+      /* Variáveis CSS */
+      /* ===== TEMA 2 — Azul Índigo ===== */
+      :root {
+        --primary-color: #1e3a8a; /* índigo escuro */
+        --secondary-color: #f59e0b; /* âmbar */
+        --accent-color: #3b82f6; /* azul vivo */
+        --text-dark: #1f2937; /* cinza 800 */
+        --bg-light: #f9fafb;
+        --success-color: #28a745;
+        --warning-color: #ffc107;
+        --danger-color: #dc3545;
+        --info-color: #17a2b8;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        color: var(--text-dark);
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #60a5fa 50%,
+          var(--accent-color) 100%
+        );
+        color: white;
+        padding: 2rem 0;
+        position: relative;
+      }
+      .header-main h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .header-main .subtitle {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      /* Container principal */
+      .conteudo-pagina {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-top: -50px;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Seção de estatísticas */
+      .stats-section {
+        background: rgba(255, 255, 255, 0.95);
+        margin-bottom: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(107, 70, 193, 0.1);
+        padding: 1.5rem;
+      }
+
+      .stats-card {
+        text-align: center;
+        padding: 1rem 0;
+      }
+
+      .stats-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent-color);
+      }
+
+      .stats-label {
+        display: block;
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-top: 0.25rem;
+      }
+
+      /* Accordions personalizados */
+      .accordion-item {
+        border: none;
+        margin-bottom: 1rem;
+        border-radius: 12px !important;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .accordion-header .accordion-button {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 1.5rem 2rem;
+        border: none;
+      }
+
+      .accordion-header .accordion-button:not(.collapsed) {
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+        color: white;
+        box-shadow: none;
+      }
+
+      .accordion-header .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(107, 70, 193, 0.25);
+      }
+
+      .accordion-body {
+        padding: 2rem;
+        background: white;
+      }
+
+      /* Cards de recursos */
+      .resource-card {
+        background: #f8f9fa;
+        border-left: 4px solid var(--accent-color);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .resource-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .resource-card h6 {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      /* Boxes especiais */
+      .template-box {
+        background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+        border: 1px solid #bbdefb;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+      }
+
+      .prompt-box {
+        background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+        border: 1px solid #c8e6c9;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        font-family: "Courier New", monospace;
+        position: relative;
+      }
+
+      .copy-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .copy-button:hover {
+        background: #0d9488;
+        transform: scale(1.05);
+      }
+
+      .guide-section {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+      }
+
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #f8f9fa;
+      }
+
+      .checklist-item:last-child {
+        border-bottom: none;
+      }
+
+      .checklist-checkbox {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--accent-color);
+        border-radius: 4px;
+        margin-right: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .checklist-checkbox.checked {
+        background: var(--accent-color);
+        color: white;
+      }
+
+      .checklist-checkbox.checked::after {
+        content: "✓";
+        font-weight: bold;
+      }
+
+      /* Botões flutuantes */
+      .floating-buttons {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .btn-floating {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-top {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+      }
+
+      .btn-back {
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+      }
+
+      .btn-floating:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        color: white;
+      }
+
+      /* Botões de ação */
+      .btn-download {
+        background: linear-gradient(135deg, var(--accent-color), #059669);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-download:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        color: white;
+      }
+
+      /* Estilos para impressão */
+      @media print {
+        body {
+          font-family: Arial, sans-serif;
+        }
+        .floating-buttons {
+          display: none !important;
+        }
+        .accordion-button {
+          background: #f8f9fa !important;
+          color: black !important;
+        }
+        .copy-button,
+        .btn-download {
+          display: none !important;
+        }
+        .resource-card {
+          break-inside: avoid;
+        }
+        .template-box {
+          break-inside: avoid;
+        }
+        h6 {
+          color: #000 !important;
+        }
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .header-main h1 {
+          font-size: 2rem;
+        }
+
+        .conteudo-pagina {
+          margin-top: -20px;
+          padding: 20px;
+        }
+
+        .accordion-body {
+          padding: 1.5rem;
+        }
+
+        .floating-buttons {
+          bottom: 20px;
+          right: 20px;
+          gap: 12px;
+        }
+
+        .btn-floating {
+          width: 50px;
+          height: 50px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Animações */
+      .fade-in {
+        animation: fadeIn 0.6s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-1 text-center">
+            <i
+              class="fas fa-download"
+              style="font-size: 2.5rem; opacity: 0.9"
+            ></i>
+          </div>
+          <div class="col-md-11">
+            <h1>Recursos para Levar</h1>
+            <p class="subtitle">
+              Templates Prontos, Prompts Testados e Guias Práticos - Sessão 2.1
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container py-5">
+      <div class="conteudo-pagina">
+        <!-- Seção de Estatísticas -->
+        <section class="stats-section">
+          <div class="row">
+            <div class="col-md-3 col-6">
+              <div class="stats-card">
+                <span class="stats-number">15</span>
+                <span class="stats-label">Templates Prontos</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stats-card">
+                <span class="stats-number">25</span>
+                <span class="stats-label">Prompts Testados</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stats-card">
+                <span class="stats-number">8</span>
+                <span class="stats-label">Guias Práticos</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="stats-card">
+                <span class="stats-number">100%</span>
+                <span class="stats-label">Aplicação Imediata</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Introdução -->
+        <div class="alert alert-info d-flex align-items-center mb-4 fade-in">
+          <i class="fas fa-info-circle me-3" style="font-size: 1.5rem"></i>
+          <div>
+            <strong>Como usar estes recursos:</strong> Todos os templates e
+            prompts foram testados em contexto real de formação. Copie, adapte e
+            personalize conforme as suas necessidades específicas. Cada recurso
+            inclui instruções de utilização.
+          </div>
+        </div>
+
+        <!-- Accordion dos Recursos -->
+        <div class="accordion" id="accordionRecursos">
+          <!-- Templates Executáveis -->
+          <div class="accordion-item fade-in">
+            <h2 class="accordion-header" id="headingTemplates">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTemplates"
+                aria-expanded="true"
+                aria-controls="collapseTemplates"
+              >
+                <i class="fas fa-file-alt me-3"></i>
+                <div>
+                  <div>Templates Executáveis</div>
+                  <small style="opacity: 0.8"
+                    >Documentos prontos a usar e personalizar</small
+                  >
+                </div>
+              </button>
+            </h2>
+            <div
+              id="collapseTemplates"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingTemplates"
+            >
+              <div class="accordion-body">
+                <!-- Checklist Ético -->
+                <div class="resource-card" id="checklist-etico">
+                  <h6>
+                    <i class="fas fa-shield-alt me-2"></i>Checklist Ético para
+                    Avaliação com IA
+                  </h6>
+                  <div class="template-box">
+                    <h6>Lista de Verificação Pré-Implementação</h6>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span
+                        ><strong>Transparência:</strong> Informei os formandos
+                        sobre o uso de IA na avaliação?</span
+                      >
+                    </div>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span
+                        ><strong>Equidade:</strong> Verifiquei se não há
+                        enviesamentos óbvios nos critérios?</span
+                      >
+                    </div>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span
+                        ><strong>Privacidade:</strong> Protegi adequadamente os
+                        dados pessoais dos formandos?</span
+                      >
+                    </div>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span
+                        ><strong>Supervisão:</strong> Mantive a decisão final
+                        humana na avaliação?</span
+                      >
+                    </div>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span
+                        ><strong>Validação:</strong> Testei o sistema com casos
+                        diversos antes da implementação?</span
+                      >
+                    </div>
+                    <div class="checklist-item">
+                      <div
+                        class="checklist-checkbox"
+                        onclick="toggleCheck(this)"
+                      ></div>
+                      <span
+                        ><strong>Feedback:</strong> Criei canais para os
+                        formandos reportarem problemas?</span
+                      >
+                    </div>
+                  </div>
+                  <button
+                    class="btn-download"
+                    onclick="printSection('checklist-etico')"
+                  >
+                    <i class="fas fa-print me-2"></i>Imprimir Checklist
+                  </button>
+                </div>
+
+                <!-- Modelo de Rubrica Adaptativa -->
+                <div class="resource-card" id="rubrica-adaptativa">
+                  <h6>
+                    <i class="fas fa-table me-2"></i>Modelo de Rubrica
+                    Adaptativa
+                  </h6>
+                  <div class="template-box">
+                    <h6>
+                      Rubrica para [COMPETÊNCIA] - Nível
+                      [BÁSICO/INTERMÉDIO/AVANÇADO]
+                    </h6>
+                    <table class="table table-bordered table-sm">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Critério</th>
+                          <th>Insuficiente (1)</th>
+                          <th>Suficiente (2)</th>
+                          <th>Bom (3)</th>
+                          <th>Excelente (4)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Conhecimento Técnico</strong></td>
+                          <td>Conhecimento limitado ou incorreto</td>
+                          <td>Conhecimento básico adequado</td>
+                          <td>Conhecimento sólido com exemplos</td>
+                          <td>Domínio completo com aplicações criativas</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Aplicação Prática</strong></td>
+                          <td>Não consegue aplicar conceitos</td>
+                          <td>Aplicação básica com orientação</td>
+                          <td>Aplicação autónoma e correta</td>
+                          <td>Aplicação inovadora e eficiente</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Comunicação</strong></td>
+                          <td>Explicação confusa ou incorreta</td>
+                          <td>Explicação clara dos pontos principais</td>
+                          <td>Comunicação estruturada e detalhada</td>
+                          <td>Apresentação envolvente e didática</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p class="small text-muted mt-2">
+                      <strong>Como personalizar:</strong> Substitua
+                      [COMPETÊNCIA] pela competência específica (ex: Excel
+                      Avançado, Soldadura, Atendimento ao Cliente). Adapte os
+                      descritores de desempenho ao contexto da sua área de
+                      formação.
+                    </p>
+                  </div>
+                  <button
+                    class="btn-download"
+                    onclick="printSection('rubrica-adaptativa')"
+                  >
+                    <i class="fas fa-print me-2"></i>Imprimir Template
+                  </button>
+                </div>
+
+                <!-- Template de Feedback Estruturado -->
+                <div class="resource-card" id="template-feedback">
+                  <h6>
+                    <i class="fas fa-comments me-2"></i>Template de Feedback
+                    Estruturado
+                  </h6>
+                  <div class="template-box">
+                    <h6>Estrutura para Feedback Personalizado</h6>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h6 class="text-success">
+                          ✅ Pontos Fortes Identificados:
+                        </h6>
+                        <ul class="small">
+                          <li>[Competência específica demonstrada]</li>
+                          <li>[Melhoria observada desde última avaliação]</li>
+                          <li>[Aspecto técnico bem executado]</li>
+                        </ul>
+                      </div>
+                      <div class="col-md-6">
+                        <h6 class="text-warning">⚠️ Áreas de Melhoria:</h6>
+                        <ul class="small">
+                          <li>[Conceito específico a reforçar]</li>
+                          <li>[Técnica a aperfeiçoar]</li>
+                          <li>[Procedimento a corrigir]</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <h6 class="text-primary">
+                      🎯 Sugestões de Desenvolvimento:
+                    </h6>
+                    <ol class="small">
+                      <li>
+                        <strong>Próximo passo imediato:</strong> [Ação
+                        específica e exequível]
+                      </li>
+                      <li>
+                        <strong>Prática recomendada:</strong> [Exercício ou
+                        atividade concreta]
+                      </li>
+                      <li>
+                        <strong>Recurso de apoio:</strong> [Material, ferramenta
+                        ou fonte de informação]
+                      </li>
+                    </ol>
+                    <div class="alert alert-light mt-3">
+                      <strong>Próxima avaliação:</strong> [Data] |
+                      <strong>Foco:</strong> [Competência prioritária]
+                    </div>
+                  </div>
+                  <button
+                    class="btn-download"
+                    onclick="printSection('template-feedback')"
+                  >
+                    <i class="fas fa-print me-2"></i>Imprimir Template
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prompts Específicos -->
+          <div class="accordion-item fade-in">
+            <h2 class="accordion-header" id="headingPrompts">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsePrompts"
+                aria-expanded="false"
+                aria-controls="collapsePrompts"
+              >
+                <i class="fas fa-code me-3"></i>
+                <div>
+                  <div>Prompts Específicos por Área</div>
+                  <small style="opacity: 0.8"
+                    >Instruções testadas para diferentes contextos
+                    formativos</small
+                  >
+                </div>
+              </button>
+            </h2>
+            <div
+              id="collapsePrompts"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingPrompts"
+            >
+              <div class="accordion-body">
+                <!-- Prompts para Feedback Personalizado -->
+                <div class="resource-card">
+                  <h6>
+                    <i class="fas fa-bullhorn me-2"></i>Prompts para Feedback
+                    Personalizado
+                  </h6>
+
+                  <div class="prompt-box">
+                    <button
+                      class="copy-button"
+                      onclick="copyToClipboard(this, 'prompt-feedback-tecnico')"
+                    >
+                      <i class="fas fa-copy me-1"></i>Copiar
+                    </button>
+                    <h6>Formação Técnica/Profissionalizante</h6>
+                    <div id="prompt-feedback-tecnico">
+                      Atua como um formador experiente em [ÁREA TÉCNICA - ex:
+                      Eletricidade, Soldadura, Informática]. Analisa o
+                      desempenho do formando baseado nesta informação: -
+                      Competência avaliada: [COMPETÊNCIA ESPECÍFICA] - Nível do
+                      formando: [Iniciante/Intermédio/Avançado] - Contexto da
+                      avaliação: [Prova prática/Projeto/Exercício específico] -
+                      Resultado observado: [DESCREVER PERFORMANCE] Fornece
+                      feedback estruturado seguindo este formato: **PONTOS
+                      FORTES** (2-3 aspetos concretos): - [Competência técnica
+                      demonstrada] - [Procedimento executado corretamente]
+                      **ÁREAS DE MELHORIA** (2-3 aspetos específicos): -
+                      [Conceito técnico a reforçar] - [Técnica a aperfeiçoar]
+                      **SUGESTÕES PRÁTICAS** (3 ações concretas): 1. Próximo
+                      exercício: [Atividade específica] 2. Estudo dirigido:
+                      [Tópico concreto] 3. Prática adicional: [Procedimento a
+                      repetir] Tom: Construtivo e encorajador. Linguagem:
+                      Técnica mas acessível ao nível do formando.
+                    </div>
+                  </div>
+
+                  <div class="prompt-box">
+                    <button
+                      class="copy-button"
+                      onclick="copyToClipboard(this, 'prompt-feedback-soft')"
+                    >
+                      <i class="fas fa-copy me-1"></i>Copiar
+                    </button>
+                    <h6>Competências Transversais (Soft Skills)</h6>
+                    <div id="prompt-feedback-soft">
+                      Atua como um coach de desenvolvimento profissional
+                      especializado em competências transversais. Cenário de
+                      avaliação: - Competência focus: [Comunicação/Trabalho em
+                      Equipa/Liderança/Resolução de Problemas] - Situação
+                      observada: [DESCREVER CONTEXTO ESPECÍFICO] -
+                      Comportamentos identificados: [LISTAR COMPORTAMENTOS
+                      OBSERVADOS] Cria feedback personalizado incluindo:
+                      **COMPORTAMENTOS EFICAZES OBSERVADOS:** - [Ação específica
+                      1 com impacto positivo] - [Ação específica 2 com impacto
+                      positivo] **OPORTUNIDADES DE DESENVOLVIMENTO:** -
+                      [Situação específica para melhorar] - [Comportamento
+                      alternativo sugerido] **PLANO DE DESENVOLVIMENTO (próximas
+                      2 semanas):** 1. **Prática imediata:** [Situação concreta
+                      para aplicar melhoria] 2. **Observação:** [Auto-reflexão
+                      específica a fazer] 3. **Feedback:** [De quem procurar
+                      retorno] Mantém tom de coaching positivo e foca em
+                      desenvolvimento, não em correção.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Prompts para Geração de Questões -->
+                <div class="resource-card">
+                  <h6>
+                    <i class="fas fa-question-circle me-2"></i>Prompts para
+                    Geração de Questões de Avaliação
+                  </h6>
+
+                  <div class="prompt-box">
+                    <button
+                      class="copy-button"
+                      onclick="copyToClipboard(this, 'prompt-questoes-multipla')"
+                    >
+                      <i class="fas fa-copy me-1"></i>Copiar
+                    </button>
+                    <h6>Questões de Escolha Múltipla</h6>
+                    <div id="prompt-questoes-multipla">
+                      Cria 5 questões de escolha múltipla para avaliar:
+                      **CONTEXTO:** - Área de formação: [ESPECIFICAR - ex:
+                      Contabilidade, Redes Informáticas] - Tópico específico:
+                      [SUBTEMA CONCRETO] - Nível de dificuldade:
+                      [Básico/Intermédio/Avançado] - Duração prevista: [X
+                      minutos] **ESPECIFICAÇÕES TÉCNICAS:** - Cada questão deve
+                      ter 4 opções (A, B, C, D) - Apenas 1 resposta correta por
+                      questão - Distractores plausíveis mas claramente
+                      incorretos - Inclui breve justificação da resposta correta
+                      **FORMATO EXIGIDO:** 1. Questão clara e objetiva 2. Opções
+                      balanceadas em tamanho 3. Explicação pedagógica (2-3
+                      linhas) 4. Referência ao objetivo de aprendizagem testado
+                      **CRITÉRIOS PEDAGÓGICOS:** - Linguagem apropriada ao
+                      público-alvo - Situações práticas relevantes ao contexto
+                      profissional - Progressão lógica de dificuldade (questão 1
+                      mais fácil, questão 5 mais desafiante) Formato de entrega:
+                      Questão numerada, opções A-D, resposta correta em
+                      destaque, justificação.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Guia de Boas Práticas -->
+          <div class="accordion-item fade-in">
+            <h2 class="accordion-header" id="headingGuias">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseGuias"
+                aria-expanded="false"
+                aria-controls="collapseGuias"
+              >
+                <i class="fas fa-book-open me-3"></i>
+                <div>
+                  <div>Guia de Boas Práticas</div>
+                  <small style="opacity: 0.8"
+                    >Diretrizes práticas para implementação eficaz</small
+                  >
+                </div>
+              </button>
+            </h2>
+            <div
+              id="collapseGuias"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingGuias"
+            >
+              <div class="accordion-body">
+                <!-- Implementação Passo-a-Passo -->
+                <div class="guide-section">
+                  <h5>
+                    <i class="fas fa-route me-2 text-primary"></i>Implementação
+                    Passo-a-Passo
+                  </h5>
+
+                  <h6>Fase 1: Preparação (Semana 1)</h6>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Definir objetivos:</strong> Que problema
+                      específico a IA vai resolver na minha avaliação?</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Escolher ferramentas:</strong> Selecionar 1-2
+                      ferramentas de IA para começar</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Testar privadamente:</strong> Experimentar com
+                      dados fictícios antes de usar com formandos</span
+                    >
+                  </div>
+
+                  <h6 class="mt-4">Fase 2: Piloto (Semanas 2-3)</h6>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Comunicar transparentemente:</strong> Informar
+                      formandos sobre uso de IA</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Implementar gradualmente:</strong> Começar com
+                      uma única aplicação (ex: só feedback)</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Monitorizar resultados:</strong> Documentar o que
+                      funciona e o que não funciona</span
+                    >
+                  </div>
+
+                  <h6 class="mt-4">Fase 3: Otimização (Semana 4+)</h6>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Refinar prompts:</strong> Melhorar instruções
+                      baseado na experiência</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Escalar gradualmente:</strong> Adicionar novas
+                      aplicações uma de cada vez</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      ><strong>Partilhar experiência:</strong> Documentar
+                      aprendizagens para colegas</span
+                    >
+                  </div>
+
+                  <div class="alert alert-light mt-3">
+                    <strong>💡 Dica:</strong> Documente casos de sucesso
+                    específicos para partilhar com colegas e justificar
+                    investimento em IA.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ação Final -->
+        <div class="text-center mt-5">
+          <div class="alert alert-success">
+            <h5><i class="fas fa-rocket me-2"></i>Pronto para Implementar!</h5>
+            <p class="mb-3">
+              Tem agora todos os recursos necessários para começar a usar IA na
+              avaliação formativa. Lembre-se: comece pequeno, teste
+              constantemente, e ajuste baseado na experiência.
+            </p>
+            <button
+              class="btn btn-lg"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--primary-color),
+                  var(--accent-color)
+                );
+                color: white;
+                border: none;
+                padding: 15px 30px;
+                border-radius: 10px;
+              "
+              onclick="finalAction()"
+            >
+              <i class="fas fa-check-circle me-2"></i>Marcar como Concluído
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/floating-buttons.js"></script>
+
+    <script>
+      // Funções específicas desta página apenas
+
+      // Função para toggle dos checkboxes
+      function toggleCheck(element) {
+        element.classList.toggle("checked");
+      }
+
+      // Função para copiar texto para clipboard
+      function copyToClipboard(button, textId) {
+        const text = document.getElementById(textId).innerText;
+
+        // Usar API moderna do clipboard se disponível
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(() => {
+              showCopySuccess(button);
+            })
+            .catch(() => {
+              fallbackCopyToClipboard(text, button);
+            });
+        } else {
+          fallbackCopyToClipboard(text, button);
+        }
+      }
+
+      // Função alternativa para copiar (browsers mais antigos)
+      function fallbackCopyToClipboard(text, button) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand("copy");
+          showCopySuccess(button);
+        } catch (err) {
+          alert("Erro ao copiar. Selecione o texto manualmente.");
+        }
+
+        document.body.removeChild(textArea);
+      }
+
+      // Mostrar feedback visual de cópia bem-sucedida
+      function showCopySuccess(button) {
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check me-1"></i>Copiado';
+        button.style.background = "#059669";
+
+        setTimeout(() => {
+          button.innerHTML = originalText;
+          button.style.background = "#10b981";
+        }, 2000);
+      }
+
+      // Função para imprimir seções específicas
+      function printSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (!section) {
+          alert("Seção não encontrada.");
+          return;
+        }
+
+        // Criar conteúdo para impressão
+        const printContent = createPrintContent(sectionId, section);
+
+        // Abrir nova janela para impressão
+        const printWindow = window.open("", "_blank");
+
+        if (!printWindow) {
+          alert("Por favor, permita pop-ups para imprimir.");
+          return;
+        }
+
+        // Escrever conteúdo na nova janela
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+
+        // Aguardar carregamento e imprimir
+        printWindow.onload = function () {
+          printWindow.focus();
+          printWindow.print();
+          // Fechar janela após impressão (opcional)
+          printWindow.onafterprint = function () {
+            printWindow.close();
+          };
+        };
+      }
+
+      // Criar conteúdo HTML para impressão
+      function createPrintContent(sectionId, section) {
+        let title = "Recurso IEFP";
+
+        switch (sectionId) {
+          case "checklist-etico":
+            title = "Checklist Ético para Avaliação com IA";
+            break;
+          case "rubrica-adaptativa":
+            title = "Modelo de Rubrica Adaptativa";
+            break;
+          case "template-feedback":
+            title = "Template de Feedback Estruturado";
+            break;
+        }
+
+        return `
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>${title}</title>
+              <meta charset="utf-8">
+              <style>
+                  body {
+                      font-family: Arial, sans-serif;
+                      padding: 20px;
+                      line-height: 1.6;
+                      color: #333;
+                  }
+                  h1 {
+                      color: #6b46c1;
+                      border-bottom: 3px solid #10b981;
+                      padding-bottom: 10px;
+                      text-align: center;
+                  }
+                  h6 {
+                      color: #6b46c1;
+                      font-weight: bold;
+                      margin: 20px 0 10px 0;
+                      font-size: 16px;
+                  }
+                  .template-box {
+                      border: 2px solid #10b981;
+                      padding: 15px;
+                      margin: 15px 0;
+                      background: #f8f9fa;
+                      border-radius: 8px;
+                  }
+                  .checklist-item {
+                      display: flex;
+                      align-items: center;
+                      margin: 8px 0;
+                      padding: 5px 0;
+                  }
+                  .checklist-checkbox {
+                      display: inline-block;
+                      width: 18px;
+                      height: 18px;
+                      border: 2px solid #10b981;
+                      margin-right: 12px;
+                      border-radius: 3px;
+                      flex-shrink: 0;
+                  }
+                  table {
+                      width: 100%;
+                      border-collapse: collapse;
+                      margin: 15px 0;
+                      page-break-inside: avoid;
+                  }
+                  th, td {
+                      border: 1px solid #ddd;
+                      padding: 12px 8px;
+                      text-align: left;
+                      vertical-align: top;
+                  }
+                  th {
+                      background-color: #f8f9fa;
+                      font-weight: bold;
+                      color: #6b46c1;
+                  }
+                  .btn-download, .copy-button { display: none !important; }
+                  .alert {
+                      background: #e3f2fd;
+                      padding: 15px;
+                      border-radius: 5px;
+                      margin: 15px 0;
+                      border-left: 4px solid #10b981;
+                  }
+                  .text-success { color: #059669 !important; }
+                  .text-warning { color: #d97706 !important; }
+                  .text-primary { color: #6b46c1 !important; }
+                  ul, ol { margin: 10px 0; padding-left: 25px; }
+                  li { margin: 5px 0; }
+                  .small { font-size: 14px; }
+                  .row { display: flex; flex-wrap: wrap; }
+                  .col-md-6 { flex: 1; padding-right: 15px; }
+                  .col-md-6:last-child { padding-right: 0; }
+
+                  @media print {
+                      body { font-size: 12px; }
+                      h1 { font-size: 18px; }
+                      h6 { font-size: 14px; }
+                      .template-box { break-inside: avoid; }
+                      table { break-inside: avoid; }
+                  }
+              </style>
+          </head>
+          </html>`;
+        <!-- Removido bloco que estava aparecendo como texto -->
+      }
+
+      // Função para ação final
+      function finalAction() {
+        alert(
+          "Recursos marcados como utilizados!\n\n✅ Templates descarregados\n✅ Prompts copiados\n✅ Boas práticas consultadas\n\nPróximo passo: Implementar gradualmente na sua prática formativa."
+        );
+      }
+
+      // Animações de entrada e inicialização
+      document.addEventListener("DOMContentLoaded", function () {
+        // Animações fade-in
+        const elements = document.querySelectorAll(".fade-in");
+        elements.forEach((element, index) => {
+          element.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Auto-scroll suave para acordeons
+        const accordionButtons = document.querySelectorAll(".accordion-button");
+        accordionButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            setTimeout(() => {
+              if (!this.classList.contains("collapsed")) {
+                this.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }, 350);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

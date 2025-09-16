@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Workshops de IA - IEFP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Inteligência Artificial na Formação - Workshops práticos do IEFP"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/print.css" />
+    <link rel="stylesheet" href="assets/css/floating_buttons.css" />
+    <style>
+      /* ===== TEMA 3 — Roxo/Violeta ===== */
+      :root {
+        --primary-color: #6d28d9; /* violeta */
+        --secondary-color: #f472b6; /* rosa */
+        --accent-color: #a78bfa; /* violeta claro */
+        --text-dark: #2c3e50;
+        --bg-light: #faf5ff;
+        --success-color: #28a745;
+        --warning-color: #ffc107;
+        --danger-color: #dc3545;
+        --info-color: #17a2b8;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        color: var(--text-dark);
+      }
+      .header-main {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #c084fc 50%,
+          var(--accent-color) 100%
+        );
+        color: white;
+        padding: 2rem 0;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar-scroll" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-content">
+          <div class="d-flex align-items-center mb-3">
+            <div class="logo-iefp">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h1 class="h3 mb-1">Inteligência Artificial (IA) na Formação</h1>
+              <p class="mb-0 opacity-75">
+                Sessão 2.2. Implementação e Otimização da Avaliação com IA -
+                Guião de Sessão
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container conteudo-pagina py-5">
+      <!-- Secção de Estatísticas -->
+      <section class="stats-section py-3">
+        <div class="container">
+          <div class="stats-content">
+            <div class="row text-center justify-content-center">
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">2.2</span>
+                  <span class="stats-label">Sessão</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">1h15</span>
+                  <span class="stats-label">Duração</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">5</span>
+                  <span class="stats-label">Passos</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stats-card">
+                  <span class="stats-number">3</span>
+                  <span class="stats-label">Ferramentas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu de navegação e pesquisa -->
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#workshopMenu"
+            aria-controls="workshopMenu"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="workshopMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span class="nav-link">
+                  <i class="fas fa-cogs me-1"></i>Implementação Prática
+                </span>
+              </li>
+            </ul>
+
+            <!-- Pesquisa -->
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+
+              <input
+                id="searchInput"
+                class="form-control"
+                type="search"
+                placeholder="Pesquisar ferramentas ou técnicas..."
+                aria-label="Pesquisar"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contador de resultados -->
+      <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <span id="resultsCounter"
+          >Sessão 2.2 - Implementação e Otimização da Avaliação com IA</span
+        >
+      </div>
+
+      <!-- Accordion principal -->
+      <div class="accordion" id="accordionWorkshops">
+        <!-- Sessão 2.2: Implementação e Otimização da Avaliação com IA -->
+        <div
+          class="accordion-item fade-in"
+          data-tags="implementacao otimizacao ferramentas automacao analytics"
+          data-categoria="pratico"
+        >
+          <h2 class="accordion-header" id="heading-w2s2">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse-w2s2"
+              aria-expanded="true"
+              aria-controls="collapse-w2s2"
+            >
+              <div class="icon-workshop">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <div>
+                <div class="fw-semibold">
+                  2.2 Implementação e Otimização da Avaliação com IA
+                </div>
+                <div class="small text-muted">
+                  Ferramentas avançadas e automação de processos avaliativos
+                </div>
+              </div>
+              <div class="ms-auto d-flex gap-2">
+                <span class="badge badge-duration">1h15</span>
+                <span class="badge badge-sincrona">Sessão</span>
+              </div>
+            </button>
+          </h2>
+          <div
+            id="collapse-w2s2"
+            class="accordion-collapse collapse show"
+            aria-labelledby="heading-w2s2"
+            data-bs-parent="#accordionWorkshops"
+          >
+            <div class="accordion-body">
+              <div class="content-card">
+                <h5>
+                  <i class="fas fa-bullseye me-2 text-primary"></i>Objetivos da
+                  Sessão
+                </h5>
+                <p>
+                  Esta sessão aprofunda a implementação prática de sistemas de
+                  avaliação com IA, focando na automação e otimização de
+                  processos. No final desta sessão será capaz de:
+                </p>
+                <ul>
+                  <li>
+                    Implementar sistemas automatizados de feedback usando IA
+                  </li>
+                  <li>
+                    Configurar ferramentas de análise de desempenho dos
+                    formandos
+                  </li>
+                  <li>Criar dashboards de monitorização de progresso</li>
+                  <li>
+                    Otimizar workflows de avaliação com integração de múltiplas
+                    ferramentas
+                  </li>
+                  <li>Desenvolver estratégias de avaliação adaptativa</li>
+                </ul>
+
+                <!-- Conceito base -->
+                <div class="concept-box">
+                  <h6><i class="fas fa-lightbulb me-2"></i>Conceito Central</h6>
+                  <p class="mb-2">
+                    <strong>Avaliação Inteligente Automatizada:</strong>
+                    Sistemas que combinam múltiplas ferramentas de IA para criar
+                    processos avaliativos autónomos, adaptativos e altamente
+                    personalizados.
+                  </p>
+                  <p class="mb-0">
+                    <strong>Objetivo:</strong> Reduzir carga administrativa
+                    mantendo qualidade e personalização da avaliação.
+                  </p>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-info-circle me-2"></i>
+                  <strong>Pré-requisito:</strong> Ter completado a Sessão 2.1 e
+                  testado pelo menos um instrumento de avaliação com IA.
+                </div>
+              </div>
+
+              <!-- PASSO 1: Revisão e Análise dos Resultados da Sessão 2.1 -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">1</span>Análise dos Resultados da
+                  Sessão Anterior
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 10 minutos |
+                  <strong>Objetivo:</strong> Avaliar eficácia dos primeiros
+                  instrumentos
+                </p>
+
+                <div class="reflection-box">
+                  <h6><i class="fas fa-chart-bar me-2"></i>Auditoria Rápida</h6>
+                  <p>Reflita sobre a experiência da Sessão 2.1:</p>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Testei o instrumento criado com formandos reais</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span
+                      >Recolhi feedback dos formandos sobre a experiência</span
+                    >
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Identifiquei 2-3 pontos de melhoria</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Documentei o tempo poupado vs. qualidade obtida</span>
+                  </div>
+                </div>
+
+                <div class="practical-exercise">
+                  <h6>
+                    <i class="fas fa-tasks me-2"></i>Exercício de Otimização (5
+                    min)
+                  </h6>
+                  <p>Com base na sua experiência, identifique:</p>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <strong>O que funcionou bem:</strong>
+                      <textarea
+                        class="form-control mt-2"
+                        rows="3"
+                        placeholder="Ex: Feedback foi muito específico..."
+                      ></textarea>
+                    </div>
+                    <div class="col-md-4">
+                      <strong>O que precisa melhorar:</strong>
+                      <textarea
+                        class="form-control mt-2"
+                        rows="3"
+                        placeholder="Ex: Demorou muito tempo a gerar..."
+                      ></textarea>
+                    </div>
+                    <div class="col-md-4">
+                      <strong>Próximo passo:</strong>
+                      <textarea
+                        class="form-control mt-2"
+                        rows="3"
+                        placeholder="Ex: Automatizar o processo..."
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSO 2: Ferramentas Avançadas de Avaliação com IA -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">2</span>Ferramentas Avançadas para
+                  Avaliação Automatizada
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 25 minutos |
+                  <strong>Objetivo:</strong> Dominar ferramentas especializadas
+                </p>
+
+                <div class="tools-grid">
+                  <div class="tool-card">
+                    <i
+                      class="fas fa-robot text-primary"
+                      style="font-size: 2rem; margin-bottom: 10px"
+                    ></i>
+                    <h6>Claude/ChatGPT Advanced</h6>
+                    <p class="small">
+                      Prompts estruturados para feedback complexo e análise de
+                      padrões
+                    </p>
+                    <div class="badge bg-success small">Gratuito/Pago</div>
+                  </div>
+                  <div class="tool-card">
+                    <i
+                      class="fas fa-chart-line text-info"
+                      style="font-size: 2rem; margin-bottom: 10px"
+                    ></i>
+                    <h6>Google Forms + IA</h6>
+                    <p class="small">
+                      Integração com Apps Script para análise automática de
+                      respostas
+                    </p>
+                    <div class="badge bg-success small">Gratuito</div>
+                  </div>
+                  <div class="tool-card">
+                    <i
+                      class="fas fa-table text-warning"
+                      style="font-size: 2rem; margin-bottom: 10px"
+                    ></i>
+                    <h6>Excel/Sheets com IA</h6>
+                    <p class="small">
+                      Fórmulas inteligentes e análise preditiva de desempenho
+                    </p>
+                    <div class="badge bg-success small">Gratuito</div>
+                  </div>
+                </div>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-magic me-2"></i>Prompt Avançado para
+                    Feedback Automatizado
+                  </h6>
+                  <p class="small mb-2">
+                    Template testado para feedback detalhado:
+                  </p>
+                  <div class="bg-light p-3 rounded">
+                    <code style="white-space: pre-wrap">
+                      Sou formador de [ÁREA]. Analisa a resposta do formando
+                      abaixo e fornece: 1. AVALIAÇÃO IMEDIATA (0-20 valores) com
+                      justificação 2. FEEDBACK CONSTRUTIVO (2-3 pontos
+                      específicos) 3. SUGESTÕES DE MELHORIA (ações concretas) 4.
+                      RECURSOS ADICIONAIS (se necessário) RESPOSTA DO FORMANDO:
+                      [COLAR RESPOSTA] CONTEXTO: [Competência avaliada, nível
+                      esperado, critérios específicos] Formato de resposta: JSON
+                      estruturado para fácil processamento.</code
+                    >
+                  </div>
+                </div>
+
+                <div class="practical-exercise">
+                  <h6>
+                    <i class="fas fa-hands-helping me-2"></i>Atividade Prática -
+                    Configuração de Ferramenta (15 min)
+                  </h6>
+                  <p>
+                    Escolha uma ferramenta e configure um sistema automático:
+                  </p>
+
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="ferramenta"
+                      id="tool1"
+                    />
+                    <label class="form-check-label" for="tool1">
+                      <strong>Google Forms + Apps Script:</strong> Criar
+                      formulário que envia feedback automático por email
+                    </label>
+                  </div>
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="ferramenta"
+                      id="tool2"
+                    />
+                    <label class="form-check-label" for="tool2">
+                      <strong>Claude API:</strong> Sistema que processa lote de
+                      respostas e gera relatório
+                    </label>
+                  </div>
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="ferramenta"
+                      id="tool3"
+                    />
+                    <label class="form-check-label" for="tool3">
+                      <strong>Excel com Power Query:</strong> Dashboard
+                      automático de análise de turma
+                    </label>
+                  </div>
+
+                  <div class="tip-box mt-3">
+                    <i class="fas fa-lightbulb me-2"></i>
+                    <strong>Recursos disponíveis:</strong> Tutoriais
+                    passo-a-passo para cada opção estão disponíveis nos
+                    materiais complementares.
+                  </div>
+                </div>
+
+                <div class="checklist-item">
+                  <div
+                    class="checklist-checkbox"
+                    onclick="toggleCheck(this)"
+                  ></div>
+                  <span
+                    >Configurei uma ferramenta de avaliação automatizada</span
+                  >
+                </div>
+                <div class="checklist-item">
+                  <div
+                    class="checklist-checkbox"
+                    onclick="toggleCheck(this)"
+                  ></div>
+                  <span>Testei o sistema com dados de exemplo</span>
+                </div>
+              </div>
+
+              <!-- PASSO 3: Criação de Dashboards de Monitorização -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">3</span>Dashboards de Monitorização
+                  de Progresso
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 20 minutos |
+                  <strong>Objetivo:</strong> Visualizar dados de aprendizagem em
+                  tempo real
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-dashboard me-2"></i>Elementos Essenciais de
+                    um Dashboard Educativo
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6 class="small text-primary">
+                        Indicadores Individuais:
+                      </h6>
+                      <ul class="small">
+                        <li>Progresso por competência</li>
+                        <li>Taxa de conclusão de atividades</li>
+                        <li>Evolução temporal das notas</li>
+                        <li>Áreas de dificuldade identificadas</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h6 class="small text-success">Indicadores da Turma:</h6>
+                      <ul class="small">
+                        <li>Desempenho médio por tópico</li>
+                        <li>Distribuição de níveis de competência</li>
+                        <li>Tempo médio de resposta</li>
+                        <li>Padrões de engagement</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="practical-exercise">
+                  <h6>
+                    <i class="fas fa-chart-area me-2"></i>Construção do
+                    Dashboard (15 min)
+                  </h6>
+                  <p>Utilize uma das opções para criar o seu dashboard:</p>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="tool-card h-100">
+                        <h6>Google Data Studio</h6>
+                        <p class="small">
+                          Conecta com Forms, Sheets e outras fontes
+                        </p>
+                        <button
+                          class="btn btn-sm btn-outline-primary"
+                          onclick="showTutorial('datastudio')"
+                        >
+                          Ver Tutorial
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="tool-card h-100">
+                        <h6>Power BI (Gratuito)</h6>
+                        <p class="small">
+                          Análises avançadas e visualizações interativas
+                        </p>
+                        <button
+                          class="btn btn-sm btn-outline-info"
+                          onclick="showTutorial('powerbi')"
+                        >
+                          Ver Tutorial
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="tool-card h-100">
+                        <h6>Excel/Sheets Dinâmico</h6>
+                        <p class="small">
+                          Gráficos automáticos com fórmulas inteligentes
+                        </p>
+                        <button
+                          class="btn btn-sm btn-outline-success"
+                          onclick="showTutorial('excel')"
+                        >
+                          Ver Tutorial
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="tutorial-content" class="mt-3" style="display: none">
+                    <!-- Conteúdo do tutorial aparecerá aqui dinamicamente -->
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-magic me-2"></i>
+                  <strong>IA para Dashboard:</strong> Use prompts como "Cria um
+                  gráfico em Excel que mostre a evolução das notas de cada
+                  formando ao longo do tempo, com alertas automáticos para
+                  quedas de desempenho."
+                </div>
+
+                <div class="checklist-item">
+                  <div
+                    class="checklist-checkbox"
+                    onclick="toggleCheck(this)"
+                  ></div>
+                  <span>Criei um dashboard básico de monitorização</span>
+                </div>
+                <div class="checklist-item">
+                  <div
+                    class="checklist-checkbox"
+                    onclick="toggleCheck(this)"
+                  ></div>
+                  <span>Configurei pelo menos 3 indicadores-chave</span>
+                </div>
+              </div>
+
+              <!-- PASSO 4: Avaliação Adaptativa com IA -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">4</span>Implementação de Avaliação
+                  Adaptativa
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Criar sistemas que se ajustam ao
+                  desempenho
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-brain me-2"></i>O que é Avaliação
+                    Adaptativa?
+                  </h6>
+                  <p>
+                    Sistema que ajusta automaticamente a dificuldade, tipo e
+                    frequência das questões com base no desempenho do formando.
+                  </p>
+
+                  <div class="row mt-3">
+                    <div class="col-md-6">
+                      <strong class="text-success">Vantagens:</strong>
+                      <ul class="small">
+                        <li>Mantém formandos na zona de desenvolvimento</li>
+                        <li>Previne frustração ou aborrecimento</li>
+                        <li>Otimiza tempo de aprendizagem</li>
+                        <li>Fornece dados precisos sobre competências</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <strong class="text-primary"
+                        >Implementação Simples:</strong
+                      >
+                      <ol class="small">
+                        <li>Definir níveis de dificuldade (1-5)</li>
+                        <li>Criar banco de questões por nível</li>
+                        <li>Estabelecer regras de progressão</li>
+                        <li>Implementar algoritmo de decisão</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="practical-exercise">
+                  <h6>
+                    <i class="fas fa-code-branch me-2"></i>Criação de Sistema
+                    Adaptativo Simples
+                  </h6>
+                  <p>Vamos criar um protótipo usando lógica condicional:</p>
+
+                  <div class="concept-box">
+                    <strong>Algoritmo Base:</strong>
+                    <div class="bg-light p-3 rounded mt-2">
+                      <code style="white-space: pre-wrap">
+                        SE (últimas 3 respostas corretas) ENTÃO ➡️ Aumentar
+                        nível de dificuldade SE (últimas 2 respostas incorretas)
+                        ENTÃO ➡️ Diminuir nível de dificuldade ➡️ Oferecer dica
+                        adicional SE (tempo de resposta > 2x média) ENTÃO ➡️
+                        Sugerir revisão do conteúdo</code
+                      >
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6 class="small">Para Google Forms:</h6>
+                      <ul class="small">
+                        <li>Use secções condicionais</li>
+                        <li>Configure redirecionamentos baseados em score</li>
+                        <li>Integre com Apps Script para lógica avançada</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h6 class="small">Para LMS/Moodle:</h6>
+                      <ul class="small">
+                        <li>Use questões condicionais</li>
+                        <li>Configure adaptive mode nos questionários</li>
+                        <li>Defina critérios de passa/falha por secção</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="warning-box">
+                  <i class="fas fa-exclamation-triangle me-2"></i>
+                  <strong>Cuidado:</strong> Sistemas adaptativos podem mascarar
+                  lacunas de aprendizagem. Mantenha sempre uma avaliação
+                  sumativa final abrangente.
+                </div>
+
+                <div class="checklist-item">
+                  <div
+                    class="checklist-checkbox"
+                    onclick="toggleCheck(this)"
+                  ></div>
+                  <span>Desenhei um fluxo de avaliação adaptativa</span>
+                </div>
+                <div class="checklist-item">
+                  <div
+                    class="checklist-checkbox"
+                    onclick="toggleCheck(this)"
+                  ></div>
+                  <span>Implementei pelo menos 2 regras condicionais</span>
+                </div>
+              </div>
+
+              <!-- PASSO 5: Integração e Otimização do Workflow -->
+              <div class="tutorial-step">
+                <h4>
+                  <span class="step-number">5</span>Integração e Otimização do
+                  Workflow Completo
+                </h4>
+                <p>
+                  <strong>Duração:</strong> 15 minutos |
+                  <strong>Objetivo:</strong> Conectar todas as ferramentas num
+                  sistema coeso
+                </p>
+
+                <div class="concept-box">
+                  <h6>
+                    <i class="fas fa-sitemap me-2"></i>Workflow Integrado de
+                    Avaliação com IA
+                  </h6>
+                  <div class="row">
+                    <div class="col-md-3 text-center">
+                      <div class="p-3 border rounded">
+                        <i
+                          class="fas fa-play-circle text-primary"
+                          style="font-size: 2rem"
+                        ></i>
+                        <p class="small mt-2">
+                          <strong>1. Recolha</strong><br />Dados automáticos via
+                          formulários/LMS
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                      <div class="p-3 border rounded">
+                        <i
+                          class="fas fa-cog text-warning"
+                          style="font-size: 2rem"
+                        ></i>
+                        <p class="small mt-2">
+                          <strong>2. Processamento</strong><br />IA analisa e
+                          gera feedback
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                      <div class="p-3 border rounded">
+                        <i
+                          class="fas fa-chart-pie text-success"
+                          style="font-size: 2rem"
+                        ></i>
+                        <p class="small mt-2">
+                          <strong>3. Visualização</strong><br />Dashboard
+                          atualiza automaticamente
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                      <div class="p-3 border rounded">
+                        <i
+                          class="fas fa-paper-plane text-info"
+                          style="font-size: 2rem"
+                        ></i>
+                        <p class="small mt-2">
+                          <strong>4. Entrega</strong><br />Feedback enviado
+                          automaticamente
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="practical-exercise">
+                  <h6>
+                    <i class="fas fa-puzzle-piece me-2"></i>Exercício Final -
+                    Integração Completa
+                  </h6>
+                  <p>
+                    Conecte os sistemas criados hoje numa sequência
+                    automatizada:
+                  </p>
+
+                  <ol>
+                    <li>
+                      <strong>Teste o fluxo completo:</strong> Submeta uma
+                      resposta teste e acompanhe todo o processo
+                    </li>
+                    <li>
+                      <strong>Meça a eficiência:</strong> Compare tempo manual
+                      vs. automatizado
+                    </li>
+                    <li>
+                      <strong>Ajuste parâmetros:</strong> Otimize baseado nos
+                      resultados
+                    </li>
+                    <li>
+                      <strong>Documente o processo:</strong> Crie um guia rápido
+                      para replicar
+                    </li>
+                  </ol>
+
+                  <div class="row mt-3">
+                    <div class="col-md-6">
+                      <strong>Métricas de Sucesso:</strong>
+                      <ul class="small">
+                        <li>Tempo médio de feedback: < 5 minutos</li>
+                        <li>
+                          Qualidade do feedback: Score 4/5 pelos formandos
+                        </li>
+                        <li>Redução de trabalho manual: > 70%</li>
+                        <li>Acuidade das recomendações: > 80%</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <strong>Próximos Desenvolvimentos:</strong>
+                      <ul class="small">
+                        <li>Integração com sistema de notas oficial</li>
+                        <li>Notificações automáticas para pais/supervisores</li>
+                        <li>Análise preditiva de risco de abandono</li>
+                        <li>Recomendações de percursos personalizados</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <i class="fas fa-rocket me-2"></i>
+                  <strong>Dica Avançada:</strong> Use ferramentas como Zapier ou
+                  Microsoft Power Automate para conectar diferentes plataformas
+                  sem código.
+                </div>
+
+                <div class="reflection-box">
+                  <h6>
+                    <i class="fas fa-trophy me-2"></i>Validação Final do Sistema
+                  </h6>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Sistema processa automaticamente submissões</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Dashboard atualiza em tempo real</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Feedback é entregue automaticamente</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Sistema adaptativo funciona conforme esperado</span>
+                  </div>
+                  <div class="checklist-item">
+                    <div
+                      class="checklist-checkbox"
+                      onclick="toggleCheck(this)"
+                    ></div>
+                    <span>Documentei o processo para futura replicação</span>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button
+                    class="btn btn-lg"
+                    onclick="finalizarSessao()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                      );
+                      color: white;
+                      border: none;
+                      padding: 12px 30px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <i class="fas fa-check-circle me-2"></i>Finalizar Sessão 2.2
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recursos Adicionais -->
+      <div class="content-card mt-4">
+        <h5>
+          <i class="fas fa-toolbox me-2 text-info"></i>Kit de Ferramentas
+          Avançado
+        </h5>
+        <div class="row">
+          <div class="col-md-4">
+            <h6>Templates & Scripts:</h6>
+            <ul class="small">
+              <li>Script Google Apps para automação de Forms</li>
+              <li>Template de Dashboard em Excel/Power BI</li>
+              <li>Prompts otimizados para cada ferramenta IA</li>
+              <li>Fluxograma de implementação por etapas</li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h6>Recursos Técnicos:</h6>
+            <ul class="small">
+              <li>Vídeo-tutoriais passo-a-passo</li>
+              <li>Troubleshooting guide comum</li>
+              <li>Conectores e APIs recomendadas</li>
+              <li>Calculadora de ROI da automatização</li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h6>Próximos Passos:</h6>
+            <ul class="small">
+              <li>Implementar sistema numa turma piloto</li>
+              <li>Recolher métricas durante 2 semanas</li>
+              <li>Ajustar baseado no feedback</li>
+              <li>Preparar apresentação de resultados</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preparação para Sessão 2.3 -->
+      <div class="content-card mt-4">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h5>
+              <i class="fas fa-forward me-2 text-success"></i>Preparação para
+              Sessão 2.3
+            </h5>
+            <p class="mb-2">
+              A próxima sessão focará na
+              <strong
+                >Avaliação de Competências Complexas e Soft Skills com
+                IA</strong
+              >.
+            </p>
+            <p class="small text-muted mb-0">
+              Traga: exemplos de competências difíceis de avaliar na sua área,
+              casos de formandos com desempenhos atípicos.
+            </p>
+          </div>
+          <div class="col-md-4 text-end">
+            <span class="badge bg-primary p-3">
+              <i class="fas fa-calendar-alt me-2"></i>Sessão 2.3<br />
+              <small>Avaliação Avançada</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-white py-5 mt-5" style="border-top: 1px solid #e9ecef">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3">
+                <img
+                  src="assets/images/logo-iefp.png"
+                  alt="Logo IEFP"
+                  class="img-fluid"
+                  style="max-height: 60px"
+                  onerror="this.style.display='none';"
+                />
+              </div>
+              <h6 class="text-dark mb-0" style="font-weight: 600">
+                INSTITUTO DO EMPREGO E FORMAÇÃO PROFISSIONAL
+              </h6>
+            </div>
+            <div class="text-muted" style="line-height: 1.5">
+              <p class="mb-1" style="font-size: 0.95rem">
+                Serviço de Formação Profissional de Alverca
+              </p>
+              <p class="mb-1" style="font-size: 0.9rem">
+                Centro de Emprego e Formação Profissional de Vila Franca de Xira
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <p class="text-dark mb-2" style="font-weight: 500">
+              © 2025 – Sessão 2.2 - Implementação e Otimização
+            </p>
+            <div class="text-muted" style="font-size: 0.8rem">
+              • Automação • Dashboards • Avaliação Adaptativa •
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+      <button
+        class="btn-floating btn-top"
+        onclick="scrollToTop()"
+        title="Voltar ao topo"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button
+        class="btn-floating btn-print"
+        onclick="window.print()"
+        title="Imprimir guião"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+    <script>
+      function toggleCheck(element) {
+        element.classList.toggle("checked");
+      }
+
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function showTutorial(tool) {
+        const content = document.getElementById("tutorial-content");
+        const tutorials = {
+          datastudio: `
+            <div class="concept-box">
+              <h6>Tutorial Google Data Studio:</h6>
+              <ol class="small">
+                <li>Acesse datastudio.google.com</li>
+                <li>Clique em "Criar" → "Relatório"</li>
+                <li>Conecte à fonte de dados (Google Forms/Sheets)</li>
+                <li>Arraste campos para criar gráficos automáticos</li>
+                <li>Configure filtros por formando ou período</li>
+              </ol>
+            </div>`,
+          powerbi: `
+            <div class="concept-box">
+              <h6>Tutorial Power BI:</h6>
+              <ol class="small">
+                <li>Baixe Power BI Desktop (gratuito)</li>
+                <li>Importe dados do Excel/CSV</li>
+                <li>Use visualizações predefinidas</li>
+                <li>Configure refresh automático</li>
+                <li>Publique no serviço online (gratuito)</li>
+              </ol>
+            </div>`,
+          excel: `
+            <div class="concept-box">
+              <h6>Tutorial Excel Dinâmico:</h6>
+              <ol class="small">
+                <li>Organize dados em tabela estruturada</li>
+                <li>Use Tabelas Dinâmicas para análises</li>
+                <li>Crie gráficos dinâmicos automáticos</li>
+                <li>Configure formatação condicional</li>
+                <li>Use fórmulas como PROCV e SOMASES</li>
+              </ol>
+            </div>`,
+        };
+
+        content.innerHTML = tutorials[tool] || "Tutorial não encontrado.";
+        content.style.display = "block";
+      }
+
+      function finalizarSessao() {
+        const completedCount = document.querySelectorAll(
+          ".checklist-checkbox.checked"
+        ).length;
+        const totalCount = document.querySelectorAll(
+          ".checklist-checkbox"
+        ).length;
+
+        if (completedCount >= totalCount * 0.8) {
+          alert(
+            `Excelente! Completou ${completedCount}/${totalCount} objetivos. Sessão 2.2 concluída com sucesso. Está pronto para implementar avaliação automatizada com IA!`
+          );
+        } else {
+          alert(
+            `Sessão 2.2 registada. Completou ${completedCount}/${totalCount} objetivos. Reveja os pontos em falta antes de implementar o sistema.`
+          );
+        }
+      }
+
+      // Progress bar automática
+      window.addEventListener("scroll", () => {
+        const scrolled =
+          (window.scrollY /
+            (document.documentElement.scrollHeight - window.innerHeight)) *
+          100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+      });
+
+      // Animações de entrada
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = "0.2s";
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".tutorial-step").forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
